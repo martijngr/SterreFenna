@@ -1,0 +1,36 @@
+﻿@model SterreFenna.WebPresentation.Menus.MenuModel
+@{
+    Layout = null;
+}
+
+<div id="menu-container" class="clearfix">
+    <ul id="main-menu" class="pull-left menu">
+
+        @foreach (var menuItem in Model.MenuItems.OrderBy(m => m.Rank))
+        {
+            <li class="@Html.GetProjectCss(menuItem)">
+
+                @if (menuItem.MenuItems.Any())
+                {
+                    <text>@menuItem.Name</text>
+                }
+                else
+                {
+                    <a href="/@menuItem.UniqueName">@menuItem.Name</a>
+                }
+
+                @if (menuItem.MenuItems.Any())
+                {
+                    <ul class="clearfix">
+                        @foreach (var subMenuItem in menuItem.MenuItems)
+                        {
+                            @Html.SiteSerieLink(menuItem.UniqueName, subMenuItem.UniqueName, subMenuItem.Name)
+                        }
+                    </ul>
+                }
+            </li>
+        }
+        <li class="no-sub-items contact pull-right">Contact</li>
+        <li class="no-sub-items filler"><div>&nbsp;</div></li>
+    </ul>
+</div>

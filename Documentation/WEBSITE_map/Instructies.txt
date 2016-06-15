@@ -1,0 +1,85 @@
+ADOBE INDESIGN-AFDRUKINSTRUCTIES VOOR SERVICE PROVIDER
+
+NAAM PUBLICATIE: WEBSITE_HOME.indd
+
+PAKKETDATUM: 28-04-2016 22:15
+Aanmaakdatum: 18-04-2016
+Wijzigingsdatum: 28-04-2016
+
+CONTACTGEGEVENS
+
+Bedrijfsnaam: 
+Contactpersoon: 
+Adres: 
+
+
+
+
+
+Telefoon: 
+Fax: 
+E-mail: 
+
+SPECIALE INSTRUCTIES EN ANDERE OPMERKINGEN
+
+
+
+
+
+
+Externe plug-ins 0
+Niet-dekkende objecten: Op pagina12
+
+LETTERTYPEN
+2 gebruikte lettertypen; 0 ontbrekend, 0 ingesloten, 0 onvolledig, 0 beveiligd
+
+Lettertypen ingesloten
+- Naam: AvenirNextLTPro-Bold; Type: OpenType Type 1, Status: OK
+- Naam: AvenirNextLTPro-Regular; Type: OpenType Type 1, Status: OK
+
+
+KLEUREN EN INKTEN
+4 procesinkten; 0 steuninkten
+
+- Naam en type: Proceskleur Cyaan; Hoek: 75,000; Lijnen/inch: 70,000
+- Naam en type: Proceskleur Magenta; Hoek: 15,000; Lijnen/inch: 70,000
+- Naam en type: Proceskleur Geel; Hoek: 0,000; Lijnen/inch: 70,000
+- Naam en type: Proceskleur Zwart; Hoek: 45,000; Lijnen/inch: 70,000
+
+
+KOPPELINGEN EN AFBEELDINGEN
+(Alleen ontbrekende en ingesloten koppelingen)
+Koppelingen en afbeeldingen: 35 gevonden koppelingen; 0 gewijzigd, 0 ontbrekend 0 Niet toegankelijk
+Afbeeldingen: 0 ingesloten, 35 gebruiken RGB-kleurruimte
+
+
+AFDRUKINSTELLINGEN
+PPD: Generic PostScript Printer, (TOSHIBA e-STUDIO2330C @ MacBook Pro van Michelle)
+Afdrukken naar: Printer
+Aantal exemplaren: 1
+Lezer spreads: Nee
+Even/oneven pagina's: Beide
+Pagina's: Alles
+Proef: Nee
+Naast elkaar: Geen
+Schalen: 100%, 100%
+Paginapositie: Linksboven
+Lagen afdrukken: Zichtbare & afdrukbare lagen
+Drukkersmarkeringen: Geen
+Afloopgebied: 0 px, 0 px, 0 px, 0 px
+Kleur: Samengesteld CMYK
+Overvulmodus: Geen
+Afbeeldingsgegevens verzenden: Geoptimaliseerde subsampling
+Vervanging OPI/DCS-afbeelding: Nee
+Paginaformaat: Aangepast: 1100 px x 780 px
+Papierafmetingen: 595 px x 842 px
+Stand: Liggend
+Negatief: Nee
+Spiegelmodus: Uit
+
+
+BESTANDSPAKKETLIJST
+
+1. WEBSITE_HOME.indd; type: Adobe InDesign-publicatie; grootte: 11052K
+2. AvenirNextLTPro-Bold.otf; type: Lettertypebestand; grootte: 68K
+3. AvenirNextLTPro-Regular.otf; type: Lettertypebestand; grootte: 65K

@@ -1,0 +1,21 @@
+﻿@model IEnumerable<SterreFenna.Business.Series.Views.SerieOverviewItem>
+
+<h2>Series</h2>
+
+<div class="clearfix">
+    <div class="serie-block add pull-left">
+        <a href="/Admin/Serie/New">
+            <i class="fa fa-plus-circle"></i>
+        </a>
+    </div>
+
+    @foreach (var serie in Model)
+    {
+        <div class="serie-block pull-left">
+            <a href="/Admin/Serie/Edit/@serie.Id">
+                <img src="@serie.ImageLocation" />
+                <div>@serie.Name</div>
+            </a>
+        </div>
+    }
+</div>

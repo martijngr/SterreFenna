@@ -1,0 +1,52 @@
+﻿<!-- Swiper -->
+<!-- http://idangero.us/swiper/demos/#.V0nq9ZF97Dc -->
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <img src="/Series/Teez_I/01_b.jpg" />
+        </div>
+        <div class="swiper-slide">
+            <img src="/Series/Teez_I/02.jpg" />
+        </div>
+        <div class="swiper-slide">
+            <img src="/Series/Teez_I/03.jpg" />
+        </div>
+        <div class="swiper-slide">
+            <img src="/Series/Teez_I/04.jpg" />
+        </div>
+        <div class="swiper-slide">
+            <img src="/Series/Teez_I/04b.jpg" />
+        </div>
+        <div class="swiper-slide">
+            <img src="/Series/Teez_I/05.jpg" />
+        </div>
+        <div class="swiper-slide">
+            <img src="/Series/Teez_I/06.jpg" />
+        </div>
+        <div class="swiper-slide">
+            <img src="/Series/Teez_I/07.jpg" />
+        </div>
+        <div class="swiper-slide">
+            <img src="/Series/Teez_I/08.jpg" />
+        </div>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //initialize swiper when document ready
+            var swiper = new Swiper('.swiper-container', {
+                pagination: '.swiper-pagination',
+                slidesPerView: 'auto',
+                paginationClickable: true,
+                spaceBetween: 30,
+                freeMode: true
+            });
+        });
+    </script>
+}
+

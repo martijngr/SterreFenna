@@ -1,0 +1,32 @@
+﻿@model SterreFenna.Business.Series.Views.SerieDetailView
+
+<!-- Swiper -->
+<!-- http://idangero.us/swiper/demos/#.V0nq9ZF97Dc -->
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        @foreach (var item in Model.SerieItems)
+        {
+            <div class="swiper-slide">
+                <img src="@item.Location" />
+            </div>
+        }
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //initialize swiper when document ready
+            var swiper = new Swiper('.swiper-container', {
+                pagination: '.swiper-pagination',
+                slidesPerView: 'auto',
+                paginationClickable: true,
+                spaceBetween: 30,
+                freeMode: true
+            });
+        });
+    </script>
+}

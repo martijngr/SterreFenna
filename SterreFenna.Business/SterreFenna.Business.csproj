@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A8160F30-DE28-447E-8413-E49ED637F993}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SterreFenna.Business</RootNamespace>
+    <AssemblyName>SterreFenna.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Projects\Commands\AddProjectCommand.cs" />
+    <Compile Include="Projects\Commands\BaseProjectCommand.cs" />
+    <Compile Include="Projects\Commands\ChangeProjectOrderCommand.cs" />
+    <Compile Include="Projects\Commands\EditProjectCommand.cs" />
+    <Compile Include="Projects\ProjectNotFoundException.cs" />
+    <Compile Include="Projects\Queries\GetProjectByIdQuery.cs" />
+    <Compile Include="Projects\Queries\GetProjectOverviewQuery.cs" />
+    <Compile Include="Projects\Views\ProjectDetailsView.cs" />
+    <Compile Include="Projects\Views\ProjectOverviewItem.cs" />
+    <Compile Include="Series\Commands\AddItemsToSerieCommand.cs" />
+    <Compile Include="Series\Commands\BaseSerieCommand.cs" />
+    <Compile Include="Series\Commands\CreateSerieCommand.cs" />
+    <Compile Include="Series\Commands\EditSerieCommand.cs" />
+    <Compile Include="Series\Commands\GetSerieByIdCommand.cs" />
+    <Compile Include="Series\Commands\UploadedSerieItem.cs" />
+    <Compile Include="Projects\Queries\GetFirstActiveProjectQuery.cs" />
+    <Compile Include="Series\Queries\GetItemsForSerieQuery.cs" />
+    <Compile Include="Series\Queries\GetProjectListOverviewQuery.cs" />
+    <Compile Include="Series\SerieNotFoundException.cs" />
+    <Compile Include="Series\SeriePathManager.cs" />
+    <Compile Include="Series\Queries\GetSerieOverviewQuery.cs" />
+    <Compile Include="Series\Views\ProjectListOverviewItem.cs" />
+    <Compile Include="Series\Views\SerieDetailView.cs" />
+    <Compile Include="Series\Views\SerieItemDetailView.cs" />
+    <Compile Include="Series\Views\SerieOverviewItem.cs" />
+    <Compile Include="Migrations\201605282048067_InitialCreate.cs" />
+    <Compile Include="Migrations\201605282048067_InitialCreate.Designer.cs">
+      <DependentUpon>201605282048067_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\ISettings.cs" />
+    <Compile Include="SFContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\Insert series.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SterreFenna.Domain\SterreFenna.Domain.csproj">
+      <Project>{c0220780-b9ce-454d-b9ec-4e63d8e7e9f7}</Project>
+      <Name>SterreFenna.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201605282048067_InitialCreate.resx">
+      <DependentUpon>201605282048067_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

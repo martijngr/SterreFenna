@@ -1,0 +1,151 @@
+﻿@model IEnumerable<SterreFenna.Business.Series.Views.ProjectListOverviewItem>
+
+<form class="form" id="addGalleryForm" enctype="multipart/form-data">
+    <div class="row">
+        <h2>Nieuwe serie aanmaken</h2>
+        <div class="form-group col-sm-4">
+            <label for="name">Naam</label>
+            <input type="text" class="form-control" id="name" placeholder="Naam van nieuwe serie">
+        </div>
+        <div class="form-group col-sm-4">
+            <label for="publicationDate">Publicatiedatum</label>
+            <input type="text" class="form-control" id="publicationDate" placeholder="Datum van publicatie">
+        </div>
+        <div class="col-sm-4">
+            <button type="button"
+                    class="btn btn-primary pull-right"
+                    style="margin-top: 24px;"
+                    onclick="submitAddSerie()">
+                Aanmaken
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <h2>Project</h2>
+        <div class="form-group col-sm-4">
+            <label for="newProjectName">Naam</label>
+            <input type="text" class="form-control" id="newProjectName" placeholder="Naam van nieuw project">
+        </div>
+        <div class="form-group col-sm-4">
+            <label for="publicationDate">Onderbrengen aan bestaand project</label>
+            <select class="form-control" id="projectId" name="projectId">
+                <option>Niet onderbrengen aan bestaand project</option>
+                @foreach (var item in Model)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>
+        </div>
+    </div>
+</form>
+<div class="photo-container">
+    <h3>Foto's</h3>
+    <div class="dropzone-container">
+        <form action="/Admin/Serie/SubmitNew"
+              method="post"
+              class="dropzone"
+              id="foo-bar">
+            <div class="dz-message" data-dz-message><span>Klik of sleep hier om foto's toe te voegen</span></div>
+        </form>
+    </div>
+    <div class="uploaded-pics-container">
+        <ul id="sortable"></ul>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $("#sortable").sortable();
+            $("#sortable").disableSelection();
+        });
+
+        var dropzoneOptions = {
+            autoProcessQueue: false,
+            uploadMultiple: true,
+            addRemoveLinks: false,
+            previewTemplate: '<div style="display:none"></div>', //getDropzonePreviewTemplate(),//
+            paramName: 'files',
+            parallelUploads: 100,
+            init: function () {
+                this.on("sending", function (file, xhr, formData) {
+                    formData.append('name', getFieldValue("name"));
+                    formData.append('publicationDate', getFieldValue("publicationDate"));
+                    formData.append('filenameOrder', getOrderOfFilenames());
+                    formData.append('newProjectName', getFieldValue("newProjectName"));
+                    formData.append('projectId', getFieldValue("projectId"));
+                });
+
+                this.on("addedfile", function (file) {
+                    addFileToSortablePics(file);
+                });
+            }
+        };
+        Dropzone.autoDiscover = true;
+        Dropzone.options.fooBar = dropzoneOptions;
+
+        function getDropzonePreviewTemplate() {
+            return '<div class="dz-preview dz-file-preview">    ' +
+                      '<div class="dz-details">                                      ' +
+                       ' <img data-dz-thumbnail />' +
+                      // ' <div class="dz-filename"><span data-dz-name></span></div>   '+
+                      // ' <div class="dz-size" data-dz-size></div>'+
+                     ' </div>' +
+                      '<div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>' +
+                        '<i class=\"fa fa-trash\" data-dz-remove />' +
+                    '</div>';
+        }
+
+        function addFileToSortablePics(file) {
+
+            getBase64String(file, function (imageString) {
+                var container = $("#sortable");
+                var image = '<img src="' + imageString + '" alt="' + file.name + '" title="' + file.name + '"/>';
+                var trash = '<i class="fa fa-trash" onclick="removePhotoFromList(this)"></i>';
+                var item = '<li class="ui-state-default height-90">' + image + trash + '</li>';
+
+                container.append(item);
+            });
+        }
+
+        function submitAddSerie() {
+            var dropzone = Dropzone.instances[0];
+            dropzone.processQueue();
+        }
+
+        function getFieldValue(name) {
+            return $("#" + name).val();
+        }
+
+        function getBase64String(file, callback) {
+            var reader = new FileReader();
+
+            // Closure to capture the file information.
+            reader.onload = function (e) {
+                //get the base64 url
+                var base64URL = e.target.result;
+
+                if (callback != null)
+                    callback(base64URL);
+            };
+
+            // Read in the image file as a data URL.
+            reader.readAsDataURL(file);
+        }
+
+        function removePhotoFromList(element) {
+            $(element).parent().remove();
+        }
+
+        function getOrderOfFilenames() {
+            var imageNames = [];
+            var images = $("#sortable li img");
+
+            $.each(images, function (index, image) {
+                imageNames.push($(image).prop('alt'));
+            });
+
+            return imageNames;
+        }
+    </script>
+}

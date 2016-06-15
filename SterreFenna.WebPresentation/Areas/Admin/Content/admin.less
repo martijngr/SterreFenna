@@ -1,0 +1,190 @@
+﻿@color-highlight: #F0AD4E;
+
+label {
+    font-weight: initial;
+}
+
+h2 {
+    i.fa {
+        font-size: 20px;
+        color: #c3c3c3;
+        cursor:pointer;
+
+        &:hover{
+            color: #000;
+        }
+    }
+}
+
+.height-90 {
+    height: 90px;
+}
+
+.serie-block {
+    margin-right: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    max-width: 200px;
+    height: 140px;
+
+    &.add {
+        width: 200px;
+        background-color: rgba(241, 236, 236, .5);
+
+        &:hover {
+            background-color: rgba(241, 236, 236, 1);
+
+            i {
+                color: black;
+            }
+        }
+
+        i {
+            color: #ADADAD;
+            font-size: 2.5em;
+            padding-top: 45px;
+        }
+    }
+
+    a {
+        display: block;
+        color: black;
+        font-size: 1.3em;
+
+        &:hover {
+
+            img {
+                opacity: 0.4;
+            }
+
+            div {
+                top: 55px;
+                padding: 5px;
+                background: rgba(255, 255, 255, .4);
+                line-height: initial;
+                height: initial;
+            }
+        }
+
+        img {
+            max-height: 140px;
+            opacity: 0.1;
+        }
+
+        div {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            overflow: hidden;
+            width: 100%;
+            line-height: 140px;
+        }
+    }
+}
+
+.photo-container {
+    margin-top: 30px;
+}
+
+.dropzone {
+    display: inline-block;
+    width: 100%;
+    min-height: 20px;
+    margin-bottom: 20px;
+    background-color: rgba(241, 236, 236, 1);
+    cursor: pointer;
+
+    .dz-message {
+        text-align: center;
+        padding: 10px;
+        color: #B3B3B3;
+    }
+
+    .dz-preview {
+        display: inline-block;
+        margin-right: 20px;
+    }
+}
+
+#sortable {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+        position: relative;
+        margin: 20px 20px 0 0;
+        float: left;
+
+        &.ui-state-highlight-large {
+            border: 1px dashed black;
+            width: 200px;
+            height: 140px;
+        }
+
+        &:hover {
+            i.fa-trash {
+                display: inline;
+                position: absolute;
+                top: 0;
+                right: 0;
+                font-size: 20px;
+                padding: 3px;
+                background: rgba(255, 255, 255, .6);
+                cursor: pointer;
+            }
+        }
+
+        img {
+            height: 100%;
+            cursor: move;
+        }
+
+        i.fa-trash {
+            display: none;
+        }
+    }
+}
+
+.project-overview {
+
+    .project-block {
+        position: relative;
+        float: left;
+        height: 140px;
+        line-height: 140px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        min-width: 200px;
+        text-align: center;
+
+        &.add {
+            font-size: 2.5em;
+        }
+
+        a {
+            display: block;
+            color: #ADADAD;
+            background-color: rgba(241, 236, 236, .5);
+
+            &:hover {
+                text-decoration: none;
+                background-color: rgba(241, 236, 236, .7);
+                color: black;
+            }
+        }
+
+        div.icon-box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 10px;
+            height: 20px;
+            line-height: initial;
+            color: @color-highlight;
+        }
+    }
+}

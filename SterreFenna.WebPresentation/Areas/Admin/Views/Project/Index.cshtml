@@ -1,0 +1,73 @@
+﻿@model IEnumerable<SterreFenna.Business.Projects.Views.ProjectOverviewItem>
+
+<form action="/Admin/Project/ChangeProjectOrder" method="post">
+    <div class="clearfix">
+        <h2>
+            Projecten
+            <span class="pull-right">
+                <span id="projectOrderButtonsBox">
+                    <button type="submit" class="btn btn-primary">Volgorde opslaan</button>
+                    <button type="button" class="btn btn-warning" onclick="toggleChangingProjectOrder()">Annuleren</button>
+                </span>
+                <i class="fa fa-list-ol"
+                   title="Volgorde van projecten aanpassen"
+                   id="toggleProjectSortButton"
+                   onclick="toggleChangingProjectOrder()"></i>
+            </span>
+        </h2>
+    </div>
+    <div class="project-overview clearfix">
+        <ul id="sortable">
+            <li class="project-block add ui-state-disabled">
+                <a href="/Admin/Project/New">
+                    <i class="fa fa-plus-circle"></i>
+                </a>
+            </li>
+            @foreach (var project in Model.OrderBy(p => p.Rank))
+            {
+                <li class="project-block">
+                    <input type="hidden" value="@project.Id" name="projectOrder"/>
+                    <a href="/Admin/Project/Edit/@project.Id">@project.Name (@project.TotalSeries)</a>
+                    <div class="icon-box">
+                        @if (project.PublicationDate > DateTime.Now)
+                        {
+                            <i class="fa fa-calendar pull-right" aria-hidden="true" title="Live op @project.PublicationDate.Value.ToString("dd-MM-yyyy hh:mm")"></i>
+                        }
+                        @if (project.PublicationDate < DateTime.Now)
+                        {
+                            <i class="fa fa-cloud-download pull-right" aria-hidden="true" title="Offline sinds @project.PublicationDate.Value.ToString("dd-MM-yyyy hh:mm")"></i>
+                        }
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</form>
+@section scripts{
+    <script>
+        $(function () {
+            $("#sortable").sortable({
+                items: "li:not(.ui-state-disabled)",
+                placeholder: "ui-state-highlight-large"
+            });
+            $("#sortable").disableSelection();
+            $("#sortable").sortable("disable");
+            $("#projectOrderButtonsBox").hide();
+        });
+
+        function toggleChangingProjectOrder() {
+            var isDisabled = $("#sortable").sortable("option", "disabled");
+
+            if (isDisabled) {
+                $("#projectOrderButtonsBox").show();
+                $("#toggleProjectSortButton").hide();
+                $("#sortable").sortable("enable");
+            }
+            else {
+                $("#projectOrderButtonsBox").hide();
+                $("#toggleProjectSortButton").show();
+                $("#sortable").sortable("disable");
+            }
+        }
+    </script>
+}

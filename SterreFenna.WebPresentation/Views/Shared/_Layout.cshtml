@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/swiper.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/menu.css" rel="stylesheet" />
+    <link href="~/Content/content.css" rel="stylesheet" />
+
+    <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <header>
+                <img src="~/Content/images/logo_height_100.png" class="img-responsive center-block"/>
+            </header>
+        </div>
+        <div class="row content">
+            @RenderBody()
+        </div>
+        <div class="row">
+            <footer class="clearfix">
+                @{ Html.RenderAction("Index", "Menu"); }
+            </footer>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/swiper.jquery.min.js"></script>
+    <script src="~/Scripts/swiper.min.js"></script>
+
+    @RenderSection("scripts", false)
+    
+</body>
+</html>
