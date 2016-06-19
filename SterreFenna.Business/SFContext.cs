@@ -1,4 +1,5 @@
-﻿using SterreFenna.Domain;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using SterreFenna.Domain;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,16 +10,17 @@ using System.Threading.Tasks;
 
 namespace SterreFenna.Business
 {
-    public class SFContext : DbContext
+    public class SFContext : IdentityDbContext<IdentityUser>
     {
-        public SFContext()
-            : base("SFContext")
+        public SFContext() : base("SFContext", throwIfV1Schema: false)
         {
 
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             
             //one-to-many 

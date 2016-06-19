@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
 {
+    [Authorize]
     public class SerieController : Controller
     {
         private readonly CreateSerieCommand _createSerieCommand;

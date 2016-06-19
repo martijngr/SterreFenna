@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <title>Sterre Fenna - Admin</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/admin.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <form class="form-signin" action="/Admin/Account/Login" method="post">
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="text" id="inputEmail" name="email" class="form-control" placeholder="Email address" required="" autofocus="">
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required="">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="rememberMe" value="true"> Remember me
+                </label>
+            </div>
+            <div>
+                @Html.ValidationSummary()
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+    </div>
+</body>
+</html>
+

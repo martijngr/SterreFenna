@@ -5,6 +5,7 @@ using System.Web.Mvc;
 
 namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
 {
+    [Authorize]
     public class ProjectController : Controller
     {
         private readonly GetProjectOverviewQuery _getProjectOverviewQuery;
