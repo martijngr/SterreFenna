@@ -10,3 +10,22 @@
 	-> Project geen series? Dan item niet tonen
 	-> Project met 1 serie? Dan serienaam tonen ipv projectnaam
 	-> Project met 1 serie? Dan geen submenu tonen
+
+
+
+- Jelle:
+- #1 Structureer front-end. (Current)
+- Front-end menu goed maken voor LG, MD, SM en xs resoluties.
+- Evt. Logo animeren/SVG fixen.
+- Loop rest van de front-end na.
+
+Files:
+file:///D:/Chrome%20Downloads/MOBIEL%20(1).pdf
+file:///D:/Chrome%20Downloads/WEBSITE_STERRE_FENNA.pdf
+
+For bundling and minification install:
+Updated packages die gebruikt worden + 
+https://visualstudiogallery.msdn.microsoft.com/3b329021-cd7a-4a01-86fc-714c2d05bb6c
+https://visualstudiogallery.msdn.microsoft.com/9ec27da7-e24b-4d56-8064-fd7e88ac1c40
+
+a

@@ -1,0 +1,13 @@
+[
+  {//compile main less file to css
+    "outputFile": "Content/main.css",
+    "inputFile": "Content/less/main.less",
+    "minify": {
+        "enabled": true
+    },
+    "includeInProject": false,
+    "options":{
+        "sourceMap": false
+    }
+  }
+]

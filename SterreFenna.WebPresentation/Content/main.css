@@ -1,3 +1,44 @@
+﻿/* Bundle all styling in main.less ready for compilation and minification */
+@import "less/bootstrap/bootstrap-theme.css";
+@import "less/bootstrap/bootstrap.css";
+@import "less/fonts/font-awesome.css";
+@import "less/plugins/swiper.min.css";
+.swiper-container {
+  width: 100%;
+  height: 380px;
+  padding-bottom: 30px;
+}
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  width: initial;
+}
+.swiper-slide img {
+  height: 100%;
+}
+.swiper-container-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+  bottom: 0px;
+}
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #A8A8A8;
+}
+.image-container {
+  width: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.image-container .photo-box {
+  display: inline-block;
+  margin-right: 10px;
+}
+.image-container .photo-box img {
+  max-height: 400px;
+}
 #menu-container {
   position: absolute;
   bottom: 0px;
@@ -38,7 +79,7 @@
 }
 #menu-container #main-menu > li {
   position: relative;
-  background-image: url('images/menu-line.png');
+  background-image: url('less/images/menu-line.png');
   background-position: bottom;
   background-repeat: repeat-x;
   cursor: pointer;
@@ -58,7 +99,7 @@
   width: 830px;
   display: block;
   margin-top: 8px;
-  background-image: url('images/menu-line.png');
+  background-image: url('less/images/menu-line.png');
   background-position: top;
   background-repeat: repeat-x;
 }
@@ -75,13 +116,13 @@
 #menu-container #main-menu > li.active:not(.no-sub-items) ul li a.active {
   padding-bottom: 10px;
   font-weight: bold;
-  background-image: url('images/menu-line.png');
+  background-image: url('less/images/menu-line.png');
   background-position: bottom;
   background-repeat: repeat-x;
 }
 #menu-container #main-menu > li:hover:not(.no-sub-items) ul li:first-of-type,
 #menu-container #main-menu > li.active:not(.no-sub-items) ul li:first-of-type {
-  background-image: url('images/chevron-down-24.png');
+  background-image: url('less/images/chevron-down-24.png');
   background-repeat: no-repeat;
   background-position: top left;
 }
@@ -91,7 +132,7 @@
   position: relative;
   width: auto;
   display: block;
-  background-image: url('images/menu-line.png');
+  background-image: url('less/images/menu-line.png');
   background-position: bottom;
   background-repeat: repeat-x;
   cursor: default;
@@ -105,4 +146,78 @@
 }
 #menu-container #contact-menu {
   right: 0;
+}
+#main-menu {
+  position: relative;
+}
+#main-menu,
+#main-menu ul {
+  list-style-type: none;
+}
+#main-menu ul {
+  border-bottom: 2px solid black;
+}
+#main-menu li {
+  float: left;
+}
+#main-menu > li ul {
+  display: none;
+  position: absolute;
+  top: -40px;
+  left: 0;
+  right: 0;
+}
+#main-menu > li:hover {
+  cursor: pointer;
+  background-image: url('less/images/chevron-down-24.png');
+  background-repeat: no-repeat;
+  background-position: top center;
+}
+#main-menu > li:hover ul {
+  display: block;
+}
+.menu {
+  list-style-type: none;
+  position: absolute;
+  bottom: 0px;
+}
+.menu li {
+  display: block;
+  padding: 10px;
+  text-transform: uppercase;
+}
+#contact-menu {
+  position: absolute;
+  top: 0px;
+}
+body {
+  font-family: "Muli";
+}
+header {
+  padding-top: 2px;
+  background: #fff;
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+header img {
+  height: 130px;
+}
+.content {
+  text-align: center;
+}
+footer {
+  position: relative;
+}
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] {
+  padding-right: 0;
+  padding-left: 0;
+}
+.a .a {
+  padding: 10px;
 }
