@@ -186,10 +186,6 @@
     <Content Include="Content\less\plugins\jquery\tabs.css" />
     <Content Include="Content\less\plugins\jquery\theme.css" />
     <Content Include="Content\less\plugins\jquery\tooltip.css" />
-    <Content Include="Content\main.css" />
-    <Content Include="Content\main.min.css">
-      <DependentUpon>main.css</DependentUpon>
-    </Content>
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Content\images\chevron-down-24.png" />
     <Content Include="Content\images\logo.png" />
@@ -233,24 +229,21 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="Content\less\main.less" />
-    <Content Include="Content\less\content.less" />
     <Content Include="Content\less\menu2.less" />
+    <Content Include="Content\less\base\base.less" />
+    <Content Include="Content\less\override-swiper.less" />
+    <Content Include="Content\less\base\footer.less" />
+    <Content Include="Content\less\base\header.less" />
+    <Content Include="Content\less\custom-mixins.less" />
     <None Include="Properties\PublishProfiles\Production.pubxml" />
-    <None Include="Scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="main.min.js" />
     <Content Include="Scripts\bootstrap\bootstrap.js" />
-    <Content Include="Scripts\dropzone\dropzone.js" />
-    <None Include="Scripts\jquery\jquery-1.9.1.intellisense.js" />
-    <Content Include="Scripts\jquery\jquery-1.9.1.js" />
-    <Content Include="Scripts\jquery\jquery-1.9.1.min.js" />
-    <None Include="Scripts\jquery\jquery-3.0.0.intellisense.js" />
+    <Content Include="Scripts\plugins\dropzone\dropzone.js" />
     <Content Include="Scripts\jquery\jquery-3.0.0.js" />
-    <Content Include="Scripts\jquery\jquery-3.0.0.min.js" />
-    <Content Include="Scripts\jquery\jquery-3.0.0.slim.js" />
-    <Content Include="Scripts\jquery\jquery-3.0.0.slim.min.js" />
-    <Content Include="Scripts\jquery\jquery-ui-1.11.4.js" />
-    <Content Include="Scripts\jquery\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\main.min.js">
+      <DependentUpon>main.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\modernizr\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr\modernizr-2.8.3.js" />
     <Content Include="Scripts\plugins\swiper\swiper.jquery.min.js" />
@@ -289,11 +282,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_Viewstart.cshtml" />
-    <Content Include="Scripts\jquery\jquery-1.9.1.min.map" />
     <Content Include="Views\Menu\Index.cshtml" />
     <Content Include="Views\Home\Show.cshtml" />
-    <Content Include="Scripts\jquery\jquery-3.0.0.slim.min.map" />
-    <Content Include="Scripts\jquery\jquery-3.0.0.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

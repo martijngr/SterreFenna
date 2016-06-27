@@ -10,8 +10,16 @@
 //external plugins
 @import "less/plugins/swiper.min.css";
 
+//custom bootstrap overrides
+@import "custom-mixins.less"; 
+
 //global styles
-@import "content.less";
+@import "base/base.less";   //global styles
+@import "base/header.less";
+@import "base/footer.less";
+
+@import "override-swiper.less";
+
 @import "menu.less";
 @import "menu2.less";
 @import "Site.less";

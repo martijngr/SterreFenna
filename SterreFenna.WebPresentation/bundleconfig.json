@@ -2,7 +2,11 @@
   {
     "outputFileName": "Scripts/main.min.js",
     "inputFiles": [
-      "Scripts/main.js"
+      "Scripts/jquery/*.js", //import jquery first
+      "Scripts/bootstrap/*.js", //bootstrap second
+      "Scripts/modernizr/*.js",
+      "Scripts/plugins/**/*.js", //plugins semi last
+      "Scripts/main.js" //and custom javascript last!
     ],
     "minify": {
       "enabled": true,

@@ -1,5 +1,5 @@
 [
-  {//compile main less file to css
+  {//compile and minify main less file to css
     "outputFile": "Content/main.css",
     "inputFile": "Content/less/main.less",
     "minify": {
