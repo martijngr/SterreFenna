@@ -13,7 +13,7 @@
 
 
 ------------------------------------------------------------------------------------------ Jelle
-- #1 Structureer front-end - Done.
+- #1 Structureer front-end - Done. 
 - Front-end menu volledig afmaken. Incl. animaties, responsive. - Current.
 - Evt. Logo animeren/SVG fixen.
 - Loop rest van de front-end na.
