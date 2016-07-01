@@ -10,7 +10,7 @@
 	-> Project geen series? Dan item niet tonen
 	-> Project met 1 serie? Dan serienaam tonen ipv projectnaam
 	-> Project met 1 serie? Dan geen submenu tonen
-
+	ss
 
 ------------------------------------------------------------------------------------------ Jelle
 - #1 Structureer front-end - Done. 
