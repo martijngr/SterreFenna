@@ -55,7 +55,7 @@ body {
   position: relative;
 }
 .main-menu ul li a.dropdown-toggle:hover {
-  border: none;
+  sborder: none;
 }
 .main-menu a:after {
   content: "";
