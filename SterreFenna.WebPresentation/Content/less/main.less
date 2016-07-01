@@ -1,0 +1,25 @@
+﻿/* Bundle all styling in main.less ready for compilation and minification */
+
+//bootstrap
+@import "less/bootstrap/bootstrap-theme.css";
+@import "less/bootstrap/bootstrap.css";
+
+//fonts
+@import "less/fonts/font-awesome.css";
+
+//external plugins
+@import "less/plugins/swiper.min.css";
+
+//custom bootstrap overrides
+@import "custom-mixins.less"; 
+
+//global styles
+@import "base/base.less";   //global styles
+@import "base/header.less";
+@import "base/footer.less";
+
+@import "override-swiper.less";
+
+@import "menu.less";
+@import "menu2.less";
+@import "Site.less";

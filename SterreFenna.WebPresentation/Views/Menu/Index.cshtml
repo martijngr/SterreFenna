@@ -2,8 +2,48 @@
 @{
     Layout = null;
 }
+<nav class="navbar navbar-default main-menu">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-collapse" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
 
-<div id="menu-container" class="clearfix">
+        <div class="collapse navbar-collapse" id="main-menu-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown
+                        @*<svg style="position: absolute; top: 100%;">
+                            <polyline points="0, 0 50, 0 100, 50 150, 0 200, 0" style="fill:none;stroke:black;stroke-width:1" />
+                            http://codepen.io/anon/pen/vOxmGZ
+                            Sorry, your browser does not support inline SVG.
+                        </svg>*@
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+@*<div id="menu-container" class="clearfix">
     <ul id="main-menu" class="pull-left menu">
 
         @foreach (var menuItem in Model.MenuItems.OrderBy(m => m.Rank))
@@ -33,4 +73,4 @@
         <li class="no-sub-items contact pull-right">Contact</li>
         <li class="no-sub-items filler"><div>&nbsp;</div></li>
     </ul>
-</div>
+</div>*@
