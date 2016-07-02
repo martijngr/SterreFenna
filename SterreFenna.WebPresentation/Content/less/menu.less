@@ -1,0 +1,194 @@
+﻿//main menu overrides. Note: Not used BEM classes since there already is a pre-defined structure using the bootstrap menu template
+.main-menu{
+    background-color: white;
+    border: 0px solid white;
+    box-shadow: none;
+    .navbar-collapse{
+        background-color: white;
+        //border: 0px solid white;
+        border-bottom: 1px solid black;
+    }
+
+    ul li a.dropdown-toggle{
+        position: relative;
+        &:hover{s
+            border: none;
+        }
+    }
+}
+
+.main-menu a:after{
+    content: "";
+    transition: all 300ms ease-in;
+    position: absolute;
+    top: 37px;
+    left: 50%;
+    top: calc(100% -1px);
+    width: 0px;
+    height: 0px;
+    margin: 0px auto;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 0 solid white;
+}
+.main-menu a:before {
+    content: "";
+    transition: all 300ms ease-in;
+    position: absolute;
+    top: 36px;
+    left: 50%;
+    top: 100%;
+    width: 0px;
+    height: 0px;
+    margin: 0px auto;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 0 solid black;
+}
+
+.main-menu a:hover:after {
+    content: "";
+    position: absolute;
+    top: 37px;
+    left: 50%;
+    top: calc(100% -1px);
+    width: 0px;
+    height: 0px;
+    margin: 0px auto;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid white;
+}
+.main-menu a:hover:before {
+    content: "";
+    position: absolute;
+    top: 36px;
+    left: 50%;
+    top: 100%;
+    width: 0px;
+    height: 0px;
+    margin: 0px auto;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid black;
+}
+/*#menu-container {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 25px;
+    margin: 10px 30px 80px 30px;
+
+    a, a:link, a:visited, a:hover, a:active {
+        color: #000;
+        text-decoration: none;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+
+        li {
+            display: block;
+            text-transform: uppercase;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        li:not(:last-of-type) {
+            padding-right: 50px;
+        }
+    }
+
+    #main-menu {
+        li:not(.filler) {
+            float: left;
+
+            ul {
+                display: none;
+            }
+        }
+
+        > li {
+            position: relative;
+            background-image: url('../images/menu-line.png');
+            background-position: bottom;
+            background-repeat: repeat-x;
+            cursor: pointer;
+
+            &.active {
+                font-weight: bold;
+            }
+
+            &:hover:not(.no-sub-items),
+            &.active:not(.no-sub-items) {
+                border-bottom: none;
+                background-image: none;
+
+                ul {
+                    position: absolute;
+                    left: 0;
+                    width: 830px;
+                    display: block;
+                    margin-top: 8px;
+                    background-image: url('../images/menu-line.png');
+                    background-position: top;
+                    background-repeat: repeat-x;
+
+                    li {
+                        padding-top: 20px;
+                        font-weight: initial;
+
+                        a {
+                            display: block;
+
+                            &.active {
+                                padding-bottom: 10px;
+                                font-weight: bold;
+                                background-image: url('../images/menu-line.png');
+                                background-position: bottom;
+                                background-repeat: repeat-x;
+                            }
+                        }
+                    }
+
+                    li:first-of-type {
+                        background-image: url('../images/chevron-down-24.png');
+                        background-repeat: no-repeat;
+                        background-position: top left;
+                    }
+                }
+            }
+        }
+
+
+
+        li.filler {
+            overflow: hidden;
+            float: none;
+            position: relative;
+            width: auto;
+            display: block;
+            background-image: url('../images/menu-line.png');
+            background-position: bottom;
+            background-repeat: repeat-x;
+            cursor: default;
+
+            div {
+                height: 100%;
+                width: 100%;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+        }
+    }
+
+    #contact-menu {
+        right: 0;
+    }
+}*/
