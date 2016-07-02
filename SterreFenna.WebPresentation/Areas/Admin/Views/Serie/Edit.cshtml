@@ -44,7 +44,7 @@
 <div class="photo-container">
     <h3>Foto's</h3>
     <div class="dropzone-container">
-        <form action="/Serie/SubmitEdit"
+        <form action="/Admin/Serie/SubmitEdit"
               method="post"
               class="dropzone"
               id="foo-bar">
@@ -58,6 +58,7 @@
                 <li class="ui-state-default height-90">
                     <img src="@item.Location" alt="@item.Location" title="@item.Location" />
                     <i class="fa fa-trash" onclick="removePhotoFromList(this)"></i>
+                    <i class="fa fa-asterisk" onclick="markAsFavourite(this)"></i>
                 </li>
             }
         </ul>
@@ -65,10 +66,13 @@
 </div>
 @section scripts{
     <script>
+        var _favouriteItems = [];
+
         $(function () {
             $("#sortable").sortable();
             $("#sortable").disableSelection();
         });
+
         var _initialize = true;
         var dropzoneOptions = {
             autoProcessQueue: false,
@@ -83,6 +87,7 @@
                     formData.append('name', getFieldValue("name"));
                     formData.append('publicationDate', getFieldValue("publicationDate"));
                     formData.append('filenameOrder', getOrderOfFilenames());
+                    formData.append('favouriteFilenames', _favouriteItems);
                     formData.append('newProjectName', getFieldValue("newProjectName"));
                     formData.append('projectId', getFieldValue("projectId"));
                 });
@@ -172,6 +177,22 @@
             });
 
             return imageNames;
+        }
+
+        function markAsFavourite(element){
+            var src = $(element).parent().find('img').attr('src');
+            var index = _favouriteItems.indexOf(src);
+
+            if(index > -1){
+                _favouriteItems.splice(index, 1);
+
+                $(element).removeClass('favourite-item');
+            }
+            else{
+                _favouriteItems.push(src);
+
+                $(element).addClass('favourite-item');
+            }
         }
     </script>
 }

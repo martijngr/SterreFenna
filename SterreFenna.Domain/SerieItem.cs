@@ -17,5 +17,7 @@ namespace SterreFenna.Domain
         public int SerieId { get; set; }
 
         public virtual Serie Serie { get; set; }
+
+        public bool IsHomePageItem { get; set; }
     }
 }
