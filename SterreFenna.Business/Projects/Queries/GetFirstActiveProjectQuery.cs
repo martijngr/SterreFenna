@@ -16,7 +16,7 @@ namespace SterreFenna.Business.Projects.Queries
 
         public ProjectDetailsView Handle()
         {
-            var project = _context.Projects.OrderBy(p => p.Rank).First();
+            var project = _context.Projects.Where(p => p.Series.Any()).OrderBy(p => p.Rank).First();
 
             return new ProjectDetailsView
             {
