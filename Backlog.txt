@@ -1,5 +1,3 @@
----
-
 - Mogelijkheid om per foto an te kunnen geven of deze getoond moet worden op de homepage
 - Op homepage geen menu tonen
 - Op homepage tekst (=link)tonen met Go to home >>
