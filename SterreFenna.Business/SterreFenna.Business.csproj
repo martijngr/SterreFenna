@@ -76,23 +76,18 @@
     <Compile Include="Series\Commands\GetSerieByIdCommand.cs" />
     <Compile Include="Series\Commands\UploadedSerieItem.cs" />
     <Compile Include="Projects\Queries\GetFirstActiveProjectQuery.cs" />
+    <Compile Include="Series\SeriePathResolverFactory.cs" />
     <Compile Include="Series\Queries\GetItemsForSerieQuery.cs" />
     <Compile Include="Series\Queries\GetProjectListOverviewQuery.cs" />
     <Compile Include="Series\SerieNotFoundException.cs" />
-    <Compile Include="Series\SeriePathManager.cs" />
+    <Compile Include="Series\SeriePathResolver.cs" />
     <Compile Include="Series\Queries\GetSerieOverviewQuery.cs" />
     <Compile Include="Series\Views\ProjectListOverviewItem.cs" />
     <Compile Include="Series\Views\SerieDetailView.cs" />
     <Compile Include="Series\Views\SerieItemDetailView.cs" />
     <Compile Include="Series\Views\SerieOverviewItem.cs" />
-    <Compile Include="Migrations\201605282048067_InitialCreate.cs" />
-    <Compile Include="Migrations\201605282048067_InitialCreate.Designer.cs">
-      <DependentUpon>201605282048067_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\ISettings.cs" />
-    <Compile Include="SFContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\Insert series.sql" />
@@ -108,11 +103,10 @@
       <Project>{c0220780-b9ce-454d-b9ec-4e63d8e7e9f7}</Project>
       <Name>SterreFenna.Domain</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201605282048067_InitialCreate.resx">
-      <DependentUpon>201605282048067_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\SterreFenna.EfDal\SterreFenna.EfDal.csproj">
+      <Project>{f4b7c498-65ce-4619-85d2-d2999513fcec}</Project>
+      <Name>SterreFenna.EfDal</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Security\" />

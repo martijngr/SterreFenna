@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using SterreFenna.Domain;
+using SterreFenna.Domain.Projects;
+using SterreFenna.Domain.Series;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

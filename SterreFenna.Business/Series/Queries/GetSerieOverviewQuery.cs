@@ -1,4 +1,5 @@
 ﻿using SterreFenna.Business.Series.Views;
+using SterreFenna.Domain;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,18 +7,18 @@ namespace SterreFenna.Business.Series.Queries
 {
     public class GetSerieOverviewQuery
     {
-        private readonly SFContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public GetSerieOverviewQuery(SFContext context)
+        public GetSerieOverviewQuery(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         public bool ActiveProjectsOnly { get; set; }
 
         public IEnumerable<SerieOverviewItem> Handle()
         {
-            var view = (from g in _context.Series
+            var view = (from g in _unitOfWork.SerieRepository.GetAll().ToList()
                        select new SerieOverviewItem
                        {
                            Created = g.Created,

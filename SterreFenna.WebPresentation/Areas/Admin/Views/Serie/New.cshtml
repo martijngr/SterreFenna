@@ -15,7 +15,7 @@
             <button type="button"
                     class="btn btn-primary pull-right"
                     style="margin-top: 24px;"
-                    onclick="submitAddSerie()">
+                    onclick="SerieController.submitAddSerie()">
                 Aanmaken
             </button>
         </div>
@@ -28,8 +28,8 @@
         </div>
         <div class="form-group col-sm-4">
             <label for="publicationDate">Onderbrengen aan bestaand project</label>
-            <select class="form-control" id="projectId" name="projectId">
-                <option>Niet onderbrengen aan bestaand project</option>
+            <select class="form-control" id="projectId" name="projectId" onchange="SerieController.onProjectDropdownChanged(this)">
+                <option value="-1">Niet onderbrengen aan bestaand project</option>
                 @foreach (var item in Model)
                 {
                     <option value="@item.Id">@item.Name</option>
@@ -48,104 +48,20 @@
             <div class="dz-message" data-dz-message><span>Klik of sleep hier om foto's toe te voegen</span></div>
         </form>
     </div>
-    <div class="uploaded-pics-container">
+    <div class="uploaded-pics-container clearfix">
         <ul id="sortable"></ul>
     </div>
 </div>
 
 @section scripts{
+<script src="~/Areas/Admin/Scripts/Series/SerieController.js"></script>
+<script src="~/Areas/Admin/Scripts/Series/SerieFormElements.js"></script>
+<script src="~/Areas/Admin/Scripts/Series/SerieValidator.js"></script>
+<script src="~/Areas/Admin/Scripts/Shared/ValidationResult.js"></script>
+
     <script>
-        $(function () {
-            $("#sortable").sortable();
-            $("#sortable").disableSelection();
-        });
+        
+        SerieController.init();
 
-        var dropzoneOptions = {
-            autoProcessQueue: false,
-            uploadMultiple: true,
-            addRemoveLinks: false,
-            previewTemplate: '<div style="display:none"></div>', //getDropzonePreviewTemplate(),//
-            paramName: 'files',
-            parallelUploads: 100,
-            init: function () {
-                this.on("sending", function (file, xhr, formData) {
-                    formData.append('name', getFieldValue("name"));
-                    formData.append('publicationDate', getFieldValue("publicationDate"));
-                    formData.append('filenameOrder', getOrderOfFilenames());
-                    formData.append('newProjectName', getFieldValue("newProjectName"));
-                    formData.append('projectId', getFieldValue("projectId"));
-                });
-
-                this.on("addedfile", function (file) {
-                    addFileToSortablePics(file);
-                });
-            }
-        };
-        Dropzone.autoDiscover = true;
-        Dropzone.options.fooBar = dropzoneOptions;
-
-        function getDropzonePreviewTemplate() {
-            return '<div class="dz-preview dz-file-preview">    ' +
-                      '<div class="dz-details">                                      ' +
-                       ' <img data-dz-thumbnail />' +
-                      // ' <div class="dz-filename"><span data-dz-name></span></div>   '+
-                      // ' <div class="dz-size" data-dz-size></div>'+
-                     ' </div>' +
-                      '<div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>' +
-                        '<i class=\"fa fa-trash\" data-dz-remove />' +
-                    '</div>';
-        }
-
-        function addFileToSortablePics(file) {
-
-            getBase64String(file, function (imageString) {
-                var container = $("#sortable");
-                var image = '<img src="' + imageString + '" alt="' + file.name + '" title="' + file.name + '"/>';
-                var trash = '<i class="fa fa-trash" onclick="removePhotoFromList(this)"></i>';
-                var item = '<li class="ui-state-default height-90">' + image + trash + '</li>';
-
-                container.append(item);
-            });
-        }
-
-        function submitAddSerie() {
-            var dropzone = Dropzone.instances[0];
-            dropzone.processQueue();
-        }
-
-        function getFieldValue(name) {
-            return $("#" + name).val();
-        }
-
-        function getBase64String(file, callback) {
-            var reader = new FileReader();
-
-            // Closure to capture the file information.
-            reader.onload = function (e) {
-                //get the base64 url
-                var base64URL = e.target.result;
-
-                if (callback != null)
-                    callback(base64URL);
-            };
-
-            // Read in the image file as a data URL.
-            reader.readAsDataURL(file);
-        }
-
-        function removePhotoFromList(element) {
-            $(element).parent().remove();
-        }
-
-        function getOrderOfFilenames() {
-            var imageNames = [];
-            var images = $("#sortable li img");
-
-            $.each(images, function (index, image) {
-                imageNames.push($(image).prop('alt'));
-            });
-
-            return imageNames;
-        }
     </script>
 }

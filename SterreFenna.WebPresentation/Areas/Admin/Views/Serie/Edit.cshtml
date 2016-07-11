@@ -51,7 +51,7 @@
             <div class="dz-message" data-dz-message><span>Klik of sleep hier om foto's toe te voegen</span></div>
         </form>
     </div>
-    <div class="uploaded-pics-container">
+    <div class="uploaded-pics-container clearfix">
         <ul id="sortable">
             @foreach (var item in Model.SerieDetails.SerieItems.OrderBy(s => s.Rank))
             {
@@ -127,7 +127,8 @@
                 var container = $("#sortable");
                 var image = '<img src="' + imageString + '" alt="' + file.name + '" title="' + file.name + '"/>';
                 var trash = '<i class="fa fa-trash" onclick="removePhotoFromList(this)"></i>';
-                var item = '<li class="ui-state-default">' + image + trash + '</li>';
+                var favourite = '<i class="fa fa-asterisk" onclick="markAsFavourite(this)"></i>';
+                var item = '<li class="ui-state-default height-90">' + image + trash + favourite + '</li>';
 
                 container.append(item);
             });
@@ -135,13 +136,7 @@
 
         function submitAddSerie() {
             var dropzone = Dropzone.instances[0];
-            //if (dropzone.getQueuedFiles().length > 0) {
                 dropzone.processQueue();
-           // }
-            //else {
-                // Upload anyway without files
-              //  dropzone.uploadFiles([ ]);
-            //}
         }
 
         function getFieldValue(name) {

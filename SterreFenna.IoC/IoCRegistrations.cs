@@ -1,15 +1,16 @@
 ﻿using Autofac;
-using SterreFenna.Business;
 using SterreFenna.Business.Projects.Commands;
-using SterreFenna.Business.Projects.Queries;
 using SterreFenna.Business.Series;
 using SterreFenna.Business.Series.Commands;
-using SterreFenna.Business.Series.Queries;
-using System;
-using System.Collections.Generic;
+using SterreFenna.Domain;
+using SterreFenna.Domain.Projects;
+using SterreFenna.Domain.SerieItems;
+using SterreFenna.Domain.Series;
+using SterreFenna.EfDal;
+using SterreFenna.EfDal.Projects;
+using SterreFenna.EfDal.SerieItems;
+using SterreFenna.EfDal.Series;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SterreFenna.IoC
 {
@@ -23,7 +24,13 @@ namespace SterreFenna.IoC
 
             RegisterQueries(builder);
 
-            builder.RegisterType<SeriePathManager>().AsSelf();
+            builder.RegisterType<SeriePathResolver>().AsSelf();
+            builder.RegisterType<EfUnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
+            builder.RegisterType<ProjectRepository>().As<IProjectRepository>();
+            builder.RegisterType<SerieItemRepository>().As<ISerieItemRepository>();
+            builder.RegisterType<SerieRepository>().As<ISerieRepository>();
+            builder.RegisterType<SeriePathManagerFactory>().AsSelf();
+
             //builder.RegisterType<EditSerieCommand>().AsSelf();
             //builder.RegisterType<AddItemsToSerieCommand>().AsSelf();
             //builder.RegisterType<GetProjectListOverviewQuery>().AsSelf();

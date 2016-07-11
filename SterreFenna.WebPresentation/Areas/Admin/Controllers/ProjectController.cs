@@ -5,7 +5,7 @@ using System.Web.Mvc;
 
 namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class ProjectController : Controller
     {
         private readonly GetProjectOverviewQuery _getProjectOverviewQuery;
@@ -44,7 +44,6 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
         public ActionResult SubmitNew(NewProjectModel model)
         {
             _addProjectCommand.Name = model.Name;
-            _addProjectCommand.PublicationDate = model.PublicationDate;
 
             _addProjectCommand.Handle();
             

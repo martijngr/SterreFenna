@@ -1,15 +1,16 @@
 ﻿using SterreFenna.Domain;
+using SterreFenna.Domain.Projects;
 using System;
 
 namespace SterreFenna.Business.Projects.Commands
 {
     public class AddProjectCommand : BaseProjectCommand
     {
-        private readonly SFContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public AddProjectCommand(SFContext context)
+        public AddProjectCommand(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         public void Handle()
@@ -18,12 +19,11 @@ namespace SterreFenna.Business.Projects.Commands
             {
                 Name = Name,
                 UniqueName = Name.ReplaceSpaces(),
-                PublicationDate = PublicationDate,
                 Rank = 0,
             };
 
-            _context.Projects.Add(project);
-            _context.SaveChanges();
+            _unitOfWork.ProjectRepository.Add(project);
+            _unitOfWork.SaveChanges();
         }
     }
 }

@@ -1,13 +1,11 @@
-﻿using System;
+﻿using SterreFenna.Domain.Series;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SterreFenna.Domain
+namespace SterreFenna.Domain.Projects
 {
-    public class Project
+    public class Project : IIdentifyable
     {
         public Project()
         {
@@ -21,8 +19,6 @@ namespace SterreFenna.Domain
         public string UniqueName { get; set; }
 
         public int Rank { get; set; }
-
-        public DateTime? PublicationDate { get; set; }
 
         public virtual ICollection<Serie> Series { get; set; }
     }

@@ -17,5 +17,10 @@ namespace SterreFenna
         {
             return value.Replace(" ", "-");
         }
+
+        public static bool IsSameAs(this string value, string otherValue)
+        {
+            return value.Equals(otherValue, StringComparison.OrdinalIgnoreCase);
+        }
     }
 }

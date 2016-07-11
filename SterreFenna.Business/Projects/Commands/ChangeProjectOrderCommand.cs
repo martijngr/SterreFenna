@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SterreFenna.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +9,11 @@ namespace SterreFenna.Business.Projects.Commands
 {
     public class ChangeProjectOrderCommand
     {
-        private readonly SFContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ChangeProjectOrderCommand(SFContext context)
+        public ChangeProjectOrderCommand(IUnitOfWork unitOfWor0k)
         {
-            _context = context;
+            _unitOfWork = unitOfWor0k;
         }
 
         public int[] ProjectIds { get; set; }
@@ -23,14 +24,14 @@ namespace SterreFenna.Business.Projects.Commands
 
             foreach (var projectId in ProjectIds)
             {
-                var project = _context.Projects.First(p => p.Id == projectId);
+                var project = _unitOfWork.ProjectRepository.GetById(projectId);
 
                 project.Rank = rankCounter;
 
                 rankCounter++;
             }
 
-            _context.SaveChanges();
+            _unitOfWork.SaveChanges();
         }
     }
 }

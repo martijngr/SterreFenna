@@ -1,5 +1,6 @@
 ﻿using SterreFenna.Business.Projects.Views;
 using SterreFenna.Business.Series.Views;
+using SterreFenna.Domain;
 using System;
 using System.Linq;
 
@@ -7,22 +8,24 @@ namespace SterreFenna.Business.Projects.Queries
 {
     public class GetFirstActiveProjectQuery
     {
-        private readonly SFContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public GetFirstActiveProjectQuery(SFContext context)
+        public GetFirstActiveProjectQuery(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         public ProjectDetailsView Handle()
         {
-            var project = _context.Projects.Where(p => p.Series.Any()).OrderBy(p => p.Rank).First();
+            var project = _unitOfWork.ProjectRepository
+                                     .Find(p => p.Series.Any())
+                                     .OrderBy(p => p.Rank)
+                                     .First();
 
             return new ProjectDetailsView
             {
                 Id = project.Id,
                 Name = project.Name,
-                PublicationDate = project.PublicationDate,
                 UniqueName = project.UniqueName,
                 Series = from s in project.Series
                          select new SerieDetailView

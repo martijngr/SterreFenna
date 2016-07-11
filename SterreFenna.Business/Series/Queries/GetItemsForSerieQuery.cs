@@ -1,5 +1,6 @@
 ﻿using SterreFenna.Business.Projects;
 using SterreFenna.Business.Series.Views;
+using SterreFenna.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,11 @@ namespace SterreFenna.Business.Series.Queries
 {
     public class GetItemsForSerieQuery
     {
-        private readonly SFContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public GetItemsForSerieQuery(SFContext context)
+        public GetItemsForSerieQuery(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         public string SerieName { get; set; }
@@ -35,7 +36,7 @@ namespace SterreFenna.Business.Series.Queries
 
         private SerieDetailView LoadSerie()
         {
-            var serie = _context.Series.First(s => s.UniqueName == SerieName);
+            var serie = _unitOfWork.SerieRepository.GetByUniqueName(SerieName);
             if (serie == null)
                 throw new SerieNotFoundException();
 
@@ -58,7 +59,7 @@ namespace SterreFenna.Business.Series.Queries
 
         private SerieDetailView LoadSerieByProject()
         {
-            var project = _context.Projects.FirstOrDefault(p => p.UniqueName == ProjectName);
+            var project = _unitOfWork.ProjectRepository.GetByUniqueName(ProjectName);
             if (project == null)
                 throw new ProjectNotFoundException();
 

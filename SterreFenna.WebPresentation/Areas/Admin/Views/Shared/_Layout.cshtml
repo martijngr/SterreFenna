@@ -4,12 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sterre Fenna - Admin</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
-    <script src="~/Scripts/underscore.min.js"></script>
-    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <link href="~/Content/less/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/less/fonts/font-awesome.css" rel="stylesheet" />
     <link href="~/Areas/Admin/Content/admin.css" rel="stylesheet" />
+
+    <script src="~/Scripts/modernizr/modernizr-2.8.3.js"></script>
+    <script src="~/Scripts/underscore.min.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-default">
@@ -28,8 +29,8 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    @Html.AdminMenuLink("Series", "Index", "Home")
                     @Html.AdminMenuLink("Projecten", "Index", "Project")
+                    @Html.AdminMenuLink("Series", "Index", "Home")
                     <li><a href="#">Statistieken <span class="sr-only">(current)</span></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -43,10 +44,10 @@
         @RenderBody()
     </div>
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery/jquery-3.0.0.js"></script>
     <script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/dropzone.js"></script>
+    <script src="~/Scripts/bootstrap/bootstrap.js"></script>
+    <script src="~/Scripts/plugins/dropzone/dropzone.js"></script>
     @RenderSection("scripts", false)
 </body>
 </html>

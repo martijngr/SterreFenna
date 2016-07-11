@@ -1,17 +1,20 @@
 ﻿using SterreFenna.Domain;
+using SterreFenna.Domain.Series;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using SterreFenna.Domain.Projects;
 
 namespace SterreFenna.Business.Series.Commands
 {
     public class EditSerieCommand : BaseSerieCommand
     {
-        private readonly SFContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public EditSerieCommand(AddItemsToSerieCommand addItemsToSerieCommand, SFContext context)
-            : base(addItemsToSerieCommand, context)
+        public EditSerieCommand(AddItemsToSerieCommand addItemsToSerieCommand, IUnitOfWork unitOfWork)
+            : base(addItemsToSerieCommand)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
             FavouriteItems = new List<string>();
         }
 
@@ -21,15 +24,32 @@ namespace SterreFenna.Business.Series.Commands
 
         public void Handle()
         {
-            var serie = _context.Series.First(s => s.Id == SerieId);
+            var serie = _unitOfWork.SerieRepository.GetById(SerieId);
 
             serie.Name = SerieName;
             serie.Published = PublicationDate;
-            serie.ProjectId = GetProjectId();
-            
+
+            EditProject(serie);
+
             StoreImages(serie);
 
             MarkImagesAsFavourite(serie);
+        }
+
+        private void EditProject(Serie serie)
+        {
+            if (serie.ProjectId == ProjectId)
+                return;
+
+            if (ProjectId.HasValue)
+                serie.ProjectId = ProjectId;
+            else
+            {
+                serie.Project = new Project
+                {
+                    Name = ProjectName,
+                };
+            }
         }
 
         private void MarkImagesAsFavourite(Serie serie)
@@ -43,7 +63,7 @@ namespace SterreFenna.Business.Series.Commands
             itemsToMark.ForEach(s => s.IsHomePageItem = true);
             itemsToUnmark.ForEach(s => s.IsHomePageItem = false);
 
-            _context.SaveChanges();
+            _unitOfWork.SaveChanges();
         }
     }
 }

@@ -1,8 +1,9 @@
-﻿using System;
+﻿using SterreFenna.Domain.Series;
+using System;
 
-namespace SterreFenna.Domain
+namespace SterreFenna.Domain.SerieItems
 {
-    public class SerieItem
+    public class SerieItem : IIdentifyable
     {
         public int Id { get; set; }
 

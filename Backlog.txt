@@ -1,16 +1,30 @@
 - Mogelijkheid om per foto an te kunnen geven of deze getoond moet worden op de homepage
-- Op homepage geen menu tonen
-- Op homepage tekst (=link)tonen met Go to home >>
 - Mogelijkheid maken dat een item van een serie een link is naar een youtube filmpje
 - Bij aanmaken project en serie nagaan of naam al in gebruik is. Constraint DB?
 - Bij aanmaken serie/project speciale tekens vervangen / verbieden.
 - Wijzigen projectnaam mogelijk? Zo ja, dan ook mapnaam aanpassen op disk.
+- Homepage drie kolommen met middelste kolom 2 foto's. Deze veranderen om de x seconden naar volgende set
+	--> menu weg, vervangen door tekst/link: Visit my website, Go to my website, View my photos, Behold my art, More work >>
+- Bij project een beschrijving op kunnen geven met een WYSIWYG editor
+	-> Tonen als op hoofdmenu-item wordt geklikt
+- Credits toevoegen bij Serie. Tonen met korte streepjes (zie visitekaartje)
+- Foto's van serie in midden uitlijnen (zie ontwerp);
+
+--------
+Thumps makan als foto's worde geupload
+--------
 
 - Hoofdmenu site afronden
 	-> Project geen series? Dan item niet tonen
 	-> Project met 1 serie? Dan serienaam tonen ipv projectnaam
 	-> Project met 1 serie? Dan geen submenu tonen
-	ss
+
+- Testen maken... D'r zit sowieso een bug in... iets met serie items..
+	-> code optimaliseren / vereenvoudigen
+
+Versie 2
+- Mogelijkheid om youtube-url's op te geven -> embedded video's
+	--> toelichting per video kunnen geven
 
 ------------------------------------------------------------------------------------------ Jelle
 - #1 Structureer front-end - Done. 

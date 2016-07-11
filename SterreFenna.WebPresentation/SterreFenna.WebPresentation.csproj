@@ -148,10 +148,50 @@
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="UserManagement\AppUserManager.cs" />
     <Content Include="Areas\Admin\Content\admin.css" />
-    <Content Include="Content\font-awesome.css" />
-    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Areas\Admin\Scripts\Series\SerieFormElements.js" />
+    <Content Include="Areas\Admin\Scripts\Series\SerieController.js" />
+    <Content Include="Areas\Admin\Scripts\Shared\ValidationResult.js" />
+    <Content Include="Areas\Admin\Scripts\Series\SerieValidator.js" />
     <Content Include="Content\images\logo_height_100.png" />
-    <Content Include="Content\menu.css" />
+    <Content Include="Content\less\bootstrap\bootstrap-theme.css" />
+    <Content Include="Content\less\bootstrap\bootstrap.css" />
+    <Content Include="Content\less\fonts\font-awesome.css" />
+    <Content Include="Content\less\plugins\jquery\accordion.css" />
+    <Content Include="Content\less\plugins\jquery\all.css" />
+    <Content Include="Content\less\plugins\jquery\autocomplete.css" />
+    <Content Include="Content\less\plugins\jquery\base.css" />
+    <Content Include="Content\less\plugins\jquery\button.css" />
+    <Content Include="Content\less\plugins\jquery\core.css" />
+    <Content Include="Content\less\plugins\jquery\datepicker.css" />
+    <Content Include="Content\less\plugins\jquery\dialog.css" />
+    <Content Include="Content\less\plugins\jquery\draggable.css" />
+    <Content Include="Content\less\plugins\jquery\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\less\plugins\jquery\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\less\plugins\jquery\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\less\plugins\jquery\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\less\plugins\jquery\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\less\plugins\jquery\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\less\plugins\jquery\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\less\plugins\jquery\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\less\plugins\jquery\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\less\plugins\jquery\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\less\plugins\jquery\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\less\plugins\jquery\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\less\plugins\jquery\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\less\plugins\jquery\menu.css" />
+    <Content Include="Content\less\plugins\jquery\progressbar.css" />
+    <Content Include="Content\less\plugins\jquery\resizable.css" />
+    <Content Include="Content\less\plugins\jquery\selectable.css" />
+    <Content Include="Content\less\plugins\jquery\selectmenu.css" />
+    <Content Include="Content\less\plugins\jquery\slider.css" />
+    <Content Include="Content\less\plugins\jquery\sortable.css" />
+    <Content Include="Content\less\plugins\jquery\spinner.css" />
+    <Content Include="Content\less\plugins\jquery\tabs.css" />
+    <Content Include="Content\less\plugins\jquery\theme.css" />
+    <Content Include="Content\less\plugins\jquery\tooltip.css" />
+    <Content Include="Content\less\plugins\swiper.min.css" />
+    <Content Include="Content\main.css" />
+    <Content Include="Content\main.min.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -186,27 +226,13 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="cyclepoc.html" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\content.css" />
     <Content Include="Content\images\chevron-down-24.png" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\logo_large.png" />
     <Content Include="Content\images\menu-line.png" />
-    <Content Include="Content\menu2.css" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Content\swiper.min.css" />
-    <Content Include="fonts\fontawesome-webfont.svg" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\less\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\less\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\Site.less" />
-    <Content Include="Content\menu.less" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
@@ -225,27 +251,27 @@
     <Content Include="compilerconfig.json.bindings" />
     <Content Include="compilerconfig.json.defaults" />
     <Content Include="packages.config" />
-    <Content Include="fonts\FontAwesome.otf" />
-    <Content Include="fonts\fontawesome-webfont.woff2" />
-    <Content Include="fonts\fontawesome-webfont.woff" />
-    <Content Include="fonts\fontawesome-webfont.ttf" />
-    <Content Include="fonts\fontawesome-webfont.eot" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\less\fonts\FontAwesome.otf" />
+    <Content Include="Content\less\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\less\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\less\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\less\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\less\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\less\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\less\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\less\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\less\base\base.less" />
+    <Content Include="Content\less\base\footer.less" />
+    <Content Include="Content\less\base\header.less" />
+    <Content Include="Content\less\custom-mixins.less" />
+    <Content Include="Content\less\main.less" />
+    <Content Include="Content\less\menu.less" />
+    <Content Include="Content\less\menu2.less" />
+    <Content Include="Content\less\override-swiper.less" />
+    <Content Include="Content\less\Site.less" />
     <None Include="Properties\PublishProfiles\Production.pubxml" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="main.min.js" />
-    <Content Include="Scripts\dropzone.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-1.9.1.js" />
-    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\bootstrap\bootstrap.js" />
     <None Include="Scripts\jquery-3.0.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -253,10 +279,15 @@
     <Content Include="Scripts\jquery-3.0.0.slim.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\jquery\jquery-3.0.0.js" />
+    <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\main.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\swiper.jquery.min.js" />
-    <Content Include="Scripts\swiper.min.js" />
+    <Content Include="Scripts\modernizr\modernizr-2.6.2.js" />
+    <Content Include="Scripts\modernizr\modernizr-2.8.3.js" />
+    <Content Include="Scripts\plugins\dropzone\dropzone.js" />
+    <Content Include="Scripts\plugins\swiper\swiper.jquery.min.js" />
+    <Content Include="Scripts\plugins\swiper\swiper.min.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\underscore.min.js" />
     <Content Include="Web.config" />
@@ -286,7 +317,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_Viewstart.cshtml" />
-    <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Menu\Index.cshtml" />
     <Content Include="Views\Home\Show.cshtml" />
     <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
@@ -301,13 +331,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Scripts\" />
     <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SterreFenna.Business\SterreFenna.Business.csproj">
       <Project>{a8160f30-de28-447e-8413-e49ed637f993}</Project>
       <Name>SterreFenna.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SterreFenna.EfDal\SterreFenna.EfDal.csproj">
+      <Project>{f4b7c498-65ce-4619-85d2-d2999513fcec}</Project>
+      <Name>SterreFenna.EfDal</Name>
     </ProjectReference>
     <ProjectReference Include="..\SterreFenna.IoC\SterreFenna.IoC.csproj">
       <Project>{4f9fb5ee-20d0-4b99-99dc-844a58f80f1a}</Project>

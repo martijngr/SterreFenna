@@ -9,7 +9,5 @@ namespace SterreFenna.Business.Projects.Commands
     public class BaseProjectCommand
     {
         public string Name { get; set; }
-
-        public DateTime? PublicationDate { get; set; }
     }
 }

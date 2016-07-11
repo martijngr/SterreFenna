@@ -1,49 +1,73 @@
-﻿using SterreFenna.Business.Series;
-using SterreFenna.Business.Settings;
+﻿using SterreFenna.Business.Settings;
 using SterreFenna.Domain;
+using SterreFenna.Domain.SerieItems;
+using SterreFenna.Domain.Series;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SterreFenna.Business.Series.Commands
 {
     public class AddItemsToSerieCommand
     {
-        private readonly SFContext _context;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly ISettings _settings;
-        private readonly SeriePathManager _seriePathManager;
+        private readonly SeriePathManagerFactory _seriePathResolverFactory;
+        private SeriePathResolver _seriePathResolver;
 
-        public AddItemsToSerieCommand(ISettings settings, SeriePathManager galleryPathManager, SFContext context)
+        public AddItemsToSerieCommand(
+            ISettings settings,
+            SeriePathManagerFactory seriePathResolverFactory,
+            IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
             _settings = settings;
-            _seriePathManager = galleryPathManager;
+            _seriePathResolverFactory = seriePathResolverFactory;
         }
 
         public List<UploadedSerieItem> SerieItems { get; set; }
 
         public void Handle(Serie serie)
         {
+            _seriePathResolver = _seriePathResolverFactory.CreateSeriePathResolver(serie.Id, serie.Name);
+
             RemoveExistingSerieItems(serie);
 
             StoreItemsOnDisk(serie.Id, serie.Name);
 
             StoreItemsInDatabase(serie);
+
+            _unitOfWork.SaveChanges();
         }
 
         private void RemoveExistingSerieItems(Serie serie)
         {
             // Remove files from disk
-            var removedItems = serie.SerieItems.Where(i => !SerieItems.Any(si => i.FileName == si.Filename));
+            var itemsToRemove = serie.SerieItems.Where(MustDeleteItem);
 
             // Remove from database
-            if (removedItems.Any())
+            if (itemsToRemove.Any())
             {
-                _context.SerieItems.RemoveRange(removedItems);
-                _context.SaveChanges();
+                RemoveItemsFromDataStore(itemsToRemove);
+
+                RemoveItemsFromDisk(serie, itemsToRemove);
+            }
+        }
+
+        private void RemoveItemsFromDataStore(IEnumerable<SerieItem> itemsToRemove)
+        {
+            _unitOfWork.SerieItemRepository.RemoveRange(itemsToRemove);
+        }
+
+        private void RemoveItemsFromDisk(Serie serie, IEnumerable<SerieItem> itemsToRemove)
+        {
+            foreach (var itemToRemove in itemsToRemove)
+            {
+                var filePath = _seriePathResolver.GetSerieItemPath(itemToRemove.FileName);
+
+                if (File.Exists(filePath))
+                    File.Delete(filePath);
             }
         }
 
@@ -54,13 +78,17 @@ namespace SterreFenna.Business.Series.Commands
                 if (item.Stream == null)
                     continue;
 
-                var itemPath = _seriePathManager.GetSerieItemPath(serieId, serieName, item.Filename);
+                StoreItemOnDisk(item);
+            }
+        }
 
-                using (var fileStream = File.Create(itemPath))
-                {
-                    item.Stream.Seek(0, SeekOrigin.Begin);
-                    item.Stream.CopyTo(fileStream);
-                }
+        private void StoreItemOnDisk(UploadedSerieItem item)
+        {
+            var itemPath = _seriePathResolver.GetSerieItemPath(item.Filename);
+            using (var fileStream = File.Create(itemPath))
+            {
+                item.Stream.Seek(0, SeekOrigin.Begin);
+                item.Stream.CopyTo(fileStream);
             }
         }
 
@@ -70,29 +98,43 @@ namespace SterreFenna.Business.Series.Commands
 
             foreach (var item in SerieItems)
             {
-                var existingItem = serie.SerieItems.FirstOrDefault(s => s.FileName.Equals(item.Filename, StringComparison.OrdinalIgnoreCase));
+                var existingItem = GetSerieItemByFileName(serie, item);
 
                 if (existingItem == null)
-                {
-                    var itemPath = _seriePathManager.GetRelativeItemPath(serie.Id, serie.Name, item.Filename);
-
-                    serieItemsToPersist.Add(new SerieItem
-                    {
-                        Created = DateTime.Now,
-                        Location = itemPath,
-                        SerieId = serie.Id,
-                        FileName = item.Filename,
-                        Rank = item.Rank
-                    });
-                }
+                    serieItemsToPersist.Add(CreateSerieItem(serie, item));
                 else
-                {
                     existingItem.Rank = item.Rank;
-                }
             }
 
-            _context.SerieItems.AddRange(serieItemsToPersist);
-            _context.SaveChanges();
+            _unitOfWork.SerieItemRepository.Add(serieItemsToPersist);
+        }
+
+        private SerieItem CreateSerieItem(Serie serie, UploadedSerieItem item)
+        {
+            var itemPath = _seriePathResolver.GetRelativeItemPath(item.Filename);
+
+            return new SerieItem
+            {
+                Created = DateTime.Now,
+                Location = itemPath,
+                SerieId = serie.Id,
+                FileName = item.Filename,
+                Rank = item.Rank
+            };
+        }
+
+        private static SerieItem GetSerieItemByFileName(Serie serie, UploadedSerieItem item)
+        {
+            return serie.SerieItems.FirstOrDefault(s => s.FileName.IsSameAs(item.Filename));
+        }
+
+        private bool MustDeleteItem(SerieItem serieItem)
+        {
+            // The specified serie item also exists in the new list of serie items, so deletion is not necessarily
+            if (SerieItems.Any(si => si.Filename == serieItem.FileName))
+                return false;
+
+            return true;
         }
     }
 }

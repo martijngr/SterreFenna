@@ -1,28 +1,28 @@
 ﻿using SterreFenna.Business.Projects.Views;
+using SterreFenna.Domain;
 using System.Linq;
 
 namespace SterreFenna.Business.Projects.Queries
 {
     public class GetProjectByIdQuery
     {
-        private readonly SFContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public GetProjectByIdQuery(SFContext context)
+        public GetProjectByIdQuery(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         public int ProjectId { get; set; }
 
         public ProjectDetailsView Handle()
         {
-            var project = _context.Projects.First(p => p.Id == ProjectId);
+            var project = _unitOfWork.ProjectRepository.GetById(ProjectId);
 
             var view = new ProjectDetailsView
             {
                 Id = project.Id,
                 Name = project.Name,
-                PublicationDate = project.PublicationDate,
             };
 
             return view;

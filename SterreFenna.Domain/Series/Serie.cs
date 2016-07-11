@@ -1,13 +1,15 @@
-﻿using System;
+﻿using SterreFenna.Domain.Projects;
+using SterreFenna.Domain.SerieItems;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SterreFenna.Domain
+namespace SterreFenna.Domain.Series
 {
-    public class Serie
+    public class Serie :IIdentifyable
     {
         public Serie()
         {

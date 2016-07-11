@@ -58,6 +58,10 @@
       <Project>{c0220780-b9ce-454d-b9ec-4e63d8e7e9f7}</Project>
       <Name>SterreFenna.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SterreFenna.EfDal\SterreFenna.EfDal.csproj">
+      <Project>{f4b7c498-65ce-4619-85d2-d2999513fcec}</Project>
+      <Name>SterreFenna.EfDal</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

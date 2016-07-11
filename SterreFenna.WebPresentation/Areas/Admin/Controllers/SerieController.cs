@@ -12,29 +12,35 @@ using System.Web.Mvc;
 
 namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class SerieController : Controller
     {
         private readonly CreateSerieCommand _createSerieCommand;
         private readonly EditSerieCommand _editSerieCommand;
         private readonly GetProjectListOverviewQuery _getProjectListOverviewQuery;
+        private readonly GetSerieByIdCommand _getSerieByIdCommand;
+        private readonly GetProjectOverviewQuery _getProjectOverviewQuery;
 
         public SerieController(
             CreateSerieCommand createGalleryCommand,
             EditSerieCommand editSerieCommand,
-            GetProjectListOverviewQuery getProjectListOverviewQuery)
+            GetProjectListOverviewQuery getProjectListOverviewQuery,
+            GetSerieByIdCommand getSerieByIdCommand,
+            GetProjectOverviewQuery getProjectOverviewQuery)
         {
             _createSerieCommand = createGalleryCommand;
             _editSerieCommand = editSerieCommand;
             _getProjectListOverviewQuery = getProjectListOverviewQuery;
+            _getProjectOverviewQuery = getProjectOverviewQuery;
+            _getSerieByIdCommand = getSerieByIdCommand;
         }
 
         public ActionResult Edit(int id)
         {
             var model = new EditSerieModel
             {
-                SerieDetails = new GetSerieByIdCommand().Handle(id),
-                Projects = new GetProjectOverviewQuery().Handle(),
+                SerieDetails = _getSerieByIdCommand.Handle(id),
+                Projects = _getProjectOverviewQuery.Handle(),
             };
 
             return View(model);
@@ -42,7 +48,7 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
 
         public ActionResult SubmitEdit(PostedNewSerieModel model)
         {
-            var serie = new GetSerieByIdCommand().Handle(model.SerieId);
+            var serie = _getSerieByIdCommand.Handle(model.SerieId);
             var items = new List<UploadedSerieItem>();
             var filesnames = model.filenameOrder.Split(',');
             var rankCounter = 0;

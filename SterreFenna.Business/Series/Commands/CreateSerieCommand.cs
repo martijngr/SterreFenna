@@ -1,4 +1,6 @@
 ﻿using SterreFenna.Domain;
+using SterreFenna.Domain.Projects;
+using SterreFenna.Domain.Series;
 using System;
 using System.Collections.Generic;
 
@@ -6,47 +8,73 @@ namespace SterreFenna.Business.Series.Commands
 {
     public class CreateSerieCommand : BaseSerieCommand
     {
-        private readonly SFContext _context;
-        private readonly SeriePathManager _seriePathManager;
+        private readonly SeriePathManagerFactory _seriePathResolverFactory;
         private readonly AddItemsToSerieCommand _addItemsToSerieCommand;
+        private readonly ISerieRepository _serieRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CreateSerieCommand(SeriePathManager galleryPathManager, AddItemsToSerieCommand addItemsToSerieCommand, SFContext context)
-            : base(addItemsToSerieCommand, context)
+        public CreateSerieCommand(
+            SeriePathManagerFactory seriePathResolverFactory, 
+            AddItemsToSerieCommand addItemsToSerieCommand, 
+            ISerieRepository serieRepository,
+            IUnitOfWork unitOfWork)
+            : base(addItemsToSerieCommand)
         {
-            _context = context;
-            _seriePathManager = galleryPathManager;
+            _seriePathResolverFactory = seriePathResolverFactory;
             _addItemsToSerieCommand = addItemsToSerieCommand;
+
+            _serieRepository = serieRepository;
+            _unitOfWork = unitOfWork;
         }
         
         public int StoredSerieId { get; private set; }
 
         public void Handle()
         {
-            var projectId = GetProjectId();
-            var serie = CreateSerie(projectId);
+            var serie = CreateSerie();
+            SaveSerie(serie);
 
-            _seriePathManager.CreateSerieDirectory(serie.Id, SerieName);
+            var seriePathResolver = _seriePathResolverFactory.CreateSeriePathResolver(serie.Id, SerieName);
+            seriePathResolver.CreateSerieDirectory();
 
             StoreImages(serie);
 
             StoredSerieId = serie.Id;
+
+            _unitOfWork.SaveChanges();
         }
 
-        private Serie CreateSerie(int? projectId)
+        private void SaveSerie(Serie serie)
         {
-            var serie = new Serie
+            _unitOfWork.SerieRepository.Add(serie);
+            _unitOfWork.SaveChanges();
+        }
+
+        private Serie CreateSerie()
+        {
+            var project = GetProject();
+
+            return new Serie
             {
                 Created = DateTime.Now,
                 Name = SerieName,
                 UniqueName = SerieName.ReplaceSpaces(),
                 Published = PublicationDate,
-                ProjectId = projectId
+                Project = project,
             };
+        }
 
-            _context.Series.Add(serie);
-            _context.SaveChanges();
-
-            return serie;
+        private Project GetProject()
+        {
+            if (ProjectId.HasValue)
+                return _unitOfWork.ProjectRepository.GetById(ProjectId.Value);
+            else
+            {
+                return new Project
+                {
+                    Name = ProjectName,
+                };
+            }
         }
     }
 }

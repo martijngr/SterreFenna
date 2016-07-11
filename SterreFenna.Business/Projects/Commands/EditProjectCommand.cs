@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using SterreFenna.Domain;
 
 namespace SterreFenna.Business.Projects.Commands
 {
@@ -9,21 +9,20 @@ namespace SterreFenna.Business.Projects.Commands
 
     public class EditProjectCommandHandler
     {
-        private readonly SFContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public EditProjectCommandHandler(SFContext context)
+        public EditProjectCommandHandler(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         public void Handle(EditProjectCommand command)
         {
-            var project = _context.Projects.First(p => p.Id == command.ProjectId);
+            var project = _unitOfWork.ProjectRepository.GetById(command.ProjectId);
 
             project.Name = command.Name;
-            project.PublicationDate = command.PublicationDate;
 
-            _context.SaveChanges();
+            _unitOfWork.SaveChanges();
         }
     }
 }
