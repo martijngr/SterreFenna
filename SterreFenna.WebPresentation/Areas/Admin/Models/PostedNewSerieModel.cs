@@ -14,6 +14,6 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Models
         public string favouriteFilenames { get; set; }
         public IEnumerable<HttpPostedFileBase> files { get; set; }
         public string newProjectName { get; set; }
-        public int? projectId { get; set; }
+        public int ProjectId { get; set; }
     }
 }

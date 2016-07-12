@@ -66,8 +66,8 @@ namespace SterreFenna.Business.Series.Commands
 
         private Project GetProject()
         {
-            if (ProjectId.HasValue)
-                return _unitOfWork.ProjectRepository.GetById(ProjectId.Value);
+            if (ProjectId > 0)
+                return _unitOfWork.ProjectRepository.GetById(ProjectId);
             else
             {
                 return new Project

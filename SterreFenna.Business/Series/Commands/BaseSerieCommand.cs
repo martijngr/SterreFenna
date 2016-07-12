@@ -22,7 +22,7 @@ namespace SterreFenna.Business.Series.Commands
 
         public string ProjectName { get; set; }
 
-        public int? ProjectId { get; set; }
+        public int ProjectId { get; set; }
 
         public DateTime? PublicationDate { get; set; }
 

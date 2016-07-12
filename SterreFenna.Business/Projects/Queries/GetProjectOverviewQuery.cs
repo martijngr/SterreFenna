@@ -58,20 +58,15 @@ namespace SterreFenna.Business.Projects.Queries
             var projectsToReturn = Enumerable.Empty<Project>();
             if (ActiveProjectsOnly)
             {
+                var today = DateTime.Now;
                 projectsToReturn = _unitOfWork.ProjectRepository
-                                              .Find(p => p.Series.Any(IsSerieActive))
+                                              .Find(p => p.Series.Any(s => s.Published.Value > today || !s.Published.HasValue))
                                               .ToList();
             }
             else
                 projectsToReturn = _unitOfWork.ProjectRepository.GetAll().ToList();
 
             return projectsToReturn;
-        }
-
-        private bool IsSerieActive(Serie s)
-        {
-            var today = DateTime.Now;
-            return s.Published.Value > today || !s.Published.HasValue;
         }
     }
 }

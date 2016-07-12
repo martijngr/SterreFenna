@@ -41,7 +41,7 @@ namespace SterreFenna.Business.Series.Commands
             if (serie.ProjectId == ProjectId)
                 return;
 
-            if (ProjectId.HasValue)
+            if (ProjectId > 0)
                 serie.ProjectId = ProjectId;
             else
             {

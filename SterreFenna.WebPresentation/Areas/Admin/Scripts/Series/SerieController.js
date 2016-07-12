@@ -23,6 +23,10 @@
             paramName: 'files',
             parallelUploads: 100,
             init: function () {
+                this.on("addedfile", function (file) {
+                    SerieController.addFileToSortablePics(file);
+                });
+
                 this.on("sending", function (file, xhr, formData) {
                     formData.append('name', SerieFormElements.newSerieName.val());
                     formData.append('publicationDate', SerieFormElements.publicationDate.val());
@@ -31,8 +35,8 @@
                     formData.append('projectId', SerieFormElements.projectDropdown.val());
                 });
 
-                this.on("addedfile", function (file) {
-                    SerieController.addFileToSortablePics(file);
+                this.on("queuecomplete", function (file) {
+                    document.location.href = "/Admin/";
                 });
             }
         };

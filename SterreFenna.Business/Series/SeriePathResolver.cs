@@ -30,7 +30,7 @@ namespace SterreFenna.Business.Series
 
         public string GetRelativeItemPath(string itemName)
         {
-            return Path.Combine("Series", SerieDir, itemName);
+            return Path.Combine("/Series", SerieDir, itemName);
         }
 
         public void CreateSerieDirectory()
@@ -44,7 +44,7 @@ namespace SterreFenna.Business.Series
 
         public string GetSerieBasePath()
         {
-            return Path.Combine(_settings.SeriePath, SerieDir);
+            return Path.Combine("/", _settings.SeriePath, SerieDir);
         }
     }
 }

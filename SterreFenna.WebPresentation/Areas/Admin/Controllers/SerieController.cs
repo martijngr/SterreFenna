@@ -78,7 +78,7 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
             _editSerieCommand.SerieId = model.SerieId;
             _editSerieCommand.SerieName = model.name;
             _editSerieCommand.SerieItems = items;
-            _editSerieCommand.ProjectId = model.projectId;
+            _editSerieCommand.ProjectId = model.ProjectId;
             _editSerieCommand.ProjectName = model.newProjectName;
             _editSerieCommand.FavouriteItems = model.favouriteFilenames.Split(',').ToList();
 
@@ -114,7 +114,7 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
 
             _createSerieCommand.SerieName = model.name;
             _createSerieCommand.SerieItems = items;
-            _createSerieCommand.ProjectId = model.projectId;
+            _createSerieCommand.ProjectId = model.ProjectId;
             _createSerieCommand.ProjectName = model.newProjectName;
 
             if (model.publicationDate.HasValue())

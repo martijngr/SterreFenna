@@ -1,5 +1,5 @@
-- Mogelijkheid om per foto an te kunnen geven of deze getoond moet worden op de homepage
-- Mogelijkheid maken dat een item van een serie een link is naar een youtube filmpje
+- Mogelijkheid om per foto aan te kunnen geven of deze getoond moet worden op de homepage
+
 - Bij aanmaken project en serie nagaan of naam al in gebruik is. Constraint DB?
 - Bij aanmaken serie/project speciale tekens vervangen / verbieden.
 - Wijzigen projectnaam mogelijk? Zo ja, dan ook mapnaam aanpassen op disk.
@@ -11,7 +11,7 @@
 - Foto's van serie in midden uitlijnen (zie ontwerp);
 
 --------
-Thumps makan als foto's worde geupload
+Thumps maken als foto's worden geupload
 --------
 
 - Hoofdmenu site afronden
