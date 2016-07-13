@@ -150,8 +150,10 @@
     <Content Include="Areas\Admin\Content\admin.css" />
     <Content Include="Areas\Admin\Scripts\Series\SerieFormElements.js" />
     <Content Include="Areas\Admin\Scripts\Series\SerieController.js" />
+    <Content Include="Areas\Admin\Scripts\Shared\Loader.js" />
     <Content Include="Areas\Admin\Scripts\Shared\ValidationResult.js" />
     <Content Include="Areas\Admin\Scripts\Series\SerieValidator.js" />
+    <Content Include="Content\images\ajax-loader.gif" />
     <Content Include="Content\images\logo_height_100.png" />
     <Content Include="Content\less\bootstrap\bootstrap-theme.css" />
     <Content Include="Content\less\bootstrap\bootstrap.css" />
@@ -372,15 +374,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="..\packages\BuildBundlerMinifier.2.0.235\build\BuildBundlerMinifier.targets" Condition="Exists('..\packages\BuildBundlerMinifier.2.0.235\build\BuildBundlerMinifier.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\BuildBundlerMinifier.2.0.235\build\BuildBundlerMinifier.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BuildBundlerMinifier.2.0.235\build\BuildBundlerMinifier.targets'))" />
-    <Error Condition="!Exists('..\packages\BuildWebCompiler.1.11.315\build\BuildWebCompiler.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BuildWebCompiler.1.11.315\build\BuildWebCompiler.targets'))" />
-  </Target>
-  <Import Project="..\packages\BuildWebCompiler.1.11.315\build\BuildWebCompiler.targets" Condition="Exists('..\packages\BuildWebCompiler.1.11.315\build\BuildWebCompiler.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

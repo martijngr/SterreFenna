@@ -14,6 +14,10 @@
             validationErrors.add("Geen naam voor de serie opgegeven.");
         }
 
+        if (!anyItemsPresent()) {
+            validationErrors.add("De serie bevat geen beeldmateriaal.");
+        }
+
         return validationErrors;
     }
 
@@ -29,5 +33,8 @@
         return SerieFormElements.newSerieName.val().length > 0;
     }
 
+    function anyItemsPresent() {
+        return $("#sortable").children().length > 0;
+    }
 
 }();

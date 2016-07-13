@@ -14,10 +14,13 @@
             <input type="text" class="form-control" id="publicationDate" name="publicationDate" value="@Model.SerieDetails.Published" placeholder="Datum van publicatie">
         </div>
         <div class="col-sm-4">
+            <span id="loader" class="pull-right">
+                <img src="~/Content/images/ajax-loader.gif" />
+            </span>
             <button type="button"
                     class="btn btn-primary pull-right"
                     style="margin-top: 24px;"
-                    onclick="submitAddSerie()">
+                    onclick="SerieController.submitAddSerie()">
                 Bijwerken
             </button>
         </div>
@@ -57,21 +60,32 @@
             {
                 <li class="ui-state-default height-90">
                     <img src="@item.Location" alt="@item.Location" title="@item.Location" />
-                    <i class="fa fa-trash" onclick="removePhotoFromList(this)"></i>
-                    <i class="fa fa-asterisk" onclick="markAsFavourite(this)"></i>
+                    <i class="fa fa-trash" onclick="SerieController.removePhotoFromList(this)"></i>
+                    <i class="fa fa-asterisk" onclick="SerieController.markAsFavourite(this)"></i>
                 </li>
             }
         </ul>
     </div>
 </div>
 @section scripts{
-    <script>
+<script src="~/Areas/Admin/Scripts/Series/SerieController.js"></script>
+<script src="~/Areas/Admin/Scripts/Series/SerieFormElements.js"></script>
+<script src="~/Areas/Admin/Scripts/Series/SerieValidator.js"></script>
+<script src="~/Areas/Admin/Scripts/Shared/ValidationResult.js"></script>
+
+<script>
+
+    SerieController.init(@Model.SerieDetails.Id);
+
+</script>
+
+
+
+    @*<script>
         var _favouriteItems = [];
 
-        $(function () {
-            $("#sortable").sortable();
-            $("#sortable").disableSelection();
-        });
+        $("#sortable").sortable();
+        $("#sortable").disableSelection();
 
         var _initialize = true;
         var dropzoneOptions = {
@@ -189,5 +203,5 @@
                 $(element).addClass('favourite-item');
             }
         }
-    </script>
+    </script>*@
 }

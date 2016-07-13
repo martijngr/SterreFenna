@@ -12,10 +12,14 @@
             <input type="text" class="form-control" id="publicationDate" placeholder="Datum van publicatie">
         </div>
         <div class="col-sm-4">
+            <span id="loader" class="pull-right">
+                <img src="~/Content/images/ajax-loader.gif" />
+            </span>
             <button type="button"
                     class="btn btn-primary pull-right"
                     style="margin-top: 24px;"
-                    onclick="SerieController.submitAddSerie()">
+                    onclick="SerieController.submitAddSerie()"
+                    id="btnCreate">
                 Aanmaken
             </button>
         </div>

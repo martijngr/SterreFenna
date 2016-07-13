@@ -80,7 +80,8 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
             _editSerieCommand.SerieItems = items;
             _editSerieCommand.ProjectId = model.ProjectId;
             _editSerieCommand.ProjectName = model.newProjectName;
-            _editSerieCommand.FavouriteItems = model.favouriteFilenames.Split(',').ToList();
+            if(model.favouriteFilenames.HasValue())
+                _editSerieCommand.FavouriteItems = model.favouriteFilenames.Split(',').ToList();
 
             if (model.publicationDate.HasValue())
                 _editSerieCommand.PublicationDate = DateTime.Parse(model.publicationDate);
