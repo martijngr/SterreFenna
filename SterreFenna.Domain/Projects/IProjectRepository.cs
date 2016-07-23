@@ -16,5 +16,7 @@ namespace SterreFenna.Domain.Projects
         IEnumerable<Project> GetAll();
 
         Project GetByUniqueName(string uniqueName);
+
+        bool Any(Expression<Func<Project, bool>> expression);
     }
 }

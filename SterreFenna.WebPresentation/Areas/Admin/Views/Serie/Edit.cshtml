@@ -5,39 +5,48 @@
 <form class="form" id="addGalleryForm" enctype="multipart/form-data">
     <div class="row">
         <h2>Serie bewerken</h2>
-        <div class="form-group col-sm-4">
-            <label for="name">Naam</label>
-            <input type="text" class="form-control" id="name" value="@Model.SerieDetails.Name" placeholder="Naam van nieuwe serie">
+        <div class="row">
+            <div class="form-group col-sm-4">
+                <label for="name">Naam</label>
+                <input type="text" class="form-control" id="name" value="@Model.SerieDetails.Name" placeholder="Naam van nieuwe serie">
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="publicationDate">Publicatiedatum</label>
+                <input type="text" class="form-control" id="publicationDate" name="publicationDate" value="@Model.SerieDetails.Published" placeholder="Datum van publicatie">
+            </div>
+            <div class="col-sm-4">
+                <span id="loader" class="pull-right">
+                    <img src="~/Content/images/ajax-loader.gif" />
+                </span>
+                <button type="button"
+                        class="btn btn-primary pull-right"
+                        style="margin-top: 24px;"
+                        onclick="SerieController.submitAddSerie()"
+                        id="btnSave">
+                    Bijwerken
+                </button>
+            </div>
         </div>
-        <div class="form-group col-sm-4">
-            <label for="publicationDate">Publicatiedatum</label>
-            <input type="text" class="form-control" id="publicationDate" name="publicationDate" value="@Model.SerieDetails.Published" placeholder="Datum van publicatie">
-        </div>
-        <div class="col-sm-4">
-            <span id="loader" class="pull-right">
-                <img src="~/Content/images/ajax-loader.gif" />
-            </span>
-            <button type="button"
-                    class="btn btn-primary pull-right"
-                    style="margin-top: 24px;"
-                    onclick="SerieController.submitAddSerie()">
-                Bijwerken
-            </button>
+        <div class="row">
+            <div class="form-group col-sm-4">
+                <label for="name">Credits</label>
+                <textarea name="credits" class="form-control" id="credits" cols="50" rows="7">@Model.SerieDetails.Credits</textarea>
+            </div>
         </div>
     </div>
     <div class="row">
         <h2>Project</h2>
         <div class="form-group col-sm-4">
             <label for="newProjectName">Naam</label>
-            <input type="text" class="form-control" id="newProjectName" value="@Model.SerieDetails.ProjectName" placeholder="Naam van nieuw project">
+            <input type="text" class="form-control" id="newProjectName" value="" placeholder="Naam van nieuw project">
         </div>
         <div class="form-group col-sm-4">
             <label for="publicationDate">Onderbrengen aan bestaand project</label>
             <select class="form-control" id="projectId" name="projectId">
-                <option>Niet onderbrengen aan bestaand project</option>
+                <option value="-1">Niet onderbrengen aan bestaand project</option>
                 @foreach (var item in Model.Projects)
                 {
-                    var selected = item.Id == Model.SerieDetails.Id ? "selected" : "";
+                    var selected = item.Id == Model.SerieDetails.ProjectId ? "selected" : "";
                     <option value="@item.Id" @selected>@item.Name</option>
                 }
             </select>
@@ -61,147 +70,21 @@
                 <li class="ui-state-default height-90">
                     <img src="@item.Location" alt="@item.Location" title="@item.Location" />
                     <i class="fa fa-trash" onclick="SerieController.removePhotoFromList(this)"></i>
-                    <i class="fa fa-asterisk" onclick="SerieController.markAsFavourite(this)"></i>
+                    <i class="fa fa-asterisk @(item.IsLandingPageItem ? "favourite-item" : "" )" onclick="SerieController.markAsFavourite(this)"></i>
                 </li>
             }
         </ul>
     </div>
 </div>
 @section scripts{
-<script src="~/Areas/Admin/Scripts/Series/SerieController.js"></script>
-<script src="~/Areas/Admin/Scripts/Series/SerieFormElements.js"></script>
-<script src="~/Areas/Admin/Scripts/Series/SerieValidator.js"></script>
-<script src="~/Areas/Admin/Scripts/Shared/ValidationResult.js"></script>
+    <script src="~/Areas/Admin/Scripts/Series/SerieController.js"></script>
+    <script src="~/Areas/Admin/Scripts/Series/SerieFormElements.js"></script>
+    <script src="~/Areas/Admin/Scripts/Series/SerieValidator.js"></script>
+    <script src="~/Areas/Admin/Scripts/Shared/ValidationResult.js"></script>
 
-<script>
+    <script>
+        var favouriteItems = @Html.Raw(Json.Encode(@Model.SerieDetails.SerieItems.Where(s => s.IsLandingPageItem)));
+        SerieController.init(@Model.SerieDetails.Id, favouriteItems);
 
-    SerieController.init(@Model.SerieDetails.Id);
-
-</script>
-
-
-
-    @*<script>
-        var _favouriteItems = [];
-
-        $("#sortable").sortable();
-        $("#sortable").disableSelection();
-
-        var _initialize = true;
-        var dropzoneOptions = {
-            autoProcessQueue: false,
-            uploadMultiple: true,
-            addRemoveLinks: false,
-            previewTemplate: '<div style="display:none"></div>',
-            paramName: 'files',
-            parallelUploads: 100,
-            init: function () {
-                this.on("sending", function (file, xhr, formData) {
-                    formData.append('serieId', @Model.SerieDetails.Id);
-                    formData.append('name', getFieldValue("name"));
-                    formData.append('publicationDate', getFieldValue("publicationDate"));
-                    formData.append('filenameOrder', getOrderOfFilenames());
-                    formData.append('favouriteFilenames', _favouriteItems);
-                    formData.append('newProjectName', getFieldValue("newProjectName"));
-                    formData.append('projectId', getFieldValue("projectId"));
-                });
-
-                this.on("addedfile", function (file) {
-                    if(_initialize) return;
-                    addFileToSortablePics(file);
-                });
-
-                var myDropzone = this;
-                var images =  $("#sortable img").map(function(){
-                    var location = $(this).attr('src');
-
-                    var mockFile = { 
-                        name: "myimage.jpg", 
-                        size: 12345, 
-                        type: 'image/jpeg', 
-                        status: Dropzone.QUEUED, 
-                        url: location
-                    };
-
-                    // Call the default addedfile event handler
-                    myDropzone.emit("addedfile", mockFile);
-
-                    myDropzone.files.push(mockFile);
-                });
-
-                _initialize = false;   
-            }
-        };
-        Dropzone.autoDiscover = true;
-        Dropzone.options.fooBar = dropzoneOptions;
-
-        function addFileToSortablePics(file) {
-
-            getBase64String(file, function (imageString) {
-                var container = $("#sortable");
-                var image = '<img src="' + imageString + '" alt="' + file.name + '" title="' + file.name + '"/>';
-                var trash = '<i class="fa fa-trash" onclick="removePhotoFromList(this)"></i>';
-                var favourite = '<i class="fa fa-asterisk" onclick="markAsFavourite(this)"></i>';
-                var item = '<li class="ui-state-default height-90">' + image + trash + favourite + '</li>';
-
-                container.append(item);
-            });
-        }
-
-        function submitAddSerie() {
-            var dropzone = Dropzone.instances[0];
-                dropzone.processQueue();
-        }
-
-        function getFieldValue(name) {
-            return $("#" + name).val();
-        }
-
-        function getBase64String(file, callback) {
-            var reader = new FileReader();
-
-            // Closure to capture the file information.
-            reader.onload = function (e) {
-                //get the base64 url
-                var base64URL = e.target.result;
-
-                if (callback != null)
-                    callback(base64URL);
-            };
-
-            // Read in the image file as a data URL.
-            reader.readAsDataURL(file);
-        }
-
-        function removePhotoFromList(element) {
-            $(element).parent().remove();
-        }
-
-        function getOrderOfFilenames() {
-            var imageNames = [];
-            var images = $("#sortable li img");
-
-            $.each(images, function (index, image) {
-                imageNames.push($(image).prop('alt'));
-            });
-
-            return imageNames;
-        }
-
-        function markAsFavourite(element){
-            var src = $(element).parent().find('img').attr('src');
-            var index = _favouriteItems.indexOf(src);
-
-            if(index > -1){
-                _favouriteItems.splice(index, 1);
-
-                $(element).removeClass('favourite-item');
-            }
-            else{
-                _favouriteItems.push(src);
-
-                $(element).addClass('favourite-item');
-            }
-        }
-    </script>*@
+    </script>
 }

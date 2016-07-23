@@ -5,7 +5,7 @@ using System.Web;
 
 namespace SterreFenna.WebPresentation.Areas.Admin.Models
 {
-    public class PostedNewSerieModel
+    public class PostedSerieModel
     {
         public int SerieId { get; set; }
         public string name { get; set; }
@@ -15,5 +15,6 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Models
         public IEnumerable<HttpPostedFileBase> files { get; set; }
         public string newProjectName { get; set; }
         public int ProjectId { get; set; }
+        public string Credits { get; set; }
     }
 }

@@ -53,6 +53,10 @@ namespace SterreFenna.IoC
             builder.RegisterAssemblyTypes(typeof(AddItemsToSerieCommand).Assembly)
                    .Where(t => t.Name.EndsWith("Query"))
                    .AsSelf();
+
+            builder.RegisterAssemblyTypes(typeof(AddItemsToSerieCommand).Assembly)
+                   .Where(t => t.Name.EndsWith("QueryHandler"))
+                   .AsSelf();
         }
     }
 }

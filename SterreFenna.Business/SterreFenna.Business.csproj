@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Naming\InvalidCharsRemover.cs" />
     <Compile Include="Projects\Commands\AddProjectCommand.cs" />
     <Compile Include="Projects\Commands\BaseProjectCommand.cs" />
     <Compile Include="Projects\Commands\ChangeProjectOrderCommand.cs" />
@@ -73,15 +74,17 @@
     <Compile Include="Series\Commands\BaseSerieCommand.cs" />
     <Compile Include="Series\Commands\CreateSerieCommand.cs" />
     <Compile Include="Series\Commands\EditSerieCommand.cs" />
-    <Compile Include="Series\Commands\GetSerieByIdCommand.cs" />
+    <Compile Include="Series\Queries\GetSerieByIdQuery.cs" />
     <Compile Include="Series\Commands\UploadedSerieItem.cs" />
     <Compile Include="Projects\Queries\GetFirstActiveProjectQuery.cs" />
+    <Compile Include="Series\Queries\GetLandingPageItemsQuery.cs" />
     <Compile Include="Series\SeriePathResolverFactory.cs" />
     <Compile Include="Series\Queries\GetItemsForSerieQuery.cs" />
     <Compile Include="Series\Queries\GetProjectListOverviewQuery.cs" />
     <Compile Include="Series\SerieNotFoundException.cs" />
     <Compile Include="Series\SeriePathResolver.cs" />
     <Compile Include="Series\Queries\GetSerieOverviewQuery.cs" />
+    <Compile Include="Series\Views\LandingpageItemView.cs" />
     <Compile Include="Series\Views\ProjectListOverviewItem.cs" />
     <Compile Include="Series\Views\SerieDetailView.cs" />
     <Compile Include="Series\Views\SerieItemDetailView.cs" />

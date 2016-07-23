@@ -15,40 +15,40 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
     //[Authorize]
     public class SerieController : Controller
     {
-        private readonly CreateSerieCommand _createSerieCommand;
-        private readonly EditSerieCommand _editSerieCommand;
+        private readonly CreateSerieCommandHandler _createSerieHandler;
+        private readonly EditSerieCommandHandler _editSerieHandler;
         private readonly GetProjectListOverviewQuery _getProjectListOverviewQuery;
-        private readonly GetSerieByIdCommand _getSerieByIdCommand;
+        private readonly GetSerieByIdQuery _getSerieByIdQuery;
         private readonly GetProjectOverviewQuery _getProjectOverviewQuery;
 
         public SerieController(
-            CreateSerieCommand createGalleryCommand,
-            EditSerieCommand editSerieCommand,
+            CreateSerieCommandHandler createGalleryCommand,
+            EditSerieCommandHandler editSerieCommand,
             GetProjectListOverviewQuery getProjectListOverviewQuery,
-            GetSerieByIdCommand getSerieByIdCommand,
+            GetSerieByIdQuery getSerieByIdQuery,
             GetProjectOverviewQuery getProjectOverviewQuery)
         {
-            _createSerieCommand = createGalleryCommand;
-            _editSerieCommand = editSerieCommand;
+            _createSerieHandler = createGalleryCommand;
+            _editSerieHandler = editSerieCommand;
             _getProjectListOverviewQuery = getProjectListOverviewQuery;
             _getProjectOverviewQuery = getProjectOverviewQuery;
-            _getSerieByIdCommand = getSerieByIdCommand;
+            _getSerieByIdQuery = getSerieByIdQuery;
         }
 
         public ActionResult Edit(int id)
         {
             var model = new EditSerieModel
             {
-                SerieDetails = _getSerieByIdCommand.Handle(id),
+                SerieDetails = _getSerieByIdQuery.Handle(id),
                 Projects = _getProjectOverviewQuery.Handle(),
             };
 
             return View(model);
         }
 
-        public ActionResult SubmitEdit(PostedNewSerieModel model)
+        public ActionResult SubmitEdit(PostedSerieModel model)
         {
-            var serie = _getSerieByIdCommand.Handle(model.SerieId);
+            var serie = _getSerieByIdQuery.Handle(model.SerieId);
             var items = new List<UploadedSerieItem>();
             var filesnames = model.filenameOrder.Split(',');
             var rankCounter = 0;
@@ -75,20 +75,25 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
                 rankCounter++;
             }
 
-            _editSerieCommand.SerieId = model.SerieId;
-            _editSerieCommand.SerieName = model.name;
-            _editSerieCommand.SerieItems = items;
-            _editSerieCommand.ProjectId = model.ProjectId;
-            _editSerieCommand.ProjectName = model.newProjectName;
+            var command = new EditSerieCommand
+            {
+                ProjectId = model.ProjectId,
+                ProjectName = model.newProjectName,
+                SerieId = model.SerieId,
+                SerieItems = items,
+                SerieName = model.name,
+                Credits = model.Credits
+            };
+            
             if(model.favouriteFilenames.HasValue())
-                _editSerieCommand.FavouriteItems = model.favouriteFilenames.Split(',').ToList();
+                command.FavouriteItems = model.favouriteFilenames.Split(',').ToList();
 
             if (model.publicationDate.HasValue())
-                _editSerieCommand.PublicationDate = DateTime.Parse(model.publicationDate);
+                command.PublicationDate = DateTime.Parse(model.publicationDate);
 
-            _editSerieCommand.Handle();
+            _editSerieHandler.Handle(command);
 
-            return RedirectToAction("Index", "Serie", new { area = "Admin", id = _createSerieCommand.StoredSerieId });
+            return RedirectToAction("Index", "Serie", new { area = "Admin", id = model.SerieId });
         }
         
         public ActionResult New()
@@ -98,7 +103,7 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
             return View(projects);
         }
 
-        public ActionResult SubmitNew(PostedNewSerieModel model)
+        public ActionResult SubmitNew(PostedSerieModel model)
         {
             var items = new List<UploadedSerieItem>();
             var filesnames = model.filenameOrder.Split(',');
@@ -113,17 +118,21 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
                 });
             }
 
-            _createSerieCommand.SerieName = model.name;
-            _createSerieCommand.SerieItems = items;
-            _createSerieCommand.ProjectId = model.ProjectId;
-            _createSerieCommand.ProjectName = model.newProjectName;
-
+            var command = new CreateSerieCommand
+            {
+                ProjectId = model.ProjectId,
+                ProjectName = model.newProjectName,
+                SerieItems = items,
+                SerieName = model.name,
+                Credits = model.Credits,
+            };
+            
             if (model.publicationDate.HasValue())
-                _createSerieCommand.PublicationDate = DateTime.Parse(model.publicationDate);
+                command.PublicationDate = DateTime.Parse(model.publicationDate);
 
-            _createSerieCommand.Handle();
+            _createSerieHandler.Handle(command);
 
-            return RedirectToAction("Index", "Serie", new { area="Admin",  id = _createSerieCommand.StoredSerieId });
+            return RedirectToAction("Index", "Serie", new { area="Admin",  id = command.StoredSerieId });
         }
     }
 }

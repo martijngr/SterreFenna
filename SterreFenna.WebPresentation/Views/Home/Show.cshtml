@@ -11,6 +11,13 @@
                 <img src="@item.Location" />
             </div>
         }
+        <div class="swiper-slide serie-credits">
+            <div>
+                <span>
+                    @Html.Raw(Model.Credits.Replace("\r\n", "<br/>"))
+                </span>
+            </div>
+        </div>
     </div>
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>

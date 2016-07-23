@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SterreFenna.Business.Series.Views
 {
@@ -15,5 +11,7 @@ namespace SterreFenna.Business.Series.Views
         public string Location { get; set; }
 
         public DateTime Created { get; set; }
+
+        public bool IsLandingPageItem { get; set; }
     }
 }

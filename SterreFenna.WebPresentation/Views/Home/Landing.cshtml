@@ -1,0 +1,60 @@
+﻿@model LandingPageModel
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <title>Sterre Fenna.com</title>
+    <script src="~/Scripts/jquery/jquery-3.0.0.js"></script>
+    <script src="~/Scripts/plugins/swiper/swiper.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <link href="~/Content/less/landingpage.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="">
+        <header>
+            <img src="~/Content/images/logo-text-only.png" />
+        </header>
+        <div>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+
+                    @foreach (var item in Model.LandingPageItems)
+                    {
+                        <div class="swiper-slide">
+                            <a href="@item.Url"><img src="@item.Location" /></a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="landingpage-bottom">
+            <a href="@Model.HomepageUrl">SEE MY OTHER WORK</a> <i class="fa fa-chevron-right"></i>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var swiper = new Swiper('.swiper-container', {
+                slidesPerView: '1',
+                paginationClickable: false,
+                autoplay: 2000,
+                spaceBetween: 30,
+                freeMode: true,
+                effect: 'fade',
+                speed: 1000,
+                preventClicks: true,
+                preventClicksPropagation: true,
+                autoplayDisableOnInteraction: false,
+                //onTouchStart: function (a, b) {
+                //    console.log("clicked..");
+                //    document.location.href = "/t5";
+                //    swiper.slideNext();
+                //},
+            });
+        });
+    </script>
+</body>
+</html>

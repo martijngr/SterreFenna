@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SterreFenna.Domain.Series
 {
-    public class Serie :IIdentifyable
+    public class Serie : IIdentifyable
     {
         public Serie()
         {
@@ -22,13 +22,15 @@ namespace SterreFenna.Domain.Series
 
         public string UniqueName { get; set; }
 
+        public string Credits { get; set; }
+
         public DateTime Created { get; set; }
 
         public DateTime? Published { get; set; }
 
         public int? ProjectId { get; set; }
 
-        public Project Project { get; set; }
+        public virtual Project Project { get; set; }
 
         public virtual ICollection<SerieItem> SerieItems { get; set; }
     }

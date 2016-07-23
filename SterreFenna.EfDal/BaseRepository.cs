@@ -32,6 +32,11 @@ namespace SterreFenna.EfDal
             return _context.Set<T>().Where(predicate);
         }
 
+        public bool Any(Expression<Func<T, bool>> predicate)
+        {
+            return _context.Set<T>().Any(predicate);
+        }
+
         public IEnumerable<T> GetAll()
         {
             return _context.Set<T>();

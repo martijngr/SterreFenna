@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace SterreFenna.Business.Series.Commands
 {
-    public class GetSerieByIdCommand
+    public class GetSerieByIdQuery
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public GetSerieByIdCommand(IUnitOfWork unitOfWork)
+        public GetSerieByIdQuery(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -36,10 +36,12 @@ namespace SterreFenna.Business.Series.Commands
                                   Created = i.Created,
                                   Id = i.Id,
                                   Location = i.Location,
-                                  Rank = i.Rank
+                                  Rank = i.Rank,
+                                  IsLandingPageItem = i.IsHomePageItem
                               }).AsEnumerable(),
                ProjectName = serie.Project?.Name,
-               ProjectId = serie.ProjectId 
+               ProjectId = serie.ProjectId ,
+               Credits = serie.Credits
             };
 
             return view;

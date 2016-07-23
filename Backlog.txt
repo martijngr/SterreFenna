@@ -12,6 +12,8 @@
 - Credits toevoegen bij Serie. Tonen met korte streepjes (zie visitekaartje)
 - Foto's van serie in midden uitlijnen (zie ontwerp);
 
+- Show.less mergen met Jelle zijn opzet.
+
 --------
 Thumps maken als foto's worden geupload
 --------
@@ -21,8 +23,7 @@ Thumps maken als foto's worden geupload
 	-> Project met 1 serie? Dan serienaam tonen ipv projectnaam
 	-> Project met 1 serie? Dan geen submenu tonen
 
-- Testen maken... D'r zit sowieso een bug in... iets met serie items..
-	-> code optimaliseren / vereenvoudigen
+- Testen maken...
 
 Versie 2
 - Mogelijkheid om youtube-url's op te geven -> embedded video's

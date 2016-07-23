@@ -1,13 +1,20 @@
-[
-  {//compile and minify main less file to css
+﻿[
+  {
     "outputFile": "Content/main.css",
-    "inputFile": "Content/less/main.less",
+    "inputFile": "Content/less/main.less, Content/less/landingpage.less",
     "minify": {
-        "enabled": true
+      "enabled": true
     },
-    "includeInProject": false,
-    "options":{
-        "sourceMap": false
+    "options": {
+      "sourceMap": false
     }
+  },
+  {
+    "outputFile": "Content/less/landingpage.css",
+    "inputFile": "Content/less/landingpage.less"
+  },
+  {
+    "outputFile": "Content/less/show.css",
+    "inputFile": "Content/less/show.less"
   }
 ]

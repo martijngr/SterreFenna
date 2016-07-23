@@ -14,6 +14,13 @@ namespace SterreFenna.WebPresentation
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Landing",
+                url: "",
+                defaults: new { controller = "Home", action = "Landing" },
+                namespaces: new string[] { "SterreFenna.WebPresentation.Controllers" }
+            );
+
+            routes.MapRoute(
                 name: "SerieOnly",
                 url: "{serie}",
                 defaults: new { controller = "Home", action = "SerieOnly" },
@@ -28,9 +35,9 @@ namespace SterreFenna.WebPresentation
             );
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}",
-                defaults: new { controller = "Home", action = "Index" },
+                "Default",
+                "{controller}/{action}/{id}",
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 namespaces: new string[] { "SterreFenna.WebPresentation.Controllers" }
             );
         }

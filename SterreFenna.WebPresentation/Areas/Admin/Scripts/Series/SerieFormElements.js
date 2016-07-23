@@ -4,6 +4,7 @@
         projectDropdown: $("#projectId"),
         newSerieName: $("#name"),
         publicationDate: $("#publicationDate"),
-        createButton: $("#btnCreate"),
+        createButton: $("#btnSave"),
+        credits: $("#credits"),
     };
 }();

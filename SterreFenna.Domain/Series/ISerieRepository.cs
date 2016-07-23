@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,5 +16,7 @@ namespace SterreFenna.Domain.Series
         Serie GetByUniqueName(string uniqueName);
 
         IEnumerable<Serie> GetAll();
+
+        bool Any(Expression<Func<Serie, bool>> expression);
     }
 }

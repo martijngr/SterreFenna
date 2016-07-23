@@ -53,7 +53,8 @@ namespace SterreFenna.Business.Series.Queries
                                  Id = i.Id,
                                  Location = i.Location,
                                  Rank = i.Rank
-                             }
+                             },
+                Credits = serie.Credits
             };
         }
 
@@ -82,7 +83,8 @@ namespace SterreFenna.Business.Series.Queries
                                  Id = i.Id,
                                  Location = i.Location,
                                  Rank = i.Rank
-                             }
+                             },
+                Credits = serie.Credits
             };
         }
     }

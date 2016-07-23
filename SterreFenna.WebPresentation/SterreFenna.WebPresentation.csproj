@@ -146,6 +146,9 @@
   <ItemGroup>
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
+    <Compile Include="Models\LandingPageItem.cs" />
+    <Compile Include="Models\LandingPageModel.cs" />
+    <Compile Include="UrlBuilders\UrlBuilder.cs" />
     <Compile Include="UserManagement\AppUserManager.cs" />
     <Content Include="Areas\Admin\Content\admin.css" />
     <Content Include="Areas\Admin\Scripts\Series\SerieFormElements.js" />
@@ -154,10 +157,17 @@
     <Content Include="Areas\Admin\Scripts\Shared\ValidationResult.js" />
     <Content Include="Areas\Admin\Scripts\Series\SerieValidator.js" />
     <Content Include="Content\images\ajax-loader.gif" />
+    <Content Include="Content\images\logo-text-only.png" />
     <Content Include="Content\images\logo_height_100.png" />
     <Content Include="Content\less\bootstrap\bootstrap-theme.css" />
     <Content Include="Content\less\bootstrap\bootstrap.css" />
     <Content Include="Content\less\fonts\font-awesome.css" />
+    <Content Include="Content\less\landingpage.css">
+      <DependentUpon>landingpage.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\landingpage.min.css">
+      <DependentUpon>landingpage.css</DependentUpon>
+    </Content>
     <Content Include="Content\less\plugins\jquery\accordion.css" />
     <Content Include="Content\less\plugins\jquery\all.css" />
     <Content Include="Content\less\plugins\jquery\autocomplete.css" />
@@ -192,6 +202,12 @@
     <Content Include="Content\less\plugins\jquery\theme.css" />
     <Content Include="Content\less\plugins\jquery\tooltip.css" />
     <Content Include="Content\less\plugins\swiper.min.css" />
+    <Content Include="Content\less\show.css">
+      <DependentUpon>show.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\show.min.css">
+      <DependentUpon>show.css</DependentUpon>
+    </Content>
     <Content Include="Content\main.css" />
     <Content Include="Content\main.min.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -251,7 +267,7 @@
     <Content Include="bundleconfig.json.bindings" />
     <Content Include="compilerconfig.json" />
     <Content Include="compilerconfig.json.bindings" />
-    <Content Include="compilerconfig.json.defaults" />
+    <None Include="compilerconfig.json.defaults" />
     <Content Include="packages.config" />
     <Content Include="Content\less\fonts\FontAwesome.otf" />
     <Content Include="Content\less\fonts\fontawesome-webfont.woff2" />
@@ -271,6 +287,8 @@
     <Content Include="Content\less\menu2.less" />
     <Content Include="Content\less\override-swiper.less" />
     <Content Include="Content\less\Site.less" />
+    <Content Include="Content\less\landingpage.less" />
+    <Content Include="Content\less\show.less" />
     <None Include="Properties\PublishProfiles\Production.pubxml" />
     <Content Include="main.min.js" />
     <Content Include="Scripts\bootstrap\bootstrap.js" />
@@ -302,7 +320,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Extensions\MvcHtmlStringExtensions.cs" />
     <Compile Include="Areas\Admin\Models\NewProjectModel.cs" />
-    <Compile Include="Areas\Admin\Models\PostedNewSerieModel.cs" />
+    <Compile Include="Areas\Admin\Models\PostedSerieModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Menus\MenuBuilder.cs" />
     <Compile Include="Menus\MenuController.cs" />
@@ -324,6 +342,7 @@
     <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.0.0.min.map" />
     <Content Include="Scripts\underscore.min.map" />
+    <Content Include="Views\Home\Landing.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

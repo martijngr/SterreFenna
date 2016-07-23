@@ -1,5 +1,6 @@
 ﻿using SterreFenna.Business.Projects.Queries;
 using SterreFenna.Business.Series.Queries;
+using SterreFenna.WebPresentation.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,24 @@ namespace SterreFenna.WebPresentation.Controllers
     {
         private readonly GetItemsForSerieQuery _getItemsForSerieQuery;
         private readonly GetFirstActiveProjectQuery _getFirstActiveSerieQuery;
+        private readonly GetLandingPageItemsQueryHandler _getLandingPageItemsQueryHandler;
 
-        public HomeController(GetItemsForSerieQuery getItemsForSerieQuery, GetFirstActiveProjectQuery getFirstActiveProjectQuery)
+        public HomeController(
+            GetItemsForSerieQuery getItemsForSerieQuery, 
+            GetFirstActiveProjectQuery getFirstActiveProjectQuery,
+            GetLandingPageItemsQueryHandler getLandingPageItemsQueryHandler)
         {
             _getItemsForSerieQuery = getItemsForSerieQuery;
             _getFirstActiveSerieQuery = getFirstActiveProjectQuery;
+            _getLandingPageItemsQueryHandler = getLandingPageItemsQueryHandler;
+        }
+
+        public ActionResult Landing()
+        {
+            var items = _getLandingPageItemsQueryHandler.Handle();
+            var model = LandingPageModel.Create(items);
+
+            return View(model);
         }
 
         public ActionResult Index()
