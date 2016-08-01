@@ -8,14 +8,18 @@ namespace SterreFenna.Business.Projects.Queries
 {
     public class GetFirstActiveProjectQuery
     {
+    }
+
+    public class GetFirstActiveProjectQueryHandler
+    {
         private readonly IUnitOfWork _unitOfWork;
 
-        public GetFirstActiveProjectQuery(IUnitOfWork unitOfWork)
+        public GetFirstActiveProjectQueryHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        public ProjectDetailsView Handle()
+        public ProjectDetailsView Handle(GetFirstActiveProjectQuery query)
         {
             var project = _unitOfWork.ProjectRepository
                                      .Find(p => p.Series.Any())
@@ -27,6 +31,7 @@ namespace SterreFenna.Business.Projects.Queries
                 Id = project.Id,
                 Name = project.Name,
                 UniqueName = project.UniqueName,
+                Description = project.Description,
                 Series = from s in project.Series
                          select new SerieDetailView
                          {

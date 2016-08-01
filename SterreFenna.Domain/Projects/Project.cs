@@ -20,6 +20,8 @@ namespace SterreFenna.Domain.Projects
 
         public int Rank { get; set; }
 
+        public string Description { get; set; }
+
         public virtual ICollection<Serie> Series { get; set; }
     }
 }

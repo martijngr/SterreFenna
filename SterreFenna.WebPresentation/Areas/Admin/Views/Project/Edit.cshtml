@@ -1,20 +1,37 @@
-﻿@model SterreFenna.Business.Projects.Views.ProjectDetailsView
+﻿@model ProjectDetailsView
 
 <form class="form" action="/Admin/Project/SubmitEdit" method="post">
     <div class="row">
         <h2>Project bewerken</h2>
-        <input type="hidden" value="@Model.Id" name="ProjectId"/>
-        <div class="form-group col-sm-4">
-            <label for="name">Naam</label>
-            <input type="text" class="form-control" name="Name" id="name" value="@Model.Name" placeholder="Naam van nieuw project">
+        <div class="row">
+            <input type="hidden" value="@Model.Id" name="ProjectId" />
+            <div class="form-group col-sm-4">
+                <label for="name">Naam</label>
+                <input type="text" class="form-control" name="Name" id="name" value="@Model.Name" placeholder="Naam van nieuw project">
+            </div>
+            <div class="col-sm-4">
+                <button type="submit"
+                        class="btn btn-primary pull-right"
+                        style="margin-top: 24px;">
+                    Bijwerken
+                </button>
+            </div>
         </div>
-        <div class="col-sm-4">
-            <button type="submit"
-                    class="btn btn-primary pull-right"
-                    style="margin-top: 24px;">
-                Bijwerken
-            </button>
+        <div class="row">
+            <div class="form-group col-sm-12" style="height:400px">
+                <label for="name">Beschrijving</label>
+                <div name="description" class="form-control" id="description">@Html.Raw(Model.Description)</div>
+            </div>
         </div>
     </div>
 </form>
 
+@section scripts{
+    
+    <script src="~/Areas/Admin/Scripts/Projects/ProjectFormElements.js"></script>
+    <script src="~/Areas/Admin/Scripts/Projects/ProjectController.js"></script>
+
+    <script>
+        ProjectController.init();
+    </script>
+}

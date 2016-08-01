@@ -21,6 +21,7 @@ namespace SterreFenna.Business.Projects.Commands
             var project = _unitOfWork.ProjectRepository.GetById(command.ProjectId);
 
             project.Name = command.Name;
+            project.Description = command.Description;
 
             _unitOfWork.SaveChanges();
         }

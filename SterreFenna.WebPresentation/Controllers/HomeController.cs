@@ -12,16 +12,16 @@ namespace SterreFenna.WebPresentation.Controllers
     public class HomeController : Controller
     {
         private readonly GetItemsForSerieQuery _getItemsForSerieQuery;
-        private readonly GetFirstActiveProjectQuery _getFirstActiveSerieQuery;
+        private readonly GetFirstActiveProjectQueryHandler _getFirstActiveSerieHandler;
         private readonly GetLandingPageItemsQueryHandler _getLandingPageItemsQueryHandler;
 
         public HomeController(
-            GetItemsForSerieQuery getItemsForSerieQuery, 
-            GetFirstActiveProjectQuery getFirstActiveProjectQuery,
+            GetItemsForSerieQuery getItemsForSerieQuery,
+            GetFirstActiveProjectQueryHandler getFirstActiveProjectHandler,
             GetLandingPageItemsQueryHandler getLandingPageItemsQueryHandler)
         {
             _getItemsForSerieQuery = getItemsForSerieQuery;
-            _getFirstActiveSerieQuery = getFirstActiveProjectQuery;
+            _getFirstActiveSerieHandler = getFirstActiveProjectHandler;
             _getLandingPageItemsQueryHandler = getLandingPageItemsQueryHandler;
         }
 
@@ -35,7 +35,8 @@ namespace SterreFenna.WebPresentation.Controllers
 
         public ActionResult Index()
         {
-            var serie = _getFirstActiveSerieQuery.Handle();
+            var query = new GetFirstActiveProjectQuery();
+            var serie = _getFirstActiveSerieHandler.Handle(query);
 
             if (serie.Series.Count() > 1)
                 return RedirectToAction("Show", new

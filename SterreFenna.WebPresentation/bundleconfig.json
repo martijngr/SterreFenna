@@ -2,15 +2,21 @@
   {
     "outputFileName": "Scripts/main.min.js",
     "inputFiles": [
-      "Scripts/jquery/*.js", //import jquery first
-      "Scripts/bootstrap/*.js", //bootstrap second
+      "Scripts/jquery/*.js",
+      "Scripts/bootstrap/*.js",
       "Scripts/modernizr/*.js",
-      "Scripts/plugins/**/*.js", //plugins semi last
-      "Scripts/main.js" //and custom javascript last!
+      "Scripts/plugins/**/*.js",
+      "Scripts/main.js"
     ],
     "minify": {
       "enabled": true,
       "commentMode": "all"
     }
+  },
+  {
+    "outputFileName": "Scripts/tinymce/plugins/columns/plugin.min.js",
+    "inputFiles": [
+      "Scripts/tinymce/plugins/columns/plugin.js"
+    ]
   }
 ]

@@ -1,4 +1,5 @@
 ﻿using SterreFenna.Business.Naming;
+using SterreFenna.Business.Projects.Commands;
 using SterreFenna.Domain;
 using SterreFenna.Domain.Projects;
 using SterreFenna.Domain.Series;
@@ -17,18 +18,21 @@ namespace SterreFenna.Business.Series.Commands
         private readonly AddItemsToSerieCommand _addItemsToSerieCommand;
         private readonly ISerieRepository _serieRepository;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly CreateProjectCommandHandler _addProjectCommandHandler;
 
         public CreateSerieCommandHandler(
             SeriePathManagerFactory seriePathResolverFactory, 
             AddItemsToSerieCommand addItemsToSerieCommand, 
             ISerieRepository serieRepository,
-            IUnitOfWork unitOfWork)
+            IUnitOfWork unitOfWork,
+            CreateProjectCommandHandler addProjectCommandHandler)
         {
             _seriePathResolverFactory = seriePathResolverFactory;
             _addItemsToSerieCommand = addItemsToSerieCommand;
 
             _serieRepository = serieRepository;
             _unitOfWork = unitOfWork;
+            _addProjectCommandHandler = addProjectCommandHandler;
         }
         
         public void Handle(CreateSerieCommand command)
@@ -55,7 +59,7 @@ namespace SterreFenna.Business.Series.Commands
 
         private Serie CreateSerie(CreateSerieCommand command)
         {
-            var project = GetProject(command);
+            var project = GetProjectId(command);
 
             return new Serie
             {
@@ -63,21 +67,21 @@ namespace SterreFenna.Business.Series.Commands
                 Name = command.SerieName,
                 UniqueName = GetUniqueName(command.SerieName),
                 Published = command.PublicationDate,
-                Project = project,
+                ProjectId = project,
                 Credits = command.Credits
             };
         }
 
-        private Project GetProject(CreateSerieCommand command)
+        private int GetProjectId(CreateSerieCommand command)
         {
             if (command.ProjectId > 0)
-                return _unitOfWork.ProjectRepository.GetById(command.ProjectId);
+                return command.ProjectId;
             else
             {
-                return new Project
-                {
-                    Name = command.ProjectName,
-                };
+                var newProjectCommand = new CreateProjectCommand { Name = command.ProjectName };
+                _addProjectCommandHandler.Handle(newProjectCommand);
+
+                return newProjectCommand.ComittedProjectId;
             }
         }
 
@@ -86,7 +90,7 @@ namespace SterreFenna.Business.Series.Commands
             name = InvalidCharsRemover.RemoveInvalidChars(name);
 
             var counter = 1;
-            while (_unitOfWork.ProjectRepository.Any(s => s.UniqueName == name))
+            while (_unitOfWork.SerieRepository.Any(s => s.UniqueName == name))
             {
                 name += $"{name}-{counter}";
             }

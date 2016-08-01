@@ -15,6 +15,8 @@ namespace SterreFenna.Business.Projects.Views
 
         public string UniqueName { get; set; }
 
+        public string Description { get; set; }
+
         public DateTime? PublicationDate { get; set; }
 
         public IEnumerable<SerieDetailView> Series { get; set; }

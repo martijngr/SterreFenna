@@ -61,7 +61,7 @@
   <ItemGroup>
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Naming\InvalidCharsRemover.cs" />
-    <Compile Include="Projects\Commands\AddProjectCommand.cs" />
+    <Compile Include="Projects\Commands\CreateProjectCommand.cs" />
     <Compile Include="Projects\Commands\BaseProjectCommand.cs" />
     <Compile Include="Projects\Commands\ChangeProjectOrderCommand.cs" />
     <Compile Include="Projects\Commands\EditProjectCommand.cs" />
