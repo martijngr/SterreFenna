@@ -11,24 +11,29 @@ namespace SterreFenna.WebPresentation.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly GetItemsForSerieQuery _getItemsForSerieQuery;
+        private readonly GetItemsForSerieQueryHandler _getItemsForSerieQuery;
         private readonly GetFirstActiveProjectQueryHandler _getFirstActiveSerieHandler;
         private readonly GetLandingPageItemsQueryHandler _getLandingPageItemsQueryHandler;
+        private readonly GetProjectByUniqueNameQueryHandler _getProjectByUniqueNameQueryHandler;
 
         public HomeController(
-            GetItemsForSerieQuery getItemsForSerieQuery,
+            GetItemsForSerieQueryHandler getItemsForSerieQuery,
             GetFirstActiveProjectQueryHandler getFirstActiveProjectHandler,
-            GetLandingPageItemsQueryHandler getLandingPageItemsQueryHandler)
+            GetLandingPageItemsQueryHandler getLandingPageItemsQueryHandler,
+            GetProjectByUniqueNameQueryHandler getProjectByUniqueNameQueryHandler)
         {
             _getItemsForSerieQuery = getItemsForSerieQuery;
             _getFirstActiveSerieHandler = getFirstActiveProjectHandler;
             _getLandingPageItemsQueryHandler = getLandingPageItemsQueryHandler;
+            _getProjectByUniqueNameQueryHandler = getProjectByUniqueNameQueryHandler;
         }
 
         public ActionResult Landing()
         {
+            var query = new GetFirstActiveProjectQuery();
+            var project = _getFirstActiveSerieHandler.Handle(query);
             var items = _getLandingPageItemsQueryHandler.Handle();
-            var model = LandingPageModel.Create(items);
+            var model = LandingPageModel.Create(items, project);
 
             return View(model);
         }
@@ -36,38 +41,46 @@ namespace SterreFenna.WebPresentation.Controllers
         public ActionResult Index()
         {
             var query = new GetFirstActiveProjectQuery();
-            var serie = _getFirstActiveSerieHandler.Handle(query);
+            var project = _getFirstActiveSerieHandler.Handle(query);
 
-            if (serie.Series.Count() > 1)
-                return RedirectToAction("Show", new
-                {
-                    project = serie.UniqueName,
-                    serie = serie.Series.First().UniqueName
-                });
-            else
-                return RedirectToAction("SerieOnly", new
-                {
-                    serie = serie.Series.First().UniqueName
-                });
+            return RedirectToAction("Show", new
+            {
+                project = project.UniqueProjectName,
+                serie = project.Series.First().UniqueName
+            });
         }
 
-        public ActionResult SerieOnly(string serie)
-        {
-            _getItemsForSerieQuery.SerieName = serie;
+        //public ActionResult SerieOnly(string serie)
+        //{
+        //    _getItemsForSerieQuery.SerieName = serie;
 
-            var view = _getItemsForSerieQuery.Handle();
+        //    var view = _getItemsForSerieQuery.Handle();
 
-            return View("Show", view);
-        }
+        //    return View("Show", view);
+        //}
 
         public ActionResult Show(string project, string serie)
         {
-            _getItemsForSerieQuery.ProjectName = project;
-            _getItemsForSerieQuery.SerieName = serie;
+            var projectDetails = _getProjectByUniqueNameQueryHandler.Handle(new GetProjectByUniqueNameQuery
+            {
+                UniqueName = project
+            });
 
-            var view = _getItemsForSerieQuery.Handle();
+            if (serie.IsEmpty() && projectDetails.Description.HasValue())
+            {
+                return View("ProjectDescription", projectDetails);
+            }
+            else
+            {
+                var query = new GetItemsForSerieQuery
+                {
+                    ProjectName = project,
+                    SerieName = serie
+                };
+                var view = _getItemsForSerieQuery.Handle(query);
 
-            return View(view);
+                return View(view);
+            }
         }
     }
 }

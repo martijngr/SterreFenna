@@ -30,7 +30,7 @@ namespace SterreFenna.Business.Projects.Queries
             {
                 Id = project.Id,
                 Name = project.Name,
-                UniqueName = project.UniqueName,
+                UniqueProjectName = project.UniqueName,
                 Description = project.Description,
                 Series = from s in project.Series
                          select new SerieDetailView

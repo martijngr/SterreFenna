@@ -20,17 +20,17 @@ namespace SterreFenna.WebPresentation
                 namespaces: new string[] { "SterreFenna.WebPresentation.Controllers" }
             );
 
-            routes.MapRoute(
-                name: "SerieOnly",
-                url: "{serie}",
-                defaults: new { controller = "Home", action = "SerieOnly" },
-                namespaces: new string[] { "SterreFenna.WebPresentation.Controllers" }
-            );
+            //routes.MapRoute(
+            //    name: "SerieOnly",
+            //    url: "{serie}",
+            //    defaults: new { controller = "Home", action = "SerieOnly" },
+            //    namespaces: new string[] { "SterreFenna.WebPresentation.Controllers" }
+            //);
 
             routes.MapRoute(
                 name: "ProjectWithSerie",
                 url: "{project}/{serie}",
-                defaults: new { controller = "Home", action = "Show" },
+                defaults: new { controller = "Home", action = "Show", serie = UrlParameter.Optional },
                 namespaces: new string[] { "SterreFenna.WebPresentation.Controllers" }
             );
 

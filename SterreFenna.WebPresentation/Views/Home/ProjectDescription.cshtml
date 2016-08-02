@@ -1,0 +1,12 @@
+﻿@model ProjectDetailsView
+
+<article id="project-description-container">
+    <header>
+        <h1>@Model.Name</h1>
+    </header>
+    <section>
+        <div class="col-md-6 no-padding">
+            @Html.Raw(Model.Description)
+        </div>
+    </section>
+</article>

@@ -1,26 +1,25 @@
 ﻿using SterreFenna.Business.Projects.Views;
 using SterreFenna.Domain;
-using System.Linq;
 
 namespace SterreFenna.Business.Projects.Queries
 {
-    public class GetProjectByIdQuery
+    public class GetProjectByUniqueNameQuery
     {
-        public int ProjectId { get; set; }
+        public string UniqueName { get; set; }
     }
 
-    public class GetProjectByIdQueryHandler
+    public class GetProjectByUniqueNameQueryHandler
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public GetProjectByIdQueryHandler(IUnitOfWork unitOfWork)
+        public GetProjectByUniqueNameQueryHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        public ProjectDetailsView Handle(GetProjectByIdQuery query)
+        public ProjectDetailsView Handle(GetProjectByUniqueNameQuery query)
         {
-            var project = _unitOfWork.ProjectRepository.GetById(query.ProjectId);
+            var project = _unitOfWork.ProjectRepository.GetByUniqueName(query.UniqueName);
 
             var view = new ProjectDetailsView
             {

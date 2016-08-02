@@ -67,6 +67,7 @@
     <Compile Include="Projects\Commands\EditProjectCommand.cs" />
     <Compile Include="Projects\ProjectNotFoundException.cs" />
     <Compile Include="Projects\Queries\GetProjectByIdQuery.cs" />
+    <Compile Include="Projects\Queries\GetProjectByUniqueNameQuery.cs" />
     <Compile Include="Projects\Queries\GetProjectOverviewQuery.cs" />
     <Compile Include="Projects\Views\ProjectDetailsView.cs" />
     <Compile Include="Projects\Views\ProjectOverviewItem.cs" />

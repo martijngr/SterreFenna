@@ -8,6 +8,11 @@ namespace SterreFenna.Business.Series.Views
 {
     public class SerieDetailView
     {
+        public SerieDetailView()
+        {
+            Credits = string.Empty;
+        }
+
         public int Id { get; set; }
 
         public string Name { get; set; }

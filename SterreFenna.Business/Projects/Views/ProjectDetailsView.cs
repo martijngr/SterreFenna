@@ -13,7 +13,7 @@ namespace SterreFenna.Business.Projects.Views
 
         public string Name { get; set; }
 
-        public string UniqueName { get; set; }
+        public string UniqueProjectName { get; set; }
 
         public string Description { get; set; }
 

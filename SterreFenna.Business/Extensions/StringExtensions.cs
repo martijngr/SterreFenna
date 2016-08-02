@@ -22,5 +22,10 @@ namespace SterreFenna
         {
             return value.Equals(otherValue, StringComparison.OrdinalIgnoreCase);
         }
+
+        public static bool IsEmpty(this string value)
+        {
+            return string.IsNullOrEmpty(value);
+        }
     }
 }

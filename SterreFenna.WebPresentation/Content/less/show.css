@@ -1,6 +1,23 @@
-﻿.project-description {
-  font-size: 11px;
-  width: 350px;
+﻿@media (min-width: 979px) {
+  ul.nav li.dropdown:hover > ul.dropdown-menu {
+    display: block;
+  }
+}
+#project-description-container {
+  margin: 0 50px;
+}
+#project-description-container header h1 {
+  font-size: 25px;
+  margin-bottom: 90px;
+}
+#project-description-container section table td:first-of-type {
+  padding-right: 15px;
+}
+#project-description-container section table td:last-of-type {
+  padding-left: 15px;
+}
+.no-padding {
+  padding: 0;
 }
 .serie-credits {
   font-size: 11px;

@@ -10,9 +10,10 @@
     function initializeDescriptionWithTinyMce() {
         tinymce.init({
             selector: '#description',
-            plugins: "columns, fullscreen, autoresize",
+            plugins: "columns, fullscreen, autoresize, paste",
             toolbar: "columns, | bold, italic, underline, strikethrough, | alignleft, aligncenter, alignright, alignjustify, | styleselect, formatselect, fontsizeselect, | cut, copy, paste, | bullist, numlist, | outdent, indent, | blockquote, | undo, redo, | subscript, superscript",
             autoresize_max_height: 250,
+            paste_as_text: true,
         });
     }
 }();

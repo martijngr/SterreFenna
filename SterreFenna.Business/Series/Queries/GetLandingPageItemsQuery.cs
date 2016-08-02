@@ -30,7 +30,7 @@ namespace SterreFenna.Business.Series.Queries
                                               .Select(si => new LandingpageItemView
                                               {
                                                   Location = si.Location,
-                                                  UniqueProjectName = si.Serie.Project?.UniqueName,
+                                                  UniqueProjectName = si.Serie.Project.UniqueName,
                                                   UniqueSerieName = si.Serie.UniqueName,
                                               })
                                               .ToList();

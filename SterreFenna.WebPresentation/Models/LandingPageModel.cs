@@ -1,4 +1,5 @@
-﻿using SterreFenna.Business.Series.Views;
+﻿using SterreFenna.Business.Projects.Views;
+using SterreFenna.Business.Series.Views;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,7 +16,7 @@ namespace SterreFenna.WebPresentation.Models
 
         public string HomepageUrl { get; set; }
 
-        public static LandingPageModel Create(IEnumerable<LandingpageItemView> items)
+        public static LandingPageModel Create(IEnumerable<LandingpageItemView> items, ProjectDetailsView project)
         {
             var model = new LandingPageModel();
 
@@ -28,7 +29,7 @@ namespace SterreFenna.WebPresentation.Models
                 });
             }
 
-            model.HomepageUrl = model.LandingPageItems.First().Url;
+            model.HomepageUrl = $"/{project.UniqueProjectName}";
 
             return model;
         }

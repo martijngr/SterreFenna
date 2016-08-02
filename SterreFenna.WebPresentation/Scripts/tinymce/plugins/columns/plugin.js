@@ -14,7 +14,9 @@
                 var rightColumnContent = content.substring(index, content.length);
 
                 rightColumnContent = rightColumnContent.indexOf(" ") == 0 ? rightColumnContent.replace(" ", "") : rightColumnContent;
-                editor.setContent('<table><tr><td style="width:50%" valign="top">' + leftColumnContent + '</td><td style="width:50%" valign="top">' + rightColumnContent + '</td></tr></table>');
+                var newContent = '<table><tr><td style="width:50%" valign="top">' + leftColumnContent + '</td><td style="width:50%" valign="top">' + rightColumnContent + '</td></tr></table>'
+                editor.setContent(newContent);
+                console.log(newContent);
             }
         }
     });
