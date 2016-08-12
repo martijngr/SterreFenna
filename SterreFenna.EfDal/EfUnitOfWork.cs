@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using SterreFenna.Domain.SerieItems;
 using SterreFenna.EfDal.SerieItems;
+using SterreFenna.Domain.Contacts;
+using SterreFenna.EfDal.ContactPages;
 
 namespace SterreFenna.EfDal
 {
@@ -24,11 +26,13 @@ namespace SterreFenna.EfDal
             SerieRepository = new SerieRepository(_context);
             ProjectRepository = new ProjectRepository(_context);
             SerieItemRepository = new SerieItemRepository(_context);
+            ContactRepository = new ContactRepository(_context);
         }
 
         public ISerieRepository SerieRepository { get; }
         public IProjectRepository ProjectRepository { get; }
         public ISerieItemRepository SerieItemRepository { get; }
+        public IContactRepository ContactRepository { get; }
 
         public int SaveChanges()
         {

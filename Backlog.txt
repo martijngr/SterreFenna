@@ -4,6 +4,7 @@ TODO
 - Bij aanmaken project en serie nagaan of naam al in gebruik is. Constraint DB?
 - Bij aanmaken serie/project speciale tekens vervangen / verbieden.
 - Wijzigen projectnaam mogelijk? Zo ja, dan ook mapnaam aanpassen op disk.
+- Google Analytics implementeren
 ==
 - Totaal aantal mb dat mag worden geupload aanpassen. Nu rond 4mb, moet naar 100mb.
 - Progressbar tonen als foto's worden geupload.

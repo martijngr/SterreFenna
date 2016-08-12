@@ -145,12 +145,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Models\LandingPageItem.cs" />
     <Compile Include="Models\LandingPageModel.cs" />
     <Compile Include="UrlBuilders\UrlBuilder.cs" />
     <Compile Include="UserManagement\AppUserManager.cs" />
     <Content Include="Areas\Admin\Content\admin.css" />
+    <Content Include="Areas\Admin\Scripts\Contacts\ContactController.js" />
     <Content Include="Areas\Admin\Scripts\Projects\ProjectController.js" />
     <Content Include="Areas\Admin\Scripts\Projects\ProjectFormElements.js" />
     <Content Include="Areas\Admin\Scripts\Series\SerieFormElements.js" />
@@ -269,6 +271,7 @@
     <Content Include="bundleconfig.json.bindings" />
     <Content Include="compilerconfig.json" />
     <Content Include="compilerconfig.json.bindings" />
+    <Content Include="Areas\Admin\Views\Contact\Index.cshtml" />
     <None Include="compilerconfig.json.defaults" />
     <Content Include="packages.config" />
     <Content Include="Content\less\fonts\FontAwesome.otf" />
@@ -573,6 +576,7 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Views\Home\ProjectDescription.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

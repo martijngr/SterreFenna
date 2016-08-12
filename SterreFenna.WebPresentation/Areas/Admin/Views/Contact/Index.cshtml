@@ -1,0 +1,28 @@
+﻿@model SterreFenna.Business.Contacts.Views.ContactView
+
+<form action="/Admin/Contact/Edit" method="post">
+    <div class="clearfix">
+        <h2>
+            Contactpagina
+            <span class="pull-right">
+                <span id="projectOrderButtonsBox">
+                    <button type="submit" class="btn btn-primary">Opslaan</button>
+                </span>
+            </span>
+        </h2>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12">
+            <div name="content" class="form-control" id="content" style="height:400px;">@Html.Raw(Model.Content)</div>
+        </div>
+    </div>
+</form>
+
+@section scripts{
+
+    <script src="~/Areas/Admin/Scripts/Contacts/ContactController.js"></script>
+
+    <script>
+        ContactController.init();
+    </script>    
+}

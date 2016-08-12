@@ -1,4 +1,5 @@
-﻿using SterreFenna.Domain.Projects;
+﻿using SterreFenna.Domain.Contacts;
+using SterreFenna.Domain.Projects;
 using SterreFenna.Domain.SerieItems;
 using SterreFenna.Domain.Series;
 using System;
@@ -14,6 +15,7 @@ namespace SterreFenna.Domain
         ISerieRepository SerieRepository { get; }
         IProjectRepository ProjectRepository { get; }
         ISerieItemRepository SerieItemRepository { get; }
+        IContactRepository ContactRepository { get; }
 
         int SaveChanges();
     }

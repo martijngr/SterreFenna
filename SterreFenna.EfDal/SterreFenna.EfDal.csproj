@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseRepository.cs" />
+    <Compile Include="ContactPages\ContactRepository.cs" />
     <Compile Include="Migrations\201607232025110_InitialCreate.cs" />
     <Compile Include="Migrations\201607232025110_InitialCreate.Designer.cs">
       <DependentUpon>201607232025110_InitialCreate.cs</DependentUpon>

@@ -1,4 +1,7 @@
-﻿@media (min-width: 979px) {
+﻿header {
+  margin: 30px 0;
+}
+@media (min-width: 979px) {
   ul.nav li.dropdown:hover > ul.dropdown-menu {
     display: block;
   }
@@ -33,4 +36,7 @@
 .serie-credits > div > span {
   display: inline-block;
   align-self: flex-end;
+}
+.contact-page table td {
+  padding: 10px;
 }

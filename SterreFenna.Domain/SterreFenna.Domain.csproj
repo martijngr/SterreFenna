@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contacts\Contact.cs" />
+    <Compile Include="Contacts\IContactRepository.cs" />
     <Compile Include="IIdentifyable.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Projects\IProjectRepository.cs" />

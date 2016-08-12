@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using SterreFenna.Domain.Contacts;
 using SterreFenna.Domain.Projects;
 using SterreFenna.Domain.SerieItems;
 using SterreFenna.Domain.Series;
@@ -35,5 +36,7 @@ namespace SterreFenna.EfDal
         public DbSet<SerieItem> SerieItems { get; set; }
 
         public DbSet<Project> Projects { get; set; }
+
+        public DbSet<Contact> Contacts { get; set; }
     }
 }

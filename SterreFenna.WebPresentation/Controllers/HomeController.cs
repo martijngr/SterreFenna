@@ -1,4 +1,5 @@
-﻿using SterreFenna.Business.Projects.Queries;
+﻿using SterreFenna.Business.Contacts.Queries;
+using SterreFenna.Business.Projects.Queries;
 using SterreFenna.Business.Series.Queries;
 using SterreFenna.WebPresentation.Models;
 using System;
@@ -15,17 +16,20 @@ namespace SterreFenna.WebPresentation.Controllers
         private readonly GetFirstActiveProjectQueryHandler _getFirstActiveSerieHandler;
         private readonly GetLandingPageItemsQueryHandler _getLandingPageItemsQueryHandler;
         private readonly GetProjectByUniqueNameQueryHandler _getProjectByUniqueNameQueryHandler;
+        private readonly GetContactQueryHandler _getContactHandler;
 
         public HomeController(
             GetItemsForSerieQueryHandler getItemsForSerieQuery,
             GetFirstActiveProjectQueryHandler getFirstActiveProjectHandler,
             GetLandingPageItemsQueryHandler getLandingPageItemsQueryHandler,
-            GetProjectByUniqueNameQueryHandler getProjectByUniqueNameQueryHandler)
+            GetProjectByUniqueNameQueryHandler getProjectByUniqueNameQueryHandler,
+            GetContactQueryHandler getContactHandler)
         {
             _getItemsForSerieQuery = getItemsForSerieQuery;
             _getFirstActiveSerieHandler = getFirstActiveProjectHandler;
             _getLandingPageItemsQueryHandler = getLandingPageItemsQueryHandler;
             _getProjectByUniqueNameQueryHandler = getProjectByUniqueNameQueryHandler;
+            _getContactHandler = getContactHandler;
         }
 
         public ActionResult Landing()
@@ -50,15 +54,6 @@ namespace SterreFenna.WebPresentation.Controllers
             });
         }
 
-        //public ActionResult SerieOnly(string serie)
-        //{
-        //    _getItemsForSerieQuery.SerieName = serie;
-
-        //    var view = _getItemsForSerieQuery.Handle();
-
-        //    return View("Show", view);
-        //}
-
         public ActionResult Show(string project, string serie)
         {
             var projectDetails = _getProjectByUniqueNameQueryHandler.Handle(new GetProjectByUniqueNameQuery
@@ -81,6 +76,13 @@ namespace SterreFenna.WebPresentation.Controllers
 
                 return View(view);
             }
+        }
+
+        public ActionResult Contact()
+        {
+            var model = _getContactHandler.Handle(new GetContactQuery());
+
+            return View(model);
         }
     }
 }

@@ -55,8 +55,8 @@ namespace SterreFenna.WebPresentation.Menus
                 }
                 else
                 {
+                    // When a project has only 1 serie, use the serie name as the display name
                     menuItem.Name = serieItems.First().Name;
-                    menuItem.UniqueName = serieItems.First().UniqueName;
                 }
 
                 menu.MenuItems.Add(menuItem);

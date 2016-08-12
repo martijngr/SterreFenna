@@ -59,6 +59,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contacts\Commands\UpdateContactCommand.cs" />
+    <Compile Include="Contacts\Queries\GetContactQuery.cs" />
+    <Compile Include="Contacts\Views\ContactView.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Naming\InvalidCharsRemover.cs" />
     <Compile Include="Projects\Commands\CreateProjectCommand.cs" />
