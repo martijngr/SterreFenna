@@ -11,13 +11,16 @@
                 <img src="@item.Location" />
             </div>
         }
-        <div class="swiper-slide serie-credits">
-            <div>
-                <span>
-                    @Html.Raw(Model.Credits.Replace("\r\n", "<br/>"))
-                </span>
+        @if (!Model.Credits.IsEmpty())
+        {
+            <div class="swiper-slide serie-credits">
+                <div>
+                    <span>
+                        @Html.Raw(Model.Credits.Replace("\r\n", "<br/>"))
+                    </span>
+                </div>
             </div>
-        </div>
+        }
     </div>
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>
@@ -25,6 +28,8 @@
 
 @section scripts{
     <script type="text/javascript">
+        var totalItems = @Model.SerieItems.Count();
+
         $(document).ready(function () {
             //initialize swiper when document ready
             var swiper = new Swiper('.swiper-container', {
@@ -32,7 +37,13 @@
                 slidesPerView: 'auto',
                 paginationClickable: true,
                 spaceBetween: 30,
-                freeMode: true
+                centeredSlides: totalItems > 3 ? false : true,
+                freeMode: true,
+                onInit: function(swiper){
+                    if(totalItems > 1 && totalItems <= 3){
+                        swiper.slideTo(1);
+                    }
+                }
             });
         });
     </script>

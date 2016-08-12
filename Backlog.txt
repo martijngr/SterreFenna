@@ -1,29 +1,30 @@
-- Mogelijkheid om per foto aan te kunnen geven of deze getoond moet worden op de homepage
-- Totaal aantal mb dat mag worden geupload aanpassen. Nu rond 4mb, moet naar 100mb.
-- Progressbar tonen als foto's worden geupload.
-
+TODO
+----------------
+- Contactpagina maken
 - Bij aanmaken project en serie nagaan of naam al in gebruik is. Constraint DB?
 - Bij aanmaken serie/project speciale tekens vervangen / verbieden.
 - Wijzigen projectnaam mogelijk? Zo ja, dan ook mapnaam aanpassen op disk.
+==
+- Totaal aantal mb dat mag worden geupload aanpassen. Nu rond 4mb, moet naar 100mb.
+- Progressbar tonen als foto's worden geupload.
+- Show.less mergen met Jelle zijn opzet.
+- Thumps maken als foto's worden geupload
+- Testen maken
+
+Done
+----------------
+- Mogelijkheid om per foto aan te kunnen geven of deze getoond moet worden op de homepage
 - Homepage drie kolommen met middelste kolom 2 foto's. Deze veranderen om de x seconden naar volgende set
 	--> menu weg, vervangen door tekst/link: Visit my website, Go to my website, View my photos, Behold my art, More work >>
 - Bij project een beschrijving op kunnen geven met een WYSIWYG editor
 	-> Tonen als op hoofdmenu-item wordt geklikt
 - Credits toevoegen bij Serie. Tonen met korte streepjes (zie visitekaartje)
-- Foto's van serie in midden uitlijnen (zie ontwerp);
-
-- Show.less mergen met Jelle zijn opzet.
-
---------
-Thumps maken als foto's worden geupload
---------
-
 - Hoofdmenu site afronden
 	-> Project geen series? Dan item niet tonen
 	-> Project met 1 serie? Dan serienaam tonen ipv projectnaam
 	-> Project met 1 serie? Dan geen submenu tonen
+- Foto's van serie in midden uitlijnen (zie ontwerp); [12-08-2016]
 
-- Testen maken...
 
 Versie 2
 - Mogelijkheid om youtube-url's op te geven -> embedded video's
