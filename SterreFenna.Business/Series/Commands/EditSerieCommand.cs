@@ -3,6 +3,7 @@ using SterreFenna.Domain;
 using SterreFenna.Domain.Projects;
 using SterreFenna.Domain.Series;
 using System;
+using System.IO;
 using System.Linq;
 
 namespace SterreFenna.Business.Series.Commands
@@ -66,7 +67,8 @@ namespace SterreFenna.Business.Series.Commands
             if (!command.FavouriteItems.Any())
                 return;
 
-            var itemsToMark = serie.SerieItems.Where(s => command.FavouriteItems.Contains(s.FileName)).ToList();
+            var fileNames = command.FavouriteItems.Select(f => Path.GetFileName(f)).ToList();
+            var itemsToMark = serie.SerieItems.Where(s => fileNames.Contains(s.FileName)).ToList();
             var itemsToUnmark = serie.SerieItems.Except(itemsToMark).ToList();
 
             itemsToMark.ForEach(s => s.IsHomePageItem = true);
