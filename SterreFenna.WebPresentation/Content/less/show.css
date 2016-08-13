@@ -24,7 +24,6 @@
 }
 .serie-credits {
   font-size: 11px;
-  border-bottom: 1px solid black;
   text-transform: uppercase;
   text-align: left;
   margin-right: 30px;
@@ -33,9 +32,20 @@
   display: flex;
   height: 100%;
 }
-.serie-credits > div > span {
+.serie-credits > div > div {
   display: inline-block;
   align-self: flex-end;
+}
+.serie-credits > div > div .credits-border {
+  width: 30px;
+  background-color: black;
+  height: 3px;
+}
+.serie-credits > div > div .credits-border:first-of-type {
+  margin-bottom: 10px;
+}
+.serie-credits > div > div .credits-border:last-of-type {
+  margin-top: 10px;
 }
 .contact-page table td {
   padding: 10px;

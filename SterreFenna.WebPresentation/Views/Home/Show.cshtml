@@ -15,9 +15,13 @@
         {
             <div class="swiper-slide serie-credits">
                 <div>
-                    <span>
-                        @Html.Raw(Model.Credits.Replace("\r\n", "<br/>"))
-                    </span>
+                    <div>
+                        <div class="credits-border"></div>
+                        <span>
+                            @Html.Raw(Model.Credits.Replace("\r\n", "<br/>"))
+                        </span>
+                        <div class="credits-border"></div>
+                    </div>
                 </div>
             </div>
         }
