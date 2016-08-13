@@ -1,11 +1,8 @@
 TODO
 ----------------
-- Creditstreepjes ala visitekaartje
 - Bij aanmaken project en serie nagaan of naam al in gebruik is. Constraint DB?
 - Wijzigen projectnaam mogelijk? Zo ja, dan ook mapnaam aanpassen op disk.
 ==
-- Totaal aantal mb dat mag worden geupload aanpassen. Nu rond 4mb, moet naar 100mb.
-- Progressbar tonen als foto's worden geupload.
 - Show.less mergen met Jelle zijn opzet.
 - Thumps maken als foto's worden geupload
 - Testen maken
@@ -26,7 +23,9 @@ Done
 - Contactpagina maken [12-08-2016]
 - Bij aanmaken serie/project speciale tekens vervangen / verbieden.[12-08-2016]
 - Bij uploaden van afbeeldingen bij serie een progress bar tonen [13-08-2016]
+- Totaal aantal mb dat mag worden geupload aanpassen. Nu rond 4mb, moet naar 100mb. [12-08-2016]
 - Google Analytics implementeren [13-08-2016]
+- Creditstreepjes ala visitekaartje [13-08-2016]
 
 
 Versie 2
