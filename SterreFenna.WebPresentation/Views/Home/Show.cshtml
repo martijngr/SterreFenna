@@ -5,7 +5,7 @@
 
 <div class="swiper-container">
     <div class="swiper-wrapper">
-        @foreach (var item in Model.SerieItems)
+        @foreach (var item in Model.SerieItems.OrderBy(s => s.Rank))
         {
             <div class="swiper-slide">
                 <img src="@item.Location" />

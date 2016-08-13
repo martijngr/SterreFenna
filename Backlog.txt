@@ -1,10 +1,8 @@
 TODO
 ----------------
-- Contactpagina maken
+- Creditstreepjes ala visitekaartje
 - Bij aanmaken project en serie nagaan of naam al in gebruik is. Constraint DB?
-- Bij aanmaken serie/project speciale tekens vervangen / verbieden.
 - Wijzigen projectnaam mogelijk? Zo ja, dan ook mapnaam aanpassen op disk.
-- Google Analytics implementeren
 ==
 - Totaal aantal mb dat mag worden geupload aanpassen. Nu rond 4mb, moet naar 100mb.
 - Progressbar tonen als foto's worden geupload.
@@ -24,7 +22,11 @@ Done
 	-> Project geen series? Dan item niet tonen
 	-> Project met 1 serie? Dan serienaam tonen ipv projectnaam
 	-> Project met 1 serie? Dan geen submenu tonen
-- Foto's van serie in midden uitlijnen (zie ontwerp); [12-08-2016]
+- Foto's van serie in midden uitlijnen (zie ontwerp) [12-08-2016]
+- Contactpagina maken [12-08-2016]
+- Bij aanmaken serie/project speciale tekens vervangen / verbieden.[12-08-2016]
+- Bij uploaden van afbeeldingen bij serie een progress bar tonen [13-08-2016]
+- Google Analytics implementeren [13-08-2016]
 
 
 Versie 2

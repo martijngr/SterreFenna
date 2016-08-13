@@ -22,8 +22,8 @@ namespace SterreFenna.Business.Projects.Commands
         {
             var project = new Project
             {
-                Name = command.Name,
-                UniqueName = GetUniqueName(command.Name),
+                Name = command.Name.Trim(),
+                UniqueName = GetUniqueName(command.Name.Trim()),
                 Rank = 0,
                 Description = command.Description,
             };

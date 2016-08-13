@@ -64,8 +64,8 @@ namespace SterreFenna.Business.Series.Commands
             return new Serie
             {
                 Created = DateTime.Now,
-                Name = command.SerieName,
-                UniqueName = GetUniqueName(command.SerieName),
+                Name = command.SerieName.Trim(),
+                UniqueName = GetUniqueName(command.SerieName.Trim()),
                 Published = command.PublicationDate,
                 ProjectId = project,
                 Credits = command.Credits

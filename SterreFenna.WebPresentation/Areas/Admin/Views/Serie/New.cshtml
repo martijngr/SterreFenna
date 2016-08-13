@@ -23,9 +23,11 @@
                 Aanmaken
             </button>
         </div>
+    </div>
+    <div class="row">
         <div class="form-group col-sm-4">
             <label for="name">Credits</label>
-            <textarea name="credits" id="credits" cols="150" rows="7"/>
+            <textarea name="credits" class="form-control" id="credits" cols="50" rows="7"></textarea>
         </div>
     </div>
     <div class="row">
@@ -57,19 +59,18 @@
         </form>
     </div>
     <div class="uploaded-pics-container clearfix">
-        <ul id="sortable"></ul>
+        <ul id="sortable">
+        </ul>
     </div>
 </div>
 
 @section scripts{
-<script src="~/Areas/Admin/Scripts/Series/SerieController.js"></script>
-<script src="~/Areas/Admin/Scripts/Series/SerieFormElements.js"></script>
-<script src="~/Areas/Admin/Scripts/Series/SerieValidator.js"></script>
-<script src="~/Areas/Admin/Scripts/Shared/ValidationResult.js"></script>
+    <script src="~/Areas/Admin/Scripts/Series/SerieController.js"></script>
+    <script src="~/Areas/Admin/Scripts/Series/SerieFormElements.js"></script>
+    <script src="~/Areas/Admin/Scripts/Series/SerieValidator.js"></script>
+    <script src="~/Areas/Admin/Scripts/Shared/ValidationResult.js"></script>
 
     <script>
-        
         SerieController.init();
-
     </script>
 }

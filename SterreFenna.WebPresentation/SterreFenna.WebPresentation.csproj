@@ -160,6 +160,7 @@
     <Content Include="Areas\Admin\Scripts\Shared\Loader.js" />
     <Content Include="Areas\Admin\Scripts\Shared\ValidationResult.js" />
     <Content Include="Areas\Admin\Scripts\Series\SerieValidator.js" />
+    <Content Include="Areas\Admin\Views\Serie\UploadProgressbar.html" />
     <Content Include="Content\images\ajax-loader.gif" />
     <Content Include="Content\images\logo-text-only.png" />
     <Content Include="Content\images\logo_height_100.png" />

@@ -13,17 +13,22 @@
     var _serieId;
     var _favouriteItems;
     var _initialize;
+    var _progressTemplate;
 
     function init(serieId, favouriteItems) {
         _serieId = serieId || 0;
         _favouriteItems = favouriteItems || [];
         _initialize = true;
+        _progressTemplate = "";
 
         Loader.hide();
 
         handleProjectNameVisibility();
 
         setupDropzone();
+        setupDragArea();
+
+        loadProgressTemplate();
     }
 
     function onProjectDropdownChanged(dropdown) {
@@ -88,17 +93,17 @@
         });
     }
 
-    function markAsFavourite(element){
+    function markAsFavourite(element) {
         var src = $(element).parent().find('img').attr('src');
         var filename = getFilename(src);
         var index = _favouriteItems.indexOf(filename);
 
-        if(index > -1){
+        if (index > -1) {
             _favouriteItems.splice(index, 1);
 
             $(element).removeClass('favourite-item');
         }
-        else{
+        else {
             _favouriteItems.push(filename);
 
             $(element).addClass('favourite-item');
@@ -125,6 +130,11 @@
             previewTemplate: '<div style="display:none"></div>',
             paramName: 'files',
             parallelUploads: 100,
+            uploadprogress: function (file, progress, bytesSent) {
+                console.log(file.name, progress, bytesSent);
+
+                handleProgress(file.name, progress + "%");
+            },
             init: function () {
                 this.on("addedfile", function (file) {
                     if (_initialize)
@@ -136,6 +146,7 @@
                 this.on("sending", function (file, xhr, formData) {
                     if (_serieId > 0)
                         formData.append('serieId', _serieId);
+
                     formData.append('name', SerieFormElements.newSerieName.val());
                     formData.append('publicationDate', SerieFormElements.publicationDate.val());
                     formData.append('filenameOrder', SerieController.getOrderOfFilenames());
@@ -184,5 +195,35 @@
         var filename = value.substring(lastIndex + 1, value.length);
 
         return filename;
+    }
+
+    function handleProgress(fileName, progressValue) {
+        var liElement = getImgElementByAltTag(fileName).parent();
+        var progressElement = liElement.find("div[data='" + fileName + "']");
+
+        if (progressElement.length == 0) {
+            var newProgressTemplate = _progressTemplate.clone();
+            newProgressTemplate.attr("data", fileName);
+            setProgress(newProgressTemplate, progressValue);
+            liElement.append(newProgressTemplate);
+        }
+        else {
+            setProgress(progressElement, progressValue);
+        }
+    }
+
+    function setProgress(progressElement, progressValue) {
+        progressElement.find(".progress-value").first().css("width", progressValue);
+        progressElement.find(".progress-value-text").first().text(progressValue);
+    }
+
+    function getImgElementByAltTag(value) {
+        return $("img[title='" + value + "']");
+    }
+
+    function loadProgressTemplate() {
+        $.get("/Areas/Admin/Views/Serie/UploadProgressbar.html", function (response) {
+            _progressTemplate = $(response);
+        });
     }
 }();

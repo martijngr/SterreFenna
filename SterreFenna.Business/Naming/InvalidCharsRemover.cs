@@ -6,7 +6,7 @@ namespace SterreFenna.Business.Naming
     {
         public static string RemoveInvalidChars(string name)
         {
-            var result = Regex.Replace(name, @"[^\w]*", "-");
+            var result = Regex.Replace(name, @"[^\w+]", "-");
 
             return result;
         }
