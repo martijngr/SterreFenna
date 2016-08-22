@@ -25,7 +25,9 @@ namespace SterreFenna.Business.Series.Queries
                            Id = g.Id,
                            Name = g.Name,
                            Published = g.Published,
-                           ImageLocation = g.SerieItems.FirstOrDefault().Location
+                           ImageLocation = g.SerieItems.FirstOrDefault().Location,
+                           TotalItems = g.SerieItems.Count,
+                           TotalMarkedItems = g.SerieItems.Count(s => s.IsHomePageItem)
                        }).ToList();
 
             return view;

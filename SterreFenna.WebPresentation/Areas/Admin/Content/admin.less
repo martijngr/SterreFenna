@@ -32,7 +32,6 @@ h2 {
     text-align: center;
     cursor: pointer;
     position: relative;
-    max-width: 200px;
     height: 140px;
 
     &.add {
@@ -58,7 +57,6 @@ h2 {
         display: block;
         color: black;
         font-size: 1.3em;
-        height: 100%;
 
         &:hover {
 
@@ -67,11 +65,10 @@ h2 {
             }
 
             div {
-                top: 55px;
-                padding: 5px;
+                /*padding: 5px;
                 background: rgba(255, 255, 255, .4);
                 line-height: initial;
-                height: initial;
+                height: initial;*/
             }
         }
 
@@ -80,20 +77,26 @@ h2 {
             opacity: 0.1;
         }
 
-        div {
+        & > div {
             position: absolute;
             top: 0;
             height: 100%;
-            overflow: hidden;
             width: 100%;
-            line-height: 140px;
+            overflow: hidden;
+
+            & div:not(:first-of-type) {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                text-align: left;
+            }
         }
     }
 }
 
 .photo-container {
     margin-top: 30px;
-    margin-bottom:30px; 
+    margin-bottom: 30px;
 }
 
 .dropzone {

@@ -14,7 +14,14 @@
         <div class="serie-block pull-left">
             <a href="/Admin/Serie/Edit/@serie.Id">
                 <img src="@serie.ImageLocation" />
-                <div>@serie.Name</div>
+                <div>
+                    <div>@serie.Name</div>
+                    <div>
+                        <span class="badge alert-info"><i class="fa fa-file-image-o"></i> @serie.TotalItems</span>
+                        <br />
+                        <span class="badge alert-success"><i class="fa fa-fire"></i> @serie.TotalMarkedItems</span>
+                    </div>
+                </div>
             </a>
         </div>
     }

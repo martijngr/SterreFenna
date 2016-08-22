@@ -17,5 +17,9 @@ namespace SterreFenna.Business.Series.Views
         public DateTime? Published { get; set; }
 
         public string ImageLocation { get; set; }
+
+        public int TotalMarkedItems { get; set; }
+
+        public int TotalItems { get; set; }
     }
 }

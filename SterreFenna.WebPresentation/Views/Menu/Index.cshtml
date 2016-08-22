@@ -4,79 +4,65 @@
 }
 
 <nav class="navbar navbar-default main-menu">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-collapse" aria-expanded="false">
+    <div class="navbar-header">
+        <div class="responsive__toggle">
+            <button type="button" class="navbar-toggle">
                 <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+                <span class="icon-bar icon-bar-1"></span>
+                <span class="icon-bar icon-bar-2"></span>
+                <span class="icon-bar icon-bar-3"></span>
             </button>
         </div>
-
-        <div class="collapse navbar-collapse" id="main-menu-collapse">
-            <ul class="nav navbar-nav">
-
-                @foreach (var item in Model.MenuItems)
-                {
-                    if (item.MenuItems.Any())
-                    {
-                        <li class="dropdown">
-                            <a href="/@item.UniqueName" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                @item.Name
-                            </a>
-                            <ul class="dropdown-menu">
-                                @foreach (var submenu in item.MenuItems)
-                                {
-                                    <li><a href="/@item.UniqueName/@submenu.UniqueName">@submenu.Name</a></li>
-                                }
-                            </ul>
-                        </li>
-                    }
-                    else
-                    {
-                        <li>
-                            <a href="/@item.UniqueName">@item.Name</a>
-                        </li>
-                    }
-                }
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="/Contact">Contact</a>
-                </li>
-            </ul>
-        </div>
+        <a href="~/" class="responsive__logo">
+            <img class="img-responsive" style="max-height: 50px;margin: auto;" src="~/content/images/logo_height_100.png" />
+        </a>
+        <a href="~/Contact" class="responsive__contact" style="">
+            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+        </a>
     </div>
-</nav>
-@*<div id="menu-container" class="clearfix">
-    <ul id="main-menu" class="pull-left menu">
-
-        @foreach (var menuItem in Model.MenuItems.OrderBy(m => m.Rank))
-        {
-            <li class="@Html.GetProjectCss(menuItem)">
-
-                @if (menuItem.MenuItems.Any())
+    <div class="navbar-collapse">
+        <ul class="nav navbar-nav navbar-left">
+            @* Left menu *@
+            @foreach (var item in Model.MenuItems)
+            {
+                if (item.MenuItems.Any())
                 {
-                    <text>@menuItem.Name</text>
+                    <li class="main-menu__item">
+                        <a href="#" class="main-menu__link main-menu__triangle">
+                            @item.Name
+                        </a>
+                        <ul class="main-menu__submenu">
+                            @foreach (var submenu in item.MenuItems)
+                            {
+                                <li class="main-menu__submenu__item">
+                                    <a href="/@item.UniqueName/@submenu.UniqueName">@submenu.Name</a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
                 }
                 else
                 {
-                    <a href="/@menuItem.UniqueName">@menuItem.Name</a>
+                    <li class="main-menu__item">
+                        <a href="/@item.UniqueName" class="main-menu__link">@item.Name</a>
+                    </li>
                 }
+            }
+        </ul>
 
-                @if (menuItem.MenuItems.Any())
-                {
-                    <ul class="clearfix">
-                        @foreach (var subMenuItem in menuItem.MenuItems)
-                        {
-                            @Html.SiteSerieLink(menuItem.UniqueName, subMenuItem.UniqueName, subMenuItem.Name)
-                        }
-                    </ul>
-                }
+        @* Right menu *@
+        <ul class="nav navbar-nav navbar-right">
+            <li class="main-menu__item">
+                <a href="/Contact" class="main-menu__link">
+                    Contact
+                </a>
+                @*<ul class="main-menu__submenu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                </ul>*@
             </li>
-        }
-        <li class="no-sub-items contact pull-right">Contact</li>
-        <li class="no-sub-items filler"><div>&nbsp;</div></li>
-    </ul>
-</div>*@
+        </ul>
+    </div>
+</nav>
+<div class="main-menu__border"></div>
