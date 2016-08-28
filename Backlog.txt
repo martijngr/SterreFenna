@@ -1,10 +1,11 @@
 TODO
 ----------------
 >	MARTIJN	<
-	- Hoogte middenstuk berekenen. Header - menu = galleriehoogte MG
 	- Contactpagina drie onderdelen van maken MG
+	- Publicatiedatum wordt niet meegenomen in de front. Werkend maken
+	- Admin pagina's beveiligen
 	- Actieve menu items highlighten + openklappen MG
-
+	- Statistiekenlink in admin naar google nalytics verwijzen
 	- placeholders in contactpagina:
 		{{FB}} {{TW}} {{IN}} {{GP}}{{LI}}
 		{{line}}
@@ -47,7 +48,7 @@ Done
 - Totaal aantal mb dat mag worden geupload aanpassen. Nu rond 4mb, moet naar 100mb. [12-08-2016]
 - Google Analytics implementeren [13-08-2016]
 - Creditstreepjes ala visitekaartje [13-08-2016]
-
+- Hoogte middenstuk berekenen. Header - menu = galleriehoogte MG [28-08-2016]
 
 Versie 2
 - Mogelijkheid om youtube-url's op te geven -> embedded video's

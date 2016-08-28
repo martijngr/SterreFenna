@@ -147,6 +147,7 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Models\LandingPageItem.cs" />
     <Compile Include="Models\LandingPageModel.cs" />
     <Compile Include="UrlBuilders\UrlBuilder.cs" />
@@ -583,7 +584,9 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Views\Home\ProjectDescription.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Contact\AboutMe.cshtml" />
+    <Content Include="Views\Contact\Education.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

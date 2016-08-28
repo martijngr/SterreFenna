@@ -22,7 +22,9 @@ namespace SterreFenna.Business.Contacts.Queries
             var result = _unitOfWork.ContactRepository.GetAll().FirstOrDefault();
             var view = new ContactView
             {
-                Content = result?.Content,
+                ContactMe = result?.ContactMe,
+                AboutMe = result?.AboutMe,
+                Education= result?.Education
             };
 
             return view;

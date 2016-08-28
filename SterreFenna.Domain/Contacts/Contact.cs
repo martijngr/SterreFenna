@@ -4,6 +4,10 @@
     {
         public int Id { get; set; }
 
-        public string Content { get; set; }
+        public string ContactMe { get; set; }
+
+        public string AboutMe { get; set; }
+
+        public string Education { get; set; }
     }
 }

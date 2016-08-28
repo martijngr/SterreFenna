@@ -23,7 +23,21 @@ namespace SterreFenna.WebPresentation
             routes.MapRoute(
                 name: "Contact",
                 url: "Contact",
-                defaults: new { controller = "Home", action = "Contact" },
+                defaults: new { controller = "Contact", action = "Index" },
+                namespaces: new string[] { "SterreFenna.WebPresentation.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "ContactAboutMe",
+                url: "Contact/AboutMe",
+                defaults: new { controller = "Contact", action = "AboutMe" },
+                namespaces: new string[] { "SterreFenna.WebPresentation.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "ContactEducation",
+                url: "Contact/Education",
+                defaults: new { controller = "Contact", action = "Education" },
                 namespaces: new string[] { "SterreFenna.WebPresentation.Controllers" }
             );
 

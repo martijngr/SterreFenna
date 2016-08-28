@@ -6,7 +6,11 @@ namespace SterreFenna.Business.Contacts.Commands
 {
     public class UpdateContactCommand
     {
-        public string Content { get; set; }
+        public string ContactMe { get; set; }
+
+        public string AboutMe { get; set; }
+
+        public string Education { get; set; }
     }
 
     public class UpdateContactCommandHandler
@@ -21,7 +25,9 @@ namespace SterreFenna.Business.Contacts.Commands
         public void Handle(UpdateContactCommand command)
         {
             var contact = GetContact();
-            contact.Content = command.Content;
+            contact.ContactMe = command.ContactMe;
+            contact.AboutMe = command.AboutMe;
+            contact.Education = command.Education;
 
             _context.SaveChanges();
         }

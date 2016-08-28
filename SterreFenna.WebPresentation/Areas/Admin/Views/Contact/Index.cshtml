@@ -13,7 +13,20 @@
     </div>
     <div class="row">
         <div class="form-group col-sm-12">
-            <div name="content" class="form-control" id="content" style="height:400px;">@Html.Raw(Model.Content)</div>
+            <h3>Contact</h3>
+            <div name="content" class="form-control contact-content" id="contactMe" style="height:200px;">@Html.Raw(Model.ContactMe)</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12">
+            <h3>About me</h3>
+            <div name="content" class="form-control contact-content" id="aboutMe" style="height:200px;">@Html.Raw(Model.AboutMe)</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12">
+            <h3>Education</h3>
+            <div name="content" class="form-control contact-content" id="education" style="height:200px;">@Html.Raw(Model.Education)</div>
         </div>
     </div>
 </form>
