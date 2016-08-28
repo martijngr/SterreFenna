@@ -29,6 +29,7 @@
     </div>
 
     @RenderSection("scripts", false)
+    <script src="~/Scripts/resizer.js"></script>
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
@@ -39,6 +40,9 @@
 
         ga('create', 'UA-82444204-1', 'auto');
         ga('send', 'pageview');
+
+        window.onload = calcuteContentHeight;
+        window.onresize = calcuteContentHeight;
     </script>
 </body>
 </html>

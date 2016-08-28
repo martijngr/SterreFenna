@@ -319,6 +319,7 @@
     <Content Include="Scripts\plugins\dropzone\dropzone.js" />
     <Content Include="Scripts\plugins\swiper\swiper.jquery.min.js" />
     <Content Include="Scripts\plugins\swiper\swiper.min.js" />
+    <Content Include="Scripts\resizer.js" />
     <Content Include="Scripts\tinymce\jquery.tinymce.min.js" />
     <Content Include="Scripts\tinymce\license.txt" />
     <Content Include="Scripts\tinymce\plugins\advlist\plugin.js" />
