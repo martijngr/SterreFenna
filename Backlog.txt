@@ -1,11 +1,9 @@
 TODO
 ----------------
 >	MARTIJN	<
-	- Contactpagina drie onderdelen van maken MG
 	- Publicatiedatum wordt niet meegenomen in de front. Werkend maken
 	- Admin pagina's beveiligen
 	- Actieve menu items highlighten + openklappen MG
-	- Statistiekenlink in admin naar google nalytics verwijzen
 	- placeholders in contactpagina:
 		{{FB}} {{TW}} {{IN}} {{GP}}{{LI}}
 		{{line}}
@@ -49,6 +47,8 @@ Done
 - Google Analytics implementeren [13-08-2016]
 - Creditstreepjes ala visitekaartje [13-08-2016]
 - Hoogte middenstuk berekenen. Header - menu = galleriehoogte MG [28-08-2016]
+- Contactpagina drie onderdelen van maken MG [28-08-2016]
+- Statistiekenlink in admin naar google nalytics verwijzen [28-08-2016]
 
 Versie 2
 - Mogelijkheid om youtube-url's op te geven -> embedded video's
