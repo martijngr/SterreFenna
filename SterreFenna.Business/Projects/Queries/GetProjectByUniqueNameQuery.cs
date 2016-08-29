@@ -21,6 +21,9 @@ namespace SterreFenna.Business.Projects.Queries
         {
             var project = _unitOfWork.ProjectRepository.GetByUniqueName(query.UniqueName);
 
+            if (project == null)
+                return null;
+
             var view = new ProjectDetailsView
             {
                 Id = project.Id,

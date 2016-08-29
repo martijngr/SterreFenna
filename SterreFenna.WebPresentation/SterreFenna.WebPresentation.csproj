@@ -165,6 +165,7 @@
     <Content Include="Content\images\ajax-loader.gif" />
     <Content Include="Content\images\logo-text-only.png" />
     <Content Include="Content\images\logo_height_100.png" />
+    <Content Include="Content\images\logo_height_40.png" />
     <Content Include="Content\less\bootstrap\bootstrap-theme.css" />
     <Content Include="Content\less\bootstrap\bootstrap.css" />
     <Content Include="Content\less\fonts\font-awesome.css" />

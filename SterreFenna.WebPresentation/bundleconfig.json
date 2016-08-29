@@ -1,22 +1,37 @@
 [
   {
-    "outputFileName": "Scripts/main.min.js",
+    "outputFileName": "Scripts/minifiedbundle.min.js",
     "inputFiles": [
-      "Scripts/jquery/*.js",
-      "Scripts/bootstrap/*.js",
-      "Scripts/modernizr/*.js",
-      "Scripts/plugins/**/*.js",
-      "Scripts/main.js"
+      //jquery
+      //"Scripts/jquery/jquery-2.1.0-vsdoc.js", //not included since its just for intellisense
+      "Scripts/jquery/jquery-3.0.0.js",
+
+      //bootstrap
+      //"Scripts/bootstrap/affix.js",
+      //"Scripts/bootstrap/alert.js",
+      //"Scripts/bootstrap/button.js",
+      //"Scripts/bootstrap/carousel.js",
+      "Scripts/bootstrap/collapse.js",
+      //"Scripts/bootstrap/dropdown.js",
+      //"Scripts/bootstrap/modal.js",
+      //"Scripts/bootstrap/popover.js",
+      //"Scripts/bootstrap/scrollspy.js",
+      //"Scripts/bootstrap/tab.js",
+      "Scripts/bootstrap/tooltip.js",
+      //"Scripts/bootstrap/transition.js",
+
+      //modernizr
+      "Scripts/modernizr/modernizr-2.8.3.js",
+
+      //plugins
+      "Scripts/plugins/dropzone/dropzone.js",
+      "Scripts/plugins/swiper/swiper.js",
+
+      //custom javascript
+      "Scripts/main.js" //and custom javascript last!
     ],
     "minify": {
-      "enabled": true,
-      "commentMode": "all"
+      "enabled": true
     }
-  },
-  {
-    "outputFileName": "Scripts/tinymce/plugins/columns/plugin.min.js",
-    "inputFiles": [
-      "Scripts/tinymce/plugins/columns/plugin.js"
-    ]
   }
-]
+ ]

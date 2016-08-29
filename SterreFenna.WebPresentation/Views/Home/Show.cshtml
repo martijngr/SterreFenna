@@ -34,21 +34,21 @@
     <script type="text/javascript">
         var totalItems = @Model.SerieItems.Count();
 
-        $(document).ready(function () {
-            //initialize swiper when document ready
-            var swiper = new Swiper('.swiper-container', {
-                pagination: '.swiper-pagination',
-                slidesPerView: 'auto',
-                paginationClickable: true,
-                spaceBetween: 30,
-                centeredSlides: totalItems > 3 ? false : true,
-                freeMode: true,
-                onInit: function(swiper){
-                    if(totalItems > 1 && totalItems <= 3){
-                        swiper.slideTo(1);
-                    }
-                }
-            });
-        });
+        //$(document).ready(function () {
+        //    //initialize swiper when document ready
+        //    var swiper = new Swiper('.swiper-container', {
+        //        pagination: '.swiper-pagination',
+        //        slidesPerView: 'auto',
+        //        paginationClickable: true,
+        //        spaceBetween: 30,
+        //        centeredSlides: totalItems > 3 ? false : true,
+        //        freeMode: true,
+        //        onInit: function(swiper){
+        //            if(totalItems > 1 && totalItems <= 3){
+        //                swiper.slideTo(1);
+        //            }
+        //        }
+        //    });
+        //});
     </script>
 }

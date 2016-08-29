@@ -1,6 +1,7 @@
 TODO
 ----------------
 >	MARTIJN	<
+	- Serie minder dan drie foto's dan centreren
 	- Publicatiedatum wordt niet meegenomen in de front. Werkend maken
 	- Admin pagina's beveiligen
 	- Actieve menu items highlighten + openklappen MG

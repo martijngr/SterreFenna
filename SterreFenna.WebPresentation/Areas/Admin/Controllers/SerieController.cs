@@ -19,14 +19,14 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
         private readonly EditSerieCommandHandler _editSerieHandler;
         private readonly GetProjectListOverviewQuery _getProjectListOverviewQuery;
         private readonly GetSerieByIdQuery _getSerieByIdQuery;
-        private readonly GetProjectOverviewQuery _getProjectOverviewQuery;
+        private readonly GetProjectOverviewQueryHandler _getProjectOverviewQuery;
 
         public SerieController(
             CreateSerieCommandHandler createGalleryCommand,
             EditSerieCommandHandler editSerieCommand,
             GetProjectListOverviewQuery getProjectListOverviewQuery,
             GetSerieByIdQuery getSerieByIdQuery,
-            GetProjectOverviewQuery getProjectOverviewQuery)
+            GetProjectOverviewQueryHandler getProjectOverviewQuery)
         {
             _createSerieHandler = createGalleryCommand;
             _editSerieHandler = editSerieCommand;
@@ -40,7 +40,7 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
             var model = new EditSerieModel
             {
                 SerieDetails = _getSerieByIdQuery.Handle(id),
-                Projects = _getProjectOverviewQuery.Handle(),
+                Projects = _getProjectOverviewQuery.Handle(new GetProjectOverviewQuery()),
             };
 
             return View(model);

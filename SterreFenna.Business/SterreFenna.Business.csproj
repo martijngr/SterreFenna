@@ -82,6 +82,7 @@
     <Compile Include="Series\Commands\UploadedSerieItem.cs" />
     <Compile Include="Projects\Queries\GetFirstActiveProjectQuery.cs" />
     <Compile Include="Series\Queries\GetLandingPageItemsQuery.cs" />
+    <Compile Include="Series\Queries\GetSerieByUniqueNameQuery.cs" />
     <Compile Include="Series\SeriePathResolverFactory.cs" />
     <Compile Include="Series\Queries\GetItemsForSerieQuery.cs" />
     <Compile Include="Series\Queries\GetProjectListOverviewQuery.cs" />

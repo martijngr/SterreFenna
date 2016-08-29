@@ -26,6 +26,8 @@ namespace SterreFenna.Business.Projects.Views
 
         public int TotalSeries { get; set; }
 
+        public string Description { get; set; }
+
         public IEnumerable<SerieOverviewItem> SerieItems { get; set; }
     }
 }

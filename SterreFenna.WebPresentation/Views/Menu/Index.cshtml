@@ -1,6 +1,9 @@
 ﻿@model SterreFenna.WebPresentation.Menus.MenuModel
 @{
     Layout = null;
+    var values = HttpContext.Current.Request.RequestContext.RouteData.Values;
+    var activeProject = values["project"] == null ? "" : values["project"].ToString();
+    var activeSerie = values["serie"] == null ? "" : values["serie"].ToString();
 }
 
 <nav class="navbar navbar-default main-menu">
@@ -14,7 +17,7 @@
             </button>
         </div>
         <a href="~/" class="responsive__logo">
-            <img class="img-responsive" style="max-height: 50px;margin: auto;" src="~/content/images/logo_height_100.png" />
+            <img class="img-responsive" style="margin: auto;" src="~/content/images/logo_height_40.png" />
         </a>
         <a href="~/Contact" class="responsive__contact" style="">
             <i class="fa fa-envelope-o" aria-hidden="true"></i>
@@ -27,15 +30,15 @@
             {
                 if (item.MenuItems.Any())
                 {
-                    <li class="main-menu__item">
-                        <a href="#" class="main-menu__link main-menu__triangle">
+                    <li class="main-menu__item @(item.UniqueName == activeProject ? "active-project" : "")">
+                        <a href="/@item.UniqueName" class="main-menu__link main-menu__triangle">
                             @item.Name
                         </a>
                         <ul class="main-menu__submenu">
                             @foreach (var submenu in item.MenuItems)
                             {
                                 <li class="main-menu__submenu__item">
-                                    <a href="/@item.UniqueName/@submenu.UniqueName">@submenu.Name</a>
+                                    <a href="/@item.UniqueName/@submenu.UniqueName" class="@(submenu.UniqueName == activeSerie ? "bold" : "")">@submenu.Name</a>
                                 </li>
                             }
                         </ul>
@@ -44,25 +47,43 @@
                 else
                 {
                     <li class="main-menu__item">
-                        <a href="/@item.UniqueName" class="main-menu__link">@item.Name</a>
+                        <a href="/@item.UniqueName" class="main-menu__link @(item.UniqueName ==activeProject ? "bold" : "")">@item.Name</a>
                     </li>
                 }
             }
+            <li class="main-menu__item navbar-right--responsive">
+                <a href="/Contact" class="main-menu__link">
+                    Contact
+                </a>
+            </li>
+            <li class="main-menu__item navbar-right--responsive">
+                <a href="/Contact/AboutMe" class="main-menu__link">
+                    About Me
+                </a>
+            </li>
+            <li class="main-menu__item navbar-right--responsive">
+                <a href="/Contact/Education" class="main-menu__link">
+                    Education
+                </a>
+            </li>
         </ul>
 
         @* Right menu *@
         <ul class="nav navbar-nav navbar-right">
             <li class="main-menu__item">
                 <a href="/Contact" class="main-menu__link">
-                    Contact
+                    Contact<i class="list-triangle"></i>
                 </a>
-                @*<ul class="main-menu__submenu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                </ul>*@
             </li>
         </ul>
     </div>
 </nav>
 <div class="main-menu__border"></div>
+
+
+    <script>
+        $(document).ready(function () {
+            var activeMenuItem = $(".main-menu__item.active-project a");
+            toggleMainMenuItem(activeMenuItem);
+        });
+    </script>    

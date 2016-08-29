@@ -8,14 +8,14 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
     //[Authorize]
     public class ProjectController : Controller
     {
-        private readonly GetProjectOverviewQuery _getProjectOverviewQuery;
+        private readonly GetProjectOverviewQueryHandler _getProjectOverviewQuery;
         private readonly CreateProjectCommandHandler _addProjectHandler;
         private readonly ChangeProjectOrderCommand _changeProjectOrderCommand;
         private readonly GetProjectByIdQueryHandler _getProjectByIdHandler;
         private readonly EditProjectCommandHandler _editProjectHandler;
 
         public ProjectController(
-            GetProjectOverviewQuery getProjectOverviewQuery,
+            GetProjectOverviewQueryHandler getProjectOverviewQuery,
             CreateProjectCommandHandler addProjectHandler,
             ChangeProjectOrderCommand changeProjectOrderCommand,
             GetProjectByIdQueryHandler getProjectByIdHandler,
@@ -30,7 +30,12 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            var model = _getProjectOverviewQuery.Handle();
+            var query = new GetProjectOverviewQuery
+            {
+                ActiveProjectsOnly = false,
+                WithSeries = false,
+            };
+            var model = _getProjectOverviewQuery.Handle(query);
 
             return View(model);
         }

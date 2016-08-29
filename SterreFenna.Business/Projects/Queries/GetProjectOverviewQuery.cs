@@ -11,26 +11,29 @@ namespace SterreFenna.Business.Projects.Queries
 {
     public class GetProjectOverviewQuery
     {
+        public bool ActiveProjectsOnly { get; set; }
+
+        public bool WithSeries { get; set; }
+    }
+
+    public class GetProjectOverviewQueryHandler
+    {
         private readonly IUnitOfWork _unitOfWork;
 
-        public GetProjectOverviewQuery(IUnitOfWork unitOfWork)
+        public GetProjectOverviewQueryHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        public bool ActiveProjectsOnly { get; set; }
-
-        public bool WithSeries { get; set; }
-
-        public IEnumerable<ProjectOverviewItem> Handle()
+        public IEnumerable<ProjectOverviewItem> Handle(GetProjectOverviewQuery query)
         {
-            var projects = GetProjects();
-            IEnumerable<ProjectOverviewItem> view = CreateView(projects);
+            var projects = GetProjects(query);
+            IEnumerable<ProjectOverviewItem> view = CreateView(projects, query);
 
             return view;
         }
 
-        private IEnumerable<ProjectOverviewItem> CreateView(IEnumerable<Project> projects)
+        private IEnumerable<ProjectOverviewItem> CreateView(IEnumerable<Project> projects, GetProjectOverviewQuery query)
         {
             return from p in projects
                    select new ProjectOverviewItem
@@ -40,23 +43,36 @@ namespace SterreFenna.Business.Projects.Queries
                        UniqueName = p.UniqueName,
                        TotalSeries = p.Series.Count,
                        Rank = p.Rank,
-                       SerieItems = WithSeries
+                       Description = p.Description,
+                       SerieItems = query.WithSeries
                                     ?
-                                       from s in p.Series
-                                       select new SerieOverviewItem
-                                       {
-                                           Id = s.Id,
-                                           Name = s.Name,
-                                           UniqueName = s.UniqueName
-                                       }
+                                        query.ActiveProjectsOnly
+                                        ?
+                                            from s in p.Series
+                                            where s.Published == null || s.Published.Value <= DateTime.Now
+                                            select new SerieOverviewItem
+                                            {
+                                                Id = s.Id,
+                                                Name = s.Name,
+                                                UniqueName = s.UniqueName
+                                            }
+                                        :
+                                            from s in p.Series
+                                            select new SerieOverviewItem
+                                            {
+                                                Id = s.Id,
+                                                Name = s.Name,
+                                                UniqueName = s.UniqueName
+                                            }
+
                                     : new List<SerieOverviewItem>()
                    };
         }
 
-        private IEnumerable<Project> GetProjects()
+        private IEnumerable<Project> GetProjects(GetProjectOverviewQuery query)
         {
             var projectsToReturn = Enumerable.Empty<Project>();
-            if (ActiveProjectsOnly)
+            if (query.ActiveProjectsOnly)
             {
                 var today = DateTime.Now;
                 projectsToReturn = _unitOfWork.ProjectRepository

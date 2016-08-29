@@ -16,17 +16,20 @@ namespace SterreFenna.WebPresentation.Controllers
         private readonly GetFirstActiveProjectQueryHandler _getFirstActiveSerieHandler;
         private readonly GetLandingPageItemsQueryHandler _getLandingPageItemsQueryHandler;
         private readonly GetProjectByUniqueNameQueryHandler _getProjectByUniqueNameQueryHandler;
+        private readonly GetSerieByUniqueNameQueryHandler _getSerieByUniqueNameQueryHandler;
 
         public HomeController(
             GetItemsForSerieQueryHandler getItemsForSerieQuery,
             GetFirstActiveProjectQueryHandler getFirstActiveProjectHandler,
             GetLandingPageItemsQueryHandler getLandingPageItemsQueryHandler,
-            GetProjectByUniqueNameQueryHandler getProjectByUniqueNameQueryHandler)
+            GetProjectByUniqueNameQueryHandler getProjectByUniqueNameQueryHandler,
+            GetSerieByUniqueNameQueryHandler getSerieByUniqueNameQueryHandler)
         {
             _getItemsForSerieQuery = getItemsForSerieQuery;
             _getFirstActiveSerieHandler = getFirstActiveProjectHandler;
             _getLandingPageItemsQueryHandler = getLandingPageItemsQueryHandler;
             _getProjectByUniqueNameQueryHandler = getProjectByUniqueNameQueryHandler;
+            _getSerieByUniqueNameQueryHandler = getSerieByUniqueNameQueryHandler;
         }
 
         public ActionResult Landing()
@@ -51,6 +54,7 @@ namespace SterreFenna.WebPresentation.Controllers
             });
         }
 
+
         public ActionResult Show(string project, string serie)
         {
             var projectDetails = _getProjectByUniqueNameQueryHandler.Handle(new GetProjectByUniqueNameQuery
@@ -58,20 +62,32 @@ namespace SterreFenna.WebPresentation.Controllers
                 UniqueName = project
             });
 
-            if (serie.IsEmpty() && projectDetails.Description.HasValue())
+            if (projectDetails == null)
             {
-                return View("ProjectDescription", projectDetails);
+                var serieDetails = _getSerieByUniqueNameQueryHandler.Handle(new GetSerieByUniqueNameQuery
+                {
+                    UniqueSerieName = project
+                });
+
+                return View(serieDetails);
             }
             else
             {
-                var query = new GetItemsForSerieQuery
+                if (serie.IsEmpty() && projectDetails.Description.HasValue())
                 {
-                    ProjectName = project,
-                    SerieName = serie
-                };
-                var view = _getItemsForSerieQuery.Handle(query);
+                    return View("ProjectDescription", projectDetails);
+                }
+                else
+                {
+                    var query = new GetItemsForSerieQuery
+                    {
+                        ProjectName = project,
+                        SerieName = serie
+                    };
+                    var view = _getItemsForSerieQuery.Handle(query);
 
-                return View(view);
+                    return View(view);
+                }
             }
         }
     }
