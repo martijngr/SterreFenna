@@ -28,7 +28,7 @@ namespace SterreFenna.WebPresentation.Menus
                 WithSeries = true,
 
             };
-            var projects = _getProjectOverviewQuery.Handle(query);
+            var projects = _getProjectOverviewQuery.Handle(query).OrderBy(p => p.Rank);
 
             foreach (var project in projects)
             {

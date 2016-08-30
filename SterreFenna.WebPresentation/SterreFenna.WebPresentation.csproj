@@ -252,7 +252,6 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
-    <Content Include="cyclepoc.html" />
     <Content Include="Content\images\chevron-down-24.png" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\logo_large.png" />
@@ -272,11 +271,9 @@
     <Content Include="Areas\Admin\Views\Project\Edit.cshtml" />
     <Compile Include="App_Start\Startup.cs" />
     <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
-    <Content Include="bundleconfig.json" />
-    <Content Include="bundleconfig.json.bindings" />
     <Content Include="compilerconfig.json" />
-    <Content Include="compilerconfig.json.bindings" />
     <Content Include="Areas\Admin\Views\Contact\Index.cshtml" />
+    <Content Include="bundleconfig.json" />
     <None Include="compilerconfig.json.defaults" />
     <Content Include="packages.config" />
     <Content Include="Content\less\fonts\FontAwesome.otf" />
@@ -322,6 +319,7 @@
     <Content Include="Scripts\plugins\swiper\swiper.jquery.min.js" />
     <Content Include="Scripts\plugins\swiper\swiper.min.js" />
     <Content Include="Scripts\resizer.js" />
+    <Content Include="Scripts\swiperInitializer.js" />
     <Content Include="Scripts\tinymce\jquery.tinymce.min.js" />
     <Content Include="Scripts\tinymce\license.txt" />
     <Content Include="Scripts\tinymce\plugins\advlist\plugin.js" />

@@ -7,30 +7,6 @@
         }).appendTo("body");
     }
 
-    //initialize swiper when document ready (different options on small screens)
-    if (isBreakpoint('xs') || isBreakpoint('sm')) {
-        console.log("small");
-        var swiper = new Swiper('.swiper-container', {
-            pagination: '.swiper-pagination',
-            slidesPerView: 'auto',
-            direction: 'vertical',
-            paginationClickable: true,
-            spaceBetween: 30,
-            freeMode: true
-            //lazyLoading: true
-        });
-    } else {
-        var swiper = new Swiper('.swiper-container', {
-            pagination: '.swiper-pagination',
-            slidesPerView: 'auto',
-            direction: 'horizontal',
-            paginationClickable: true,
-            spaceBetween: 30,
-            freeMode: true
-            //lazyLoading: true
-        });
-    }
-
     //menu responsive
     if (isBreakpoint('xs') || isBreakpoint('sm')) {
         //custom collapse for responsive menu
@@ -51,6 +27,7 @@
                 $(".main-menu").toggleClass("open");
             }
         });
+
         //animate chevron behind menu item in responsive menu
         $(".main-menu__link").on("click", function () {
             //open clicked dropdown triangle
@@ -70,6 +47,7 @@
             }
         });
     }
+
     //menu large position submenu's centered below triangle
     if (isBreakpoint('md') || isBreakpoint('lg')) {
         var mainMenuItems = $(".main-menu__link");
@@ -143,13 +121,16 @@ function toggleMainMenuItem(menuItem) {
             }
         });
         if (isBreakpoint("xs") || isBreakpoint("sm")) {
-            //dropdown.css("height", dropdownItemHeight);
-            dropdown.css("height", "100px");
-            dropdown.css("overflow", "hidden");
-            dropdown.css("overflow-y", "scroll");
-            //count submenu items and give that as height
+            if (dropdownItemHeight > 100) {
+                dropdown.css("height", "100px");
+                dropdown.css("overflow", "hidden");
+                dropdown.css("overflow-y", "scroll");
+            }
+            else {
+                dropdown.css("height", dropdownItemHeight);
+            }
         } else {
-            dropdown.css("height", dropdownHeight);
+            dropdown.css("height", dropdownHeight + "px");
         }
     }
 

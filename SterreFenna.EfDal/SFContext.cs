@@ -12,7 +12,7 @@ namespace SterreFenna.EfDal
     {
         public SFContext() : base("SFContext", throwIfV1Schema: false)
         {
-
+            
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

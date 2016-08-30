@@ -33,6 +33,10 @@
 @section scripts{
     <script type="text/javascript">
         var totalItems = @Model.SerieItems.Count();
+        
+        $(document).ready(function () {
+            initializeSwiper(totalItems);
+        });
 
         //$(document).ready(function () {
         //    //initialize swiper when document ready

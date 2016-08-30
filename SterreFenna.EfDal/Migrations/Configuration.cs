@@ -10,6 +10,7 @@ namespace SterreFenna.EfDal.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(SterreFenna.EfDal.SFContext context)
