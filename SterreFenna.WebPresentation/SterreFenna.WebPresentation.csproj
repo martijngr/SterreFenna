@@ -588,6 +588,7 @@
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Contact\AboutMe.cshtml" />
     <Content Include="Views\Contact\Education.cshtml" />
+    <Content Include="Views\Contact\ContactMe.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

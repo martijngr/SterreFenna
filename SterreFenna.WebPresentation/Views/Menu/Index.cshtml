@@ -52,11 +52,6 @@
                 }
             }
             <li class="main-menu__item navbar-right--responsive">
-                <a href="/Contact" class="main-menu__link">
-                    Contact
-                </a>
-            </li>
-            <li class="main-menu__item navbar-right--responsive">
                 <a href="/Contact/AboutMe" class="main-menu__link">
                     About Me
                 </a>
@@ -64,6 +59,11 @@
             <li class="main-menu__item navbar-right--responsive">
                 <a href="/Contact/Education" class="main-menu__link">
                     Education
+                </a>
+            </li>
+            <li class="main-menu__item navbar-right--responsive">
+                <a href="/Contact/ContactMe" class="main-menu__link">
+                    Contact
                 </a>
             </li>
         </ul>
@@ -80,11 +80,9 @@
 </nav>
 <div class="main-menu__border"></div>
 
-
-
-    <script>
-        $(document).ready(function () {
-            var activeMenuItem = $(".main-menu__item.active-project a");
-            toggleMainMenuItem(activeMenuItem);
-        });
-    </script>    
+<script>
+    $(document).ready(function () {
+        var activeMenuItem = $(".main-menu__item.active-project a");
+        toggleMainMenuItem(activeMenuItem);
+    });
+</script>    

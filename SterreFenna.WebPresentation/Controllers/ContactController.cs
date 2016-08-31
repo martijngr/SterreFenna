@@ -36,5 +36,12 @@ namespace SterreFenna.WebPresentation.Controllers
 
             return View(model);
         }
+
+        public ActionResult ContactMe()
+        {
+            var model = _getContactHandler.Handle(new GetContactQuery());
+
+            return View(model);
+        }
     }
 }

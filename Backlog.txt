@@ -1,6 +1,9 @@
 TODO
 ----------------
 >	MARTIJN	<
+	- envelopje in mobile: contactformulier tonen
+	- 404's afvangen en redirecten
+	- projecten en series kunnen verwijderen+
 	- placeholders in contactpagina:
 		{{FB}} {{TW}} {{IN}} {{GP}}{{LI}}
 		{{line}}
