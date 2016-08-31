@@ -6,15 +6,7 @@ TODO
 		{{line}}
 
 >	JELLE	<
-	- slider vertical optie in plugin op mobiel
-	- menu --> op responsive de drie contact pagina's, op groot scherm alleen contact zonder subs. (href navragen bij martijn)
-	- Minder ruimte om logo
-	- logo ipv 50 naar 40px
-	- Ruimte onder menu (opengeklapt)
-	- contact minder witruimte aan bovenkant
-	- Pagina refresh tussen mobiel versus desktop scherm
 	- mobiel
-	- font dubbel controleren
 	- kijk naar lazy loading plugin
 
 - Bij aanmaken project en serie nagaan of naam al in gebruik is. Constraint DB?

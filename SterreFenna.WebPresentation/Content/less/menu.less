@@ -232,10 +232,30 @@
 }
 
 
+
 @media (min-width: @screen-xs) {
     .main-menu {
         //padding: 5px 30px 5px 30px;
         font-size: 14px;
+    }
+
+    .socialmediabar {
+        margin-top:20px;
+        text-align: center;
+        display: block;
+
+        & > img {
+            height: 30px;
+        }
+
+        .space-right-30{
+            margin-right:30px;
+        }
+
+        .title{
+            text-transform:uppercase;
+            margin-bottom:20px;
+        }
     }
 }
 
@@ -371,6 +391,10 @@
                 border-top: @trianglesize solid black;
             }
         }
+    }
+
+    .socialmediabar {
+        display: none;
     }
 }
 

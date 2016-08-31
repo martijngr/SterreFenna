@@ -7632,6 +7632,21 @@ address {
   .main-menu {
     font-size: 14px;
   }
+  .socialmediabar {
+    margin-top: 20px;
+    text-align: center;
+    display: block;
+  }
+  .socialmediabar > img {
+    height: 30px;
+  }
+  .socialmediabar .space-right-30 {
+    margin-right: 30px;
+  }
+  .socialmediabar .title {
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
 }
 @media (min-width: 992px) {
   .main-menu {
@@ -7794,5 +7809,8 @@ address {
     border-left: 12px solid transparent;
     border-right: 12px solid transparent;
     border-top: 12px solid black;
+  }
+  .socialmediabar {
+    display: none;
   }
 }

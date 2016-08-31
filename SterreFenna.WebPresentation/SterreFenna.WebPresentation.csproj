@@ -163,6 +163,8 @@
     <Content Include="Areas\Admin\Scripts\Series\SerieValidator.js" />
     <Content Include="Areas\Admin\Views\Serie\UploadProgressbar.html" />
     <Content Include="Content\images\ajax-loader.gif" />
+    <Content Include="Content\images\icon-facebook.PNG" />
+    <Content Include="Content\images\icon-instagram.PNG" />
     <Content Include="Content\images\logo-text-only.png" />
     <Content Include="Content\images\logo_height_100.png" />
     <Content Include="Content\images\logo_height_40.png" />
