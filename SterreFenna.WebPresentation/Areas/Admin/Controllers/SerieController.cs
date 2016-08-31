@@ -7,12 +7,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class SerieController : Controller
     {
         private readonly CreateSerieCommandHandler _createSerieHandler;

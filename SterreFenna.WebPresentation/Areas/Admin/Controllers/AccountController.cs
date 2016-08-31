@@ -19,20 +19,32 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
             return View();
         }
 
+        private AppUserManager AppUserManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            }
+        }
+
+        private IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Authentication;
+            }
+        }
+
         [HttpPost]
         public ActionResult Login(LoginModel model)
         {
             if (ModelState.IsValid)
             {
-                var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
-                var authManager = HttpContext.GetOwinContext().Authentication;
+                var  user = AppUserManager.Find(model.Email, model.Password);
 
-                var  user = userManager.Find(model.Email, model.Password);
                 if (user != null)
                 {
-                    var ident = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-                    authManager.SignIn(new AuthenticationProperties { IsPersistent = model.RememberMe }, ident);
-
+                    SignInUser(user, model.RememberMe);
                     return Redirect("/Admin");
                 }
             }
@@ -48,6 +60,26 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
             authManager.SignOut();
 
             return View("Login");
+        }
+
+        public ActionResult Register(string name, string password)
+        {
+            var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+            var user = new IdentityUser(name);
+            var result = userManager.Create(user, password);
+
+            if (result.Succeeded)
+            {
+                SignInUser(user, true);
+            }
+
+            return Redirect("/Admin");
+        }
+
+        private void SignInUser(IdentityUser user, bool persist)
+        {
+            var ident = AppUserManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+            AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = persist }, ident);
         }
     }
 }

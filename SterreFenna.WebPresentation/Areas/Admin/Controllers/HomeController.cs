@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly GetSerieOverviewQuery _getSerieOverviewQuery;

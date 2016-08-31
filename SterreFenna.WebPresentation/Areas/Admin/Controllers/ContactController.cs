@@ -1,14 +1,10 @@
 ﻿using SterreFenna.Business.Contacts.Commands;
 using SterreFenna.Business.Contacts.Queries;
-using SterreFenna.WebPresentation.Areas.Admin.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
 {
+    [Authorize]
     public class ContactController : Controller
     {
         private readonly UpdateContactCommandHandler _updateContactHandler;

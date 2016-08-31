@@ -1,7 +1,6 @@
 TODO
 ----------------
 >	MARTIJN	<
-	- Admin pagina's beveiligen
 	- placeholders in contactpagina:
 		{{FB}} {{TW}} {{IN}} {{GP}}{{LI}}
 		{{line}}
@@ -49,6 +48,7 @@ Done
 - Statistiekenlink in admin naar google nalytics verwijzen [28-08-2016]
 - Publicatiedatum wordt niet meegenomen in de front. [28-08-2016]
 - Actieve menu items highlighten + openklappen MG [28-08-2016]
+- Admin pagina's beveiligen [31-08-2016]
 
 Versie 2
 - Mogelijkheid om youtube-url's op te geven -> embedded video's

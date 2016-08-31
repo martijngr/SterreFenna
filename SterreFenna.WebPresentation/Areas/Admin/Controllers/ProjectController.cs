@@ -1,11 +1,10 @@
 ﻿using SterreFenna.Business.Projects.Commands;
 using SterreFenna.Business.Projects.Queries;
-using SterreFenna.WebPresentation.Areas.Admin.Models;
 using System.Web.Mvc;
 
 namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class ProjectController : Controller
     {
         private readonly GetProjectOverviewQueryHandler _getProjectOverviewQuery;
