@@ -148,6 +148,7 @@
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Models\LandingPageItem.cs" />
     <Compile Include="Models\LandingPageModel.cs" />
     <Compile Include="UrlBuilders\UrlBuilder.cs" />
@@ -589,6 +590,8 @@
     <Content Include="Views\Contact\AboutMe.cshtml" />
     <Content Include="Views\Contact\Education.cshtml" />
     <Content Include="Views\Contact\ContactMe.cshtml" />
+    <Content Include="Views\Errors\NotFound.cshtml" />
+    <Content Include="Views\Errors\ErrorsLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

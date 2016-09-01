@@ -22,7 +22,7 @@ namespace SterreFenna.Business.Projects.Queries
         public ProjectDetailsView Handle(GetFirstActiveProjectQuery query)
         {
             var project = _unitOfWork.ProjectRepository
-                                     .Find(p => p.Series.Any())
+                                     .Find(p => p.Series.Any(s => s.Published == null || s.Published.Value <= DateTime.Now))
                                      .OrderBy(p => p.Rank)
                                      .First();
 

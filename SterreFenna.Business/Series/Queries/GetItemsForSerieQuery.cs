@@ -10,30 +10,30 @@ using System.Threading.Tasks;
 
 namespace SterreFenna.Business.Series.Queries
 {
-    public class GetItemsForSerieQuery
+    public class GetFirstActiveSerieQuery
     {
         public string SerieName { get; set; }
 
         public string ProjectName { get; set; }
     }
 
-    public class GetItemsForSerieQueryHandler
+    public class GetFirstActiveSerieQueryHandler
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public GetItemsForSerieQueryHandler(IUnitOfWork unitOfWork)
+        public GetFirstActiveSerieQueryHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        public SerieDetailView Handle(GetItemsForSerieQuery query)
+        public SerieDetailView Handle(GetFirstActiveSerieQuery query)
         {
             SerieDetailView view = LoadSerieByProject(query);
 
             return view;
         }
 
-        private SerieDetailView LoadSerieByProject(GetItemsForSerieQuery query)
+        private SerieDetailView LoadSerieByProject(GetFirstActiveSerieQuery query)
         {
             var project = _unitOfWork.ProjectRepository.GetByUniqueName(query.ProjectName);
             if (project == null)
@@ -41,9 +41,12 @@ namespace SterreFenna.Business.Series.Queries
 
             Serie serie = null;
             if (query.SerieName.IsEmpty())
-                serie = project.Series.First();
+                serie = project.Series.FirstOrDefault(s => s.Published== null || s.Published.Value <= DateTime.Now);
             else
-                serie = project.Series.First(s => s.UniqueName == query.SerieName);
+                serie = project.Series.FirstOrDefault(s => s.UniqueName == query.SerieName && s.Published == null || (s.Published != null &&s.Published.Value <= DateTime.Now));
+
+            if (serie == null)
+                return null;
 
             return new SerieDetailView
             {
@@ -61,7 +64,8 @@ namespace SterreFenna.Business.Series.Queries
                                  Location = i.Location,
                                  Rank = i.Rank
                              },
-                Credits = serie.Credits.HasValue() ? serie.Credits : string.Empty
+                Credits = serie.Credits.HasValue() ? serie.Credits : string.Empty,
+                UniqueName = serie.UniqueName,
             };
         }
     }

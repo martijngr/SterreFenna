@@ -12,14 +12,14 @@ namespace SterreFenna.WebPresentation.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly GetItemsForSerieQueryHandler _getItemsForSerieQuery;
+        private readonly GetFirstActiveSerieQueryHandler _getItemsForSerieQuery;
         private readonly GetFirstActiveProjectQueryHandler _getFirstActiveSerieHandler;
         private readonly GetLandingPageItemsQueryHandler _getLandingPageItemsQueryHandler;
         private readonly GetProjectByUniqueNameQueryHandler _getProjectByUniqueNameQueryHandler;
         private readonly GetSerieByUniqueNameQueryHandler _getSerieByUniqueNameQueryHandler;
 
         public HomeController(
-            GetItemsForSerieQueryHandler getItemsForSerieQuery,
+            GetFirstActiveSerieQueryHandler getItemsForSerieQuery,
             GetFirstActiveProjectQueryHandler getFirstActiveProjectHandler,
             GetLandingPageItemsQueryHandler getLandingPageItemsQueryHandler,
             GetProjectByUniqueNameQueryHandler getProjectByUniqueNameQueryHandler,
@@ -69,6 +69,9 @@ namespace SterreFenna.WebPresentation.Controllers
                     UniqueSerieName = project
                 });
 
+                if (serieDetails == null)
+                    return RedirectToAction("Index");
+
                 return View(serieDetails);
             }
             else
@@ -79,14 +82,19 @@ namespace SterreFenna.WebPresentation.Controllers
                 }
                 else
                 {
-                    var query = new GetItemsForSerieQuery
+                    var query = new GetFirstActiveSerieQuery
                     {
                         ProjectName = project,
                         SerieName = serie
                     };
                     var view = _getItemsForSerieQuery.Handle(query);
 
-                    return View(view);
+                    if (view == null)
+                        return RedirectToAction("Index");
+                    if (serie.HasValue())
+                        return View(view);
+                    else
+                        return RedirectToAction("Show", new { project = project, serie = view.UniqueName });
                 }
             }
         }

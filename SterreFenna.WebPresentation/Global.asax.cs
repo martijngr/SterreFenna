@@ -2,9 +2,11 @@
 using Autofac.Integration.Mvc;
 using SterreFenna.Business.Settings;
 using SterreFenna.IoC;
+using SterreFenna.WebPresentation.Controllers;
 using SterreFenna.WebPresentation.Menus;
 using SterreFenna.WebPresentation.Settings;
 using System.Reflection;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -49,6 +51,22 @@ namespace SterreFenna.WebPresentation
             // Set the dependency resolver to be Autofac.
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+        }
+
+        protected void Application_EndRequest()
+        {
+            if (Context.Response.StatusCode == 404)
+            {
+                Response.Clear();
+                Response.TrySkipIisCustomErrors = true;
+
+                var rd = new RouteData();
+                rd.Values["controller"] = "Errors";
+                rd.Values["action"] = "NotFound";
+
+                IController c = new ErrorsController();
+                c.Execute(new RequestContext(new HttpContextWrapper(Context), rd));
+            }
         }
     }
 }
