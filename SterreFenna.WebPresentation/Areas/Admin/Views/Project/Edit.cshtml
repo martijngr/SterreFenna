@@ -18,10 +18,36 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-sm-12" style="height:400px">
+            <div class="form-group col-sm-12">
                 <label for="name">Beschrijving</label>
                 <div name="description" class="form-control" id="description">@Html.Raw(Model.Description)</div>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <h2>Series</h2>
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Serie</th>
+                        <th>Unieke naam</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var serie in Model.Series)
+                    {
+                        <tr>
+                            <td>
+                                <a href="/Admin/Serie/Edit/@serie.Id">@serie.Name</a>
+                            </td>
+                            <td>
+                                @serie.UniqueName
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </form>
