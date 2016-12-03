@@ -14,10 +14,17 @@
                 <label for="publicationDate">Publicatiedatum</label>
                 <input type="text" class="form-control" id="publicationDate" name="publicationDate" value="@Model.SerieDetails.Published" placeholder="Datum van publicatie">
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4 buttonbar">
                 <span id="loader" class="pull-right">
                     <img src="~/Content/images/ajax-loader.gif" />
                 </span>
+                <button type="button"
+                        class="btn btn-danger pull-right"
+                        style="margin-top: 24px;"
+                        onclick="SerieController.deleteSerie()"
+                        id="btnDelete">
+                    Verwijderen
+                </button>
                 <button type="button"
                         class="btn btn-primary pull-right"
                         style="margin-top: 24px;"
@@ -77,6 +84,7 @@
     </div>
 </div>
 @section scripts{
+    <script src="~/Areas/Admin/Scripts/Shared/HtmlFormBuilder.js"></script>
     <script src="~/Areas/Admin/Scripts/Series/SerieController.js"></script>
     <script src="~/Areas/Admin/Scripts/Series/SerieFormElements.js"></script>
     <script src="~/Areas/Admin/Scripts/Series/SerieValidator.js"></script>

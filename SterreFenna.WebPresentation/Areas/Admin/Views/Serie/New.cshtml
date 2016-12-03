@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SterreFenna.Business.Series.Views.ProjectListOverviewItem>
+﻿@model NewSerieModel
 
 <form class="form" id="addGalleryForm" enctype="multipart/form-data">
     <div class="row">
@@ -40,9 +40,10 @@
             <label for="publicationDate">Onderbrengen aan bestaand project</label>
             <select class="form-control" id="projectId" name="projectId" onchange="SerieController.onProjectDropdownChanged(this)">
                 <option value="-1">Niet onderbrengen aan bestaand project</option>
-                @foreach (var item in Model)
+                @foreach (var item in Model.ProjectList)
                 {
-                    <option value="@item.Id">@item.Name</option>
+                    var selected = Model.SelectedProjectId.HasValue && item.Id == Model.SelectedProjectId.Value ? "selected" : "";
+                    <option value="@item.Id" @selected>@item.Name</option> 
                 }
             </select>
         </div>

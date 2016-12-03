@@ -36,5 +36,4 @@
     function anyItemsPresent() {
         return $("#sortable").children().length > 0;
     }
-
 }();

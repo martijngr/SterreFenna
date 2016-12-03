@@ -46,6 +46,8 @@ Done
 - Admin pagina's beveiligen [31-08-2016]
 - 404's afvangen en redirecten [01-09-2016]
 - Bij project door kunnen klikken naar Serie [02-09-2016]
+- Bij project doorlinken naar een nieuwe serie [03-12-2016]
+- Serie verwijderen [02-12-2016]
 
 Versie 2
 - Mogelijkheid om youtube-url's op te geven -> embedded video's

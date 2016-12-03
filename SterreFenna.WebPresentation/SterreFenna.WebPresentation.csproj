@@ -147,6 +147,7 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
+    <Compile Include="Areas\Admin\Models\NewSerieModel.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Models\LandingPageItem.cs" />
@@ -159,6 +160,7 @@
     <Content Include="Areas\Admin\Scripts\Projects\ProjectFormElements.js" />
     <Content Include="Areas\Admin\Scripts\Series\SerieFormElements.js" />
     <Content Include="Areas\Admin\Scripts\Series\SerieController.js" />
+    <Content Include="Areas\Admin\Scripts\Shared\HtmlFormBuilder.js" />
     <Content Include="Areas\Admin\Scripts\Shared\Loader.js" />
     <Content Include="Areas\Admin\Scripts\Shared\ValidationResult.js" />
     <Content Include="Areas\Admin\Scripts\Series\SerieValidator.js" />

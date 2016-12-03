@@ -13,12 +13,12 @@ namespace SterreFenna.Business.Series.Commands
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ISettings _settings;
-        private readonly SeriePathManagerFactory _seriePathResolverFactory;
-        private SeriePathResolver _seriePathResolver;
+        private readonly SeriePathServiceFactory _seriePathResolverFactory;
+        private SeriePathService _seriePathResolver;
 
         public AddItemsToSerieCommand(
             ISettings settings,
-            SeriePathManagerFactory seriePathResolverFactory,
+            SeriePathServiceFactory seriePathResolverFactory,
             IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;

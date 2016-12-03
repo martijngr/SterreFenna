@@ -14,6 +14,12 @@ namespace SterreFenna.EfDal.Series
             _context = context;
         }
 
+        public void Delete(Serie serie)
+        {
+            _context.SerieItems.RemoveRange(serie.SerieItems);
+            _context.Series.Remove(serie);
+        }
+
         public Serie GetByUniqueName(string uniqueName)
         {
             return _context.Series.FirstOrDefault(p => p.UniqueName == uniqueName);

@@ -244,3 +244,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /SterreFenna.WebPresentation/Series
+/Documentation/sterre.txt

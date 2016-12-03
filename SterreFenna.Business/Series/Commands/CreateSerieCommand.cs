@@ -14,14 +14,14 @@ namespace SterreFenna.Business.Series.Commands
 
     public class CreateSerieCommandHandler
     {
-        private readonly SeriePathManagerFactory _seriePathResolverFactory;
+        private readonly SeriePathServiceFactory _seriePathResolverFactory;
         private readonly AddItemsToSerieCommand _addItemsToSerieCommand;
         private readonly ISerieRepository _serieRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly CreateProjectCommandHandler _addProjectCommandHandler;
 
         public CreateSerieCommandHandler(
-            SeriePathManagerFactory seriePathResolverFactory, 
+            SeriePathServiceFactory seriePathResolverFactory, 
             AddItemsToSerieCommand addItemsToSerieCommand, 
             ISerieRepository serieRepository,
             IUnitOfWork unitOfWork,

@@ -7,7 +7,8 @@
         getBase64String: getBase64String,
         submitAddSerie: submitAddSerie,
         addFileToSortablePics: addFileToSortablePics,
-        markAsFavourite: markAsFavourite
+        markAsFavourite: markAsFavourite,
+        deleteSerie: deleteSerie,
     };
 
     var _serieId;
@@ -66,12 +67,20 @@
         reader.readAsDataURL(file);
     }
 
+    function deleteSerie() {
+        HtmlFormBuilder.create("/Admin/Serie/Delete");
+
+        HtmlFormBuilder.appendHiddenField("id", _serieId);
+        HtmlFormBuilder.submit();
+    }
+
     function submitAddSerie() {
         var validationErrors = SerieValidator.isFormValid();
 
         if (validationErrors.isValid()) {
             Loader.show();
             SerieFormElements.createButton.hide();
+            SerieFormelements.deleteButton.hide();
             var dropzone = Dropzone.instances[0];
             dropzone.processQueue();
         }

@@ -18,5 +18,6 @@ namespace SterreFenna.Domain.Series
         IEnumerable<Serie> GetAll();
 
         bool Any(Expression<Func<Serie, bool>> expression);
+        void Delete(Serie serie);
     }
 }

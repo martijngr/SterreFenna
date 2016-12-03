@@ -5,6 +5,8 @@
         newSerieName: $("#name"),
         publicationDate: $("#publicationDate"),
         createButton: $("#btnSave"),
+        DeleteButton: $("#btnDelete"),
         credits: $("#credits"),
+        serieId: $(""),
     };
 }();

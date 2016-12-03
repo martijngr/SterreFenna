@@ -24,12 +24,12 @@ namespace SterreFenna.IoC
 
             RegisterQueries(builder);
 
-            builder.RegisterType<SeriePathResolver>().AsSelf();
+            builder.RegisterType<SeriePathService>().AsSelf();
             builder.RegisterType<EfUnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
             builder.RegisterType<ProjectRepository>().As<IProjectRepository>();
             builder.RegisterType<SerieItemRepository>().As<ISerieItemRepository>();
             builder.RegisterType<SerieRepository>().As<ISerieRepository>();
-            builder.RegisterType<SeriePathManagerFactory>().AsSelf();
+            builder.RegisterType<SeriePathServiceFactory>().AsSelf();
 
             //builder.RegisterType<EditSerieCommand>().AsSelf();
             //builder.RegisterType<AddItemsToSerieCommand>().AsSelf();

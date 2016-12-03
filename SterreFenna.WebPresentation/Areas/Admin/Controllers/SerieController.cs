@@ -15,6 +15,7 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
     public class SerieController : Controller
     {
         private readonly CreateSerieCommandHandler _createSerieHandler;
+        private readonly DeleteCommandHandler _deleteCommandHandler;
         private readonly EditSerieCommandHandler _editSerieHandler;
         private readonly GetProjectListOverviewQuery _getProjectListOverviewQuery;
         private readonly GetSerieByIdQuery _getSerieByIdQuery;
@@ -25,13 +26,56 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
             EditSerieCommandHandler editSerieCommand,
             GetProjectListOverviewQuery getProjectListOverviewQuery,
             GetSerieByIdQuery getSerieByIdQuery,
-            GetProjectOverviewQueryHandler getProjectOverviewQuery)
+            GetProjectOverviewQueryHandler getProjectOverviewQuery,
+            DeleteCommandHandler deleteCommandHandler)
         {
             _createSerieHandler = createGalleryCommand;
             _editSerieHandler = editSerieCommand;
+            _deleteCommandHandler = deleteCommandHandler;
             _getProjectListOverviewQuery = getProjectListOverviewQuery;
             _getProjectOverviewQuery = getProjectOverviewQuery;
             _getSerieByIdQuery = getSerieByIdQuery;
+        }
+
+        public ActionResult New(int? id)
+        {
+            var model = new NewSerieModel();
+            model.ProjectList = _getProjectListOverviewQuery.Handle();
+            model.SelectedProjectId = id;
+            
+            return View(model);
+        }
+
+        public ActionResult SubmitNew(PostedSerieModel model)
+        {
+            var items = new List<UploadedSerieItem>();
+            var filesnames = model.filenameOrder.Split(',');
+
+            foreach (var filename in filesnames)
+            {
+                var file = model.files.First(f => f.FileName == filename);
+                items.Add(new UploadedSerieItem
+                {
+                    Filename= filename,
+                    Stream = file.InputStream
+                });
+            }
+
+            var command = new CreateSerieCommand
+            {
+                ProjectId = model.ProjectId,
+                ProjectName = model.newProjectName,
+                SerieItems = items,
+                SerieName = model.name,
+                Credits = model.Credits,
+            };
+            
+            if (model.publicationDate.HasValue())
+                command.PublicationDate = DateTime.Parse(model.publicationDate);
+
+            _createSerieHandler.Handle(command);
+
+            return RedirectToAction("Index", "Serie", new { area="Admin",  id = command.StoredSerieId });
         }
 
         public ActionResult Edit(int id)
@@ -94,44 +138,13 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
 
             return RedirectToAction("Index", "Serie", new { area = "Admin", id = model.SerieId });
         }
-        
-        public ActionResult New()
+
+        [HttpPost]
+        public ActionResult Delete(int id)
         {
-            var projects = _getProjectListOverviewQuery.Handle();
+            _deleteCommandHandler.Handle(new DeleteSerieCommand { Id = id });
 
-            return View(projects);
-        }
-
-        public ActionResult SubmitNew(PostedSerieModel model)
-        {
-            var items = new List<UploadedSerieItem>();
-            var filesnames = model.filenameOrder.Split(',');
-
-            foreach (var filename in filesnames)
-            {
-                var file = model.files.First(f => f.FileName == filename);
-                items.Add(new UploadedSerieItem
-                {
-                    Filename= filename,
-                    Stream = file.InputStream
-                });
-            }
-
-            var command = new CreateSerieCommand
-            {
-                ProjectId = model.ProjectId,
-                ProjectName = model.newProjectName,
-                SerieItems = items,
-                SerieName = model.name,
-                Credits = model.Credits,
-            };
-            
-            if (model.publicationDate.HasValue())
-                command.PublicationDate = DateTime.Parse(model.publicationDate);
-
-            _createSerieHandler.Handle(command);
-
-            return RedirectToAction("Index", "Serie", new { area="Admin",  id = command.StoredSerieId });
+            return Redirect("/Admin");
         }
     }
 }
