@@ -7,12 +7,12 @@ namespace SterreFenna.Business.Series.Commands
         public int Id { get; set; }
     }
 
-    public class DeleteCommandHandler
+    public class DeleteSerieCommandHandler
     {
         private readonly SeriePathServiceFactory _seriePathResolverFactory;
         private readonly IUnitOfWork _unitOfWork;
 
-        public DeleteCommandHandler(SeriePathServiceFactory seriePathResolverFactory, IUnitOfWork unitOfWork)
+        public DeleteSerieCommandHandler(SeriePathServiceFactory seriePathResolverFactory, IUnitOfWork unitOfWork)
         {
             _seriePathResolverFactory = seriePathResolverFactory;
             _unitOfWork = unitOfWork;

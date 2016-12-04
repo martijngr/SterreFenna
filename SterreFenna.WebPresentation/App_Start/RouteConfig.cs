@@ -14,6 +14,13 @@ namespace SterreFenna.WebPresentation
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Offline",
+                url: "Offline",
+                defaults: new { controller = "Offline", action = "Index" },
+                namespaces: new string[] { "SterreFenna.WebPresentation.Controllers" }
+            );
+
+            routes.MapRoute(
                 name: "Landing",
                 url: "",
                 defaults: new { controller = "Home", action = "Landing" },

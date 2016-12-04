@@ -68,10 +68,19 @@
     }
 
     function deleteSerie() {
-        HtmlFormBuilder.create("/Admin/Serie/Delete");
+        Loader.show();
 
-        HtmlFormBuilder.appendHiddenField("id", _serieId);
-        HtmlFormBuilder.submit();
+        PopupService.setTitle("Serie verwijderen");
+        PopupService.setBody("Weet je zeker dat je de serie wilt verwijderen?");
+        PopupService.setConfirmButtonText("Verwijder serie");
+        PopupService.confirmationButtonIsDeleteButton();
+        PopupService.onConfirm(function () {
+            HtmlFormBuilder.create("/Admin/Serie/Delete");
+
+            HtmlFormBuilder.appendHiddenField("id", _serieId);
+            HtmlFormBuilder.submit();
+        });
+        PopupService.show();
     }
 
     function submitAddSerie() {
@@ -80,7 +89,8 @@
         if (validationErrors.isValid()) {
             Loader.show();
             SerieFormElements.createButton.hide();
-            SerieFormelements.deleteButton.hide();
+            if (_serieId > 0)
+                SerieFormElements.deleteButton.hide();
             var dropzone = Dropzone.instances[0];
             dropzone.processQueue();
         }

@@ -1,5 +1,6 @@
 ﻿using SterreFenna.Business.Settings;
 using SterreFenna.Domain.Series;
+using System;
 using System.IO;
 
 namespace SterreFenna.Business.Series
@@ -12,6 +13,11 @@ namespace SterreFenna.Business.Series
 
         public SeriePathService(ISettings settings, int serieId, string serieName)
         {
+            if (serieId < 1)
+                throw new ArgumentException($"{nameof(serieId)} must be greater than 0");
+            if(!serieName.HasValue())
+                throw new ArgumentException($"{nameof(serieName)} must have a value");
+
             _settings = settings;
             _serieId = serieId;
             _serieName = serieName;
@@ -24,7 +30,7 @@ namespace SterreFenna.Business.Series
 
         public string GetSerieItemPath(string itemName)
         {
-            var seriePath = GetSerieAbsoluteBasePath();
+            var seriePath = GetAbsoluteSerieBasePath();
 
             return Path.Combine(seriePath, itemName);
         }
@@ -36,7 +42,7 @@ namespace SterreFenna.Business.Series
 
         public void CreateSerieDirectory()
         {
-            var seriePath = GetSerieAbsoluteBasePath();
+            var seriePath = GetAbsoluteSerieBasePath();
             if (Directory.Exists(seriePath))
                 return;
 
@@ -45,14 +51,14 @@ namespace SterreFenna.Business.Series
 
         public void DeleteSerieDirectory(Serie serie)
         {
-            var serieDir = GetSerieAbsoluteBasePath();
+            var serieDir = GetAbsoluteSerieBasePath();
             if (Directory.Exists(serieDir))
             {
                 Directory.Delete(serieDir, true);
             }
         }
 
-        public string GetSerieAbsoluteBasePath()
+        public string GetAbsoluteSerieBasePath()
         {
             return Path.Combine("/", _settings.SeriePath, SerieDirName);
         }

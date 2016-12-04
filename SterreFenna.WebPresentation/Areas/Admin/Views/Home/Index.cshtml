@@ -13,13 +13,20 @@
     {
         <div class="serie-block pull-left">
             <a href="/Admin/Serie/Edit/@serie.Id">
-                <img src="@serie.ImageLocation" />
                 <div>
-                    <div>@serie.Name</div>
-                    <div>
-                        <span class="badge alert-info"><i class="fa fa-file-image-o"></i> @serie.TotalItems</span>
-                        <br />
-                        <span class="badge alert-success"><i class="fa fa-fire"></i> @serie.TotalMarkedItems</span>
+                    <div class="title">@serie.Name</div>
+                    <div class="content">
+                        <img src="@serie.ImageLocation" />
+                        <div class="info-bar">
+                            <span class="badge alert-info" title="Aantal foto's in serie'">
+                                <i class="fa fa-file-image-o"></i> 
+                                @serie.TotalItems
+                            </span>
+                            <span class="badge alert-success" title="Aantal op foto's op front page">
+                                <i class="fa fa-fire"></i> 
+                                @serie.TotalMarkedItems
+                            </span>
+                        </div>
                     </div>
                 </div>
             </a>

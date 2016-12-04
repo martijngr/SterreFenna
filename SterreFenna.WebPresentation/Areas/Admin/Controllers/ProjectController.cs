@@ -12,19 +12,22 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
         private readonly ChangeProjectOrderCommand _changeProjectOrderCommand;
         private readonly GetProjectByIdQueryHandler _getProjectByIdHandler;
         private readonly EditProjectCommandHandler _editProjectHandler;
+        private readonly DeleteProjectCommandHandler _deleteProjectHandler;
 
         public ProjectController(
             GetProjectOverviewQueryHandler getProjectOverviewQuery,
             CreateProjectCommandHandler addProjectHandler,
             ChangeProjectOrderCommand changeProjectOrderCommand,
             GetProjectByIdQueryHandler getProjectByIdHandler,
-            EditProjectCommandHandler editProjectHandler)
+            EditProjectCommandHandler editProjectHandler,
+            DeleteProjectCommandHandler deleteProjectHandler)
         {
             _getProjectOverviewQuery = getProjectOverviewQuery;
             _addProjectHandler = addProjectHandler;
             _changeProjectOrderCommand = changeProjectOrderCommand;
             _getProjectByIdHandler = getProjectByIdHandler;
             _editProjectHandler = editProjectHandler;
+            _deleteProjectHandler = deleteProjectHandler;
         }
 
         public ActionResult Index()
@@ -75,6 +78,14 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
             _changeProjectOrderCommand.Handle();
 
             return RedirectToAction("Index", "Project", new { area = "Admin" });
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            _deleteProjectHandler.Handle(new DeleteProjectCommand { Id = id });
+
+            return Redirect("/Admin");
         }
     }
 }

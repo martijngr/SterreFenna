@@ -18,5 +18,6 @@ namespace SterreFenna.Domain.Projects
         Project GetByUniqueName(string uniqueName);
 
         bool Any(Expression<Func<Project, bool>> expression);
+        void Delete(Project project);
     }
 }

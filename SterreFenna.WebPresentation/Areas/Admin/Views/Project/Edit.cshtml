@@ -4,12 +4,19 @@
     <div class="row">
         <h2>Project bewerken</h2>
         <div class="row">
-            <input type="hidden" value="@Model.Id" name="ProjectId" />
+            <input type="hidden" value="@Model.Id" name="ProjectId"  id="ProjectId"/>
             <div class="form-group col-sm-4">
                 <label for="name">Naam</label>
                 <input type="text" class="form-control" name="Name" id="name" value="@Model.Name" placeholder="Naam van nieuw project">
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4 buttonbar">
+                <button type="button"
+                        class="btn btn-danger pull-right"
+                        style="margin-top: 24px;"
+                        onclick="ProjectController.deleteProject()"
+                        id="btnDelete">
+                    Verwijderen
+                </button>
                 <button type="submit"
                         class="btn btn-primary pull-right"
                         style="margin-top: 24px;">
@@ -40,14 +47,14 @@
                 <tbody>
                     @foreach (var serie in Model.Series)
                     {
-                        <tr>
-                            <td>
-                                <a href="/Admin/Serie/Edit/@serie.Id">@serie.Name</a>
-                            </td>
-                            <td>
-                                @serie.UniqueName
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            <a href="/Admin/Serie/Edit/@serie.Id">@serie.Name</a>
+                        </td>
+                        <td>
+                            @serie.UniqueName
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>
@@ -55,10 +62,16 @@
     </div>
 </form>
 
+<div>
+    @Html.Partial("Popup")
+</div>
+
 @section scripts{
-    
+
     <script src="~/Areas/Admin/Scripts/Projects/ProjectFormElements.js"></script>
     <script src="~/Areas/Admin/Scripts/Projects/ProjectController.js"></script>
+    <script src="~/Areas/Admin/Scripts/Shared/PopupService.js"></script>
+    <script src="~/Areas/Admin/Scripts/Shared/HtmlFormBuilder.js"></script>
 
     <script>
         ProjectController.init();

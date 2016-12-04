@@ -1,9 +1,10 @@
 TODO
 ----------------
 >	MARTIJN	<
+	- projecten kunnen verwijderen
 	- unique name tonen en laten editen + controle op uniekheid (project + serie)
 	- envelopje in mobile: contactformulier tonen
-	- projecten en series kunnen verwijderen
+
 	- placeholders in contactpagina:
 		{{FB}} {{TW}} {{IN}} {{GP}}{{LI}}
 		{{line}}
@@ -48,6 +49,8 @@ Done
 - Bij project door kunnen klikken naar Serie [02-09-2016]
 - Bij project doorlinken naar een nieuwe serie [03-12-2016]
 - Serie verwijderen [02-12-2016]
+- Op server taak maken die elke dag een backup maakt van de site [02-12-2016]
+
 
 Versie 2
 - Mogelijkheid om youtube-url's op te geven -> embedded video's

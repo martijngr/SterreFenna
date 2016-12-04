@@ -15,7 +15,7 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
     public class SerieController : Controller
     {
         private readonly CreateSerieCommandHandler _createSerieHandler;
-        private readonly DeleteCommandHandler _deleteCommandHandler;
+        private readonly DeleteSerieCommandHandler _deleteCommandHandler;
         private readonly EditSerieCommandHandler _editSerieHandler;
         private readonly GetProjectListOverviewQuery _getProjectListOverviewQuery;
         private readonly GetSerieByIdQuery _getSerieByIdQuery;
@@ -27,7 +27,7 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
             GetProjectListOverviewQuery getProjectListOverviewQuery,
             GetSerieByIdQuery getSerieByIdQuery,
             GetProjectOverviewQueryHandler getProjectOverviewQuery,
-            DeleteCommandHandler deleteCommandHandler)
+            DeleteSerieCommandHandler deleteCommandHandler)
         {
             _createSerieHandler = createGalleryCommand;
             _editSerieHandler = editSerieCommand;

@@ -67,6 +67,7 @@
     <Compile Include="Projects\Commands\CreateProjectCommand.cs" />
     <Compile Include="Projects\Commands\BaseProjectCommand.cs" />
     <Compile Include="Projects\Commands\ChangeProjectOrderCommand.cs" />
+    <Compile Include="Projects\Commands\DeleteProjectCommand.cs" />
     <Compile Include="Projects\Commands\EditProjectCommand.cs" />
     <Compile Include="Projects\ProjectNotFoundException.cs" />
     <Compile Include="Projects\Queries\GetProjectByIdQuery.cs" />

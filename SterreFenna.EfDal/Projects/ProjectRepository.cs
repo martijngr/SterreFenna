@@ -1,10 +1,5 @@
 ﻿using SterreFenna.Domain.Projects;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Linq.Expressions;
 
 namespace SterreFenna.EfDal.Projects
 {
@@ -21,6 +16,11 @@ namespace SterreFenna.EfDal.Projects
         public Project GetByUniqueName(string uniqueName)
         {
             return _context.Projects.FirstOrDefault(p => p.UniqueName == uniqueName);
+        }
+
+        public void Delete(Project project)
+        {
+            _context.Projects.Remove(project);
         }
     }
 }

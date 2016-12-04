@@ -1,17 +1,12 @@
 ﻿using SterreFenna.Domain;
-using SterreFenna.Domain.Projects;
-using SterreFenna.Domain.Series;
-using SterreFenna.EfDal.Projects;
-using SterreFenna.EfDal.Series;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SterreFenna.Domain.SerieItems;
-using SterreFenna.EfDal.SerieItems;
 using SterreFenna.Domain.Contacts;
+using SterreFenna.Domain.Projects;
+using SterreFenna.Domain.SerieItems;
+using SterreFenna.Domain.Series;
 using SterreFenna.EfDal.ContactPages;
+using SterreFenna.EfDal.Projects;
+using SterreFenna.EfDal.SerieItems;
+using SterreFenna.EfDal.Series;
 
 namespace SterreFenna.EfDal
 {

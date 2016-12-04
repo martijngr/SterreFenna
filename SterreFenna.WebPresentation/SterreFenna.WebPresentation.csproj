@@ -144,12 +144,16 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\SiteOfflineFilterAttribute.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CommonControlController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Areas\Admin\Models\NewSerieModel.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ErrorsController.cs" />
+    <Compile Include="Controllers\OfflineController.cs" />
     <Compile Include="Models\LandingPageItem.cs" />
     <Compile Include="Models\LandingPageModel.cs" />
     <Compile Include="UrlBuilders\UrlBuilder.cs" />
@@ -162,6 +166,7 @@
     <Content Include="Areas\Admin\Scripts\Series\SerieController.js" />
     <Content Include="Areas\Admin\Scripts\Shared\HtmlFormBuilder.js" />
     <Content Include="Areas\Admin\Scripts\Shared\Loader.js" />
+    <Content Include="Areas\Admin\Scripts\Shared\PopupService.js" />
     <Content Include="Areas\Admin\Scripts\Shared\ValidationResult.js" />
     <Content Include="Areas\Admin\Scripts\Series\SerieValidator.js" />
     <Content Include="Areas\Admin\Views\Serie\UploadProgressbar.html" />
@@ -279,6 +284,7 @@
     <Content Include="compilerconfig.json" />
     <Content Include="Areas\Admin\Views\Contact\Index.cshtml" />
     <Content Include="bundleconfig.json" />
+    <Content Include="Areas\Admin\Views\Shared\Popup.cshtml" />
     <None Include="compilerconfig.json.defaults" />
     <Content Include="packages.config" />
     <Content Include="Content\less\fonts\FontAwesome.otf" />
@@ -594,6 +600,7 @@
     <Content Include="Views\Contact\ContactMe.cshtml" />
     <Content Include="Views\Errors\NotFound.cshtml" />
     <Content Include="Views\Errors\ErrorsLayout.cshtml" />
+    <Content Include="Views\Offline\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -603,6 +610,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\CommonControl\" />
     <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>

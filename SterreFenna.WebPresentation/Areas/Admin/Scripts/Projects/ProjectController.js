@@ -1,6 +1,7 @@
 ﻿var ProjectController = function () {
     return {
         init: init,
+        deleteProject: deleteProject,
     };
 
     function init(description) {
@@ -15,5 +16,22 @@
             paste_as_text: true,
             autoresize_max_height: 250,
         });
+    }
+
+    function deleteProject() {
+        Loader.show();
+        ProjectFormElements.buttonBarButtons.hide();
+
+        PopupService.setTitle("Project verwijderen");
+        PopupService.setBody("Weet je zeker dat je het project en alle onderliggende series wilt verwijderen?");
+        PopupService.setConfirmButtonText("Verwijder project");
+        PopupService.confirmationButtonIsDeleteButton();
+        PopupService.onConfirm(function () {
+            HtmlFormBuilder.create("/Admin/Project/Delete");
+            HtmlFormBuilder.appendHiddenField("id", ProjectFormElements.projectId);
+
+            HtmlFormBuilder.submit();
+        });
+        PopupService.show();
     }
 }();

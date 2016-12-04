@@ -2,6 +2,7 @@
 using Autofac.Integration.Mvc;
 using SterreFenna.Business.Settings;
 using SterreFenna.IoC;
+using SterreFenna.WebPresentation.App_Start;
 using SterreFenna.WebPresentation.Controllers;
 using SterreFenna.WebPresentation.Menus;
 using SterreFenna.WebPresentation.Settings;
@@ -18,9 +19,9 @@ namespace SterreFenna.WebPresentation
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 
             InitIoC();
-           
         }
 
         private void InitIoC()

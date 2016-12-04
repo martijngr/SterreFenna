@@ -42,7 +42,14 @@
         </div>
     </div>
     <div class="row">
-        <h2>Project</h2>
+        <h2>
+            Project 
+            <small>
+                <a href="/Admin/Project/Edit/@Model.SerieDetails.ProjectId" title="Project bewerken">
+                    <i class="fa fa-pencil small"></i>
+                </a>
+            </small>
+        </h2>
         <div class="form-group col-sm-4">
             <label for="newProjectName">Naam</label>
             <input type="text" class="form-control" id="newProjectName" value="" placeholder="Naam van nieuw project">
@@ -83,12 +90,18 @@
         </ul>
     </div>
 </div>
+
+<div>
+    @Html.Partial("Popup")
+</div>
+
 @section scripts{
     <script src="~/Areas/Admin/Scripts/Shared/HtmlFormBuilder.js"></script>
     <script src="~/Areas/Admin/Scripts/Series/SerieController.js"></script>
     <script src="~/Areas/Admin/Scripts/Series/SerieFormElements.js"></script>
     <script src="~/Areas/Admin/Scripts/Series/SerieValidator.js"></script>
     <script src="~/Areas/Admin/Scripts/Shared/ValidationResult.js"></script>
+    <script src="~/Areas/Admin/Scripts/Shared/PopupService.js"></script>
 
     <script>
         var favouriteItems = @Html.Raw(Json.Encode(@Model.SerieDetails.SerieItems.Where(s => s.IsLandingPageItem)));
