@@ -1,7 +1,6 @@
 TODO
 ----------------
 >	MARTIJN	<
-	- projecten kunnen verwijderen
 	- unique name tonen en laten editen + controle op uniekheid (project + serie)
 	- envelopje in mobile: contactformulier tonen
 
@@ -50,6 +49,9 @@ Done
 - Bij project doorlinken naar een nieuwe serie [03-12-2016]
 - Serie verwijderen [02-12-2016]
 - Op server taak maken die elke dag een backup maakt van de site [02-12-2016]
+- projecten kunnen verwijderen [03-12-2016]
+- Homepage van admin opnieuw gestyled [03-12-2016]
+- Brand link in adminpagina linken naar homepage van admin [03-12-2016]
 
 
 Versie 2
