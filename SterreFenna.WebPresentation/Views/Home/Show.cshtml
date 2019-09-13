@@ -18,7 +18,7 @@
                     <div>
                         <div class="credits-border"></div>
                         <span>
-                            @Html.Raw(Model.Credits.Replace("\r\n", "<br/>"))
+                            @Html.Raw(Model.Credits.Replace("\r\n", "<br/>").Replace("\n", "<br/>"))
                         </span>
                         <div class="credits-border"></div>
                     </div>
