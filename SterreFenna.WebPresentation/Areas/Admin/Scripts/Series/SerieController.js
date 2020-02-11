@@ -163,6 +163,7 @@
                 });
 
                 this.on("sending", function (file, xhr, formData) {
+                    
                     if (_serieId > 0)
                         formData.append('serieId', _serieId);
 
@@ -176,32 +177,87 @@
                 });
 
                 this.on("queuecomplete", function (file) {
-                    document.location.href = "/Admin/";
+                    Loader.hide();
+                    //document.location.href = "/Admin/";
                 });
 
                 var myDropzone = this;
-                var images = $("#sortable img").map(function () {
+
+                // read all images from html and add them to this dropzone instance.
+                var files = $("#sortable img").map(function () {
                     var location = $(this).attr('src');
 
                     var mockFile = {
                         name: "myimage.jpg",
                         size: 12345,
-                        type: 'image/jpeg',
+                        type: 'image/jpg',
                         status: Dropzone.QUEUED,
-                        url: location
+                        url: '/Series/96_My%20brother%20and%20I/P2080207%20%208-2-2020%20Webversie.JPG',
+                        accepted: true
                     };
 
-                    // Call the default addedfile event handler
-                    myDropzone.emit("addedfile", mockFile);
+                    //loadXHR(location, function (blobImage) {
+                    //    blobImage.name = "mock.jpg";
+                    //    blobImage.url = '/Series/96_My%20brother%20and%20I/P2080207%20%208-2-2020%20Webversie.JPG';
+                    //    blobImage.accepted = true;
 
-                    myDropzone.files.push(mockFile);
+                    //    myDropzone.emit("addedfile", blobImage);
+                    //    //myDropzone.emit("thumbnail", blobImage, location);
+                    //    myDropzone.files.push(blobImage);
+                    //});
+                   
+
+                    //myDropzone.emit("addedfile", mockFile);
+                    //myDropzone.emit("thumbnail", mockFile, location);
+                    //myDropzone.files.push(mockFile);
+
+                    //return mockFile;
+
+                    // Call the default addedfile event handler
+                    //myDropzone.emit("addedfile", mockFile);
+
+                    //myDropzone.createThumbnailFromUrl(mockFile, location);
+                    //myDropzone.emit("success", mockFile);
+                    //myDropzone.emit("complete", mockFile);
+                    
+                    //myDropzone.files.push(mockFile);
                 });
+                //debugger;
+                //myDropzone.uploadFiles(files);
 
                 _initialize = false;
             }
         };
         Dropzone.autoDiscover = true;
         Dropzone.options.fooBar = dropzoneOptions;
+    }
+
+    function loadXHR(url, callback) {
+        
+        var xhr = new XMLHttpRequest();
+        xhr.responseType = "blob";
+        xhr.open("GET", url);
+        xhr.onerror = function () {
+            console.log("Network error.")
+        };
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                callback(xhr.response);
+            }
+        }
+        //xhr.onload = function () {
+        //    if (xhr.status === 200) {
+        //        var resp = xhr.response;
+        //        console.log(resp);
+
+        //        return xhr.response;
+        //    }
+        //    else {
+        //        console.log("Loading error:" + xhr.statusText)
+        //    }
+        //};
+        xhr.send();
+            
     }
 
     function setupDragArea() {
