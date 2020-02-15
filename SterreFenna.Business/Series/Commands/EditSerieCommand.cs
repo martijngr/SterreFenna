@@ -3,6 +3,7 @@ using SterreFenna.Domain;
 using SterreFenna.Domain.Projects;
 using SterreFenna.Domain.Series;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -10,7 +11,14 @@ namespace SterreFenna.Business.Series.Commands
 {
     public class EditSerieCommand : BaseSerieCommand
     {
+        public EditSerieCommand()
+        {
+            FileIdsToDelete = Enumerable.Empty<int>();
+        }
+
         public int SerieId { get; set; }
+
+        public IEnumerable<int> FileIdsToDelete { get; set; }
     }
 
     public class EditSerieCommandHandler 
@@ -32,12 +40,24 @@ namespace SterreFenna.Business.Series.Commands
 
             EditProject(serie, command);
 
+            RemoveSerieItems(command.FileIdsToDelete);
+
             _addItemsToSerieCommand.SerieItems = command.SerieItems;
             _addItemsToSerieCommand.Handle(serie);
             
             MarkImagesAsFavourite(serie, command);
 
             _unitOfWork.SaveChanges();
+        }
+
+        private void RemoveSerieItems(IEnumerable<int> fileIdsToDelete)
+        {
+            foreach (var serieItemId in fileIdsToDelete)
+            {
+                var serieItem = _unitOfWork.SerieItemRepository.GetById(serieItemId);
+
+                _unitOfWork.SerieItemRepository.Remove(serieItem);
+            }
         }
 
         private void UpdateSerie(Serie serie, EditSerieCommand command)
@@ -47,7 +67,8 @@ namespace SterreFenna.Business.Series.Commands
 
             if (!serie.Name.Equals(command.SerieName))
             {
-                serie.Name = GetUniqueName(command.SerieName);
+                serie.Name = command.SerieName;
+                serie.UniqueName = GetUniqueName(command.SerieName);
             }
         }
 

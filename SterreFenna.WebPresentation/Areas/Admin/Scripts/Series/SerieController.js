@@ -15,12 +15,14 @@
     var _favouriteItems;
     var _initialize;
     var _progressTemplate;
+    var _serieItemIdsToDelete;
 
     function init(serieId, favouriteItems) {
         _serieId = serieId || 0;
         _favouriteItems = favouriteItems || [];
         _initialize = true;
         _progressTemplate = "";
+        _serieItemIdsToDelete = [];
 
         Loader.hide();
 
@@ -48,7 +50,12 @@
     }
 
     function removePhotoFromList(element) {
-        $(element).parent().remove();
+        var parentElement = $(element).parent();
+        var serieItemId = parentElement.data("serieitemid");
+
+        _serieItemIdsToDelete.push(serieItemId);
+
+        parentElement.remove();
     }
 
     function getBase64String(file, callback) {
@@ -88,11 +95,24 @@
 
         if (validationErrors.isValid()) {
             Loader.show();
+
             SerieFormElements.createButton.hide();
+
             if (_serieId > 0)
                 SerieFormElements.deleteButton.hide();
+
+            //debugger;
+
             var dropzone = Dropzone.instances[0];
-            dropzone.processQueue();
+
+            if (dropzone.getQueuedFiles().length == 0) {
+                submitFormWithoutFiles();
+
+                saveComplete();
+            }
+            else {
+                dropzone.processQueue();
+            }
         }
         else {
             alert(validationErrors.getString());
@@ -163,7 +183,7 @@
                 });
 
                 this.on("sending", function (file, xhr, formData) {
-                    
+                    console.log("dropzone is sending..");
                     if (_serieId > 0)
                         formData.append('serieId', _serieId);
 
@@ -174,11 +194,13 @@
                     formData.append('newProjectName', SerieFormElements.newProjectName.val());
                     formData.append('projectId', SerieFormElements.projectDropdown.val());
                     formData.append('credits', SerieFormElements.credits.val());
+                    formData.append('fileIdsToDelete', _serieItemIdsToDelete);
                 });
 
                 this.on("queuecomplete", function (file) {
-                    Loader.hide();
-                    //document.location.href = "/Admin/";
+                    console.log("dropzone queue complete");
+                    
+                    document.location.href = "/Admin/";
                 });
 
                 var myDropzone = this;
@@ -191,73 +213,21 @@
                         name: "myimage.jpg",
                         size: 12345,
                         type: 'image/jpg',
-                        status: Dropzone.QUEUED,
-                        url: '/Series/96_My%20brother%20and%20I/P2080207%20%208-2-2020%20Webversie.JPG',
-                        accepted: true
+                        //status: Dropzone.QUEUED,
+                        url: location,
+                        accepted: true,
+                        serverId: 12
                     };
 
-                    //loadXHR(location, function (blobImage) {
-                    //    blobImage.name = "mock.jpg";
-                    //    blobImage.url = '/Series/96_My%20brother%20and%20I/P2080207%20%208-2-2020%20Webversie.JPG';
-                    //    blobImage.accepted = true;
-
-                    //    myDropzone.emit("addedfile", blobImage);
-                    //    //myDropzone.emit("thumbnail", blobImage, location);
-                    //    myDropzone.files.push(blobImage);
-                    //});
-                   
-
-                    //myDropzone.emit("addedfile", mockFile);
-                    //myDropzone.emit("thumbnail", mockFile, location);
-                    //myDropzone.files.push(mockFile);
-
-                    //return mockFile;
-
-                    // Call the default addedfile event handler
-                    //myDropzone.emit("addedfile", mockFile);
-
-                    //myDropzone.createThumbnailFromUrl(mockFile, location);
-                    //myDropzone.emit("success", mockFile);
-                    //myDropzone.emit("complete", mockFile);
-                    
-                    //myDropzone.files.push(mockFile);
+                    myDropzone.emit("addedfile", mockFile);
+                    myDropzone.files.push(mockFile);
                 });
-                //debugger;
-                //myDropzone.uploadFiles(files);
 
                 _initialize = false;
             }
         };
         Dropzone.autoDiscover = true;
         Dropzone.options.fooBar = dropzoneOptions;
-    }
-
-    function loadXHR(url, callback) {
-        
-        var xhr = new XMLHttpRequest();
-        xhr.responseType = "blob";
-        xhr.open("GET", url);
-        xhr.onerror = function () {
-            console.log("Network error.")
-        };
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                callback(xhr.response);
-            }
-        }
-        //xhr.onload = function () {
-        //    if (xhr.status === 200) {
-        //        var resp = xhr.response;
-        //        console.log(resp);
-
-        //        return xhr.response;
-        //    }
-        //    else {
-        //        console.log("Loading error:" + xhr.statusText)
-        //    }
-        //};
-        xhr.send();
-            
     }
 
     function setupDragArea() {
@@ -300,5 +270,28 @@
         $.get("/Areas/Admin/Views/Serie/UploadProgressbar.html", function (response) {
             _progressTemplate = $(response);
         });
+    }
+
+    function saveComplete() {
+        document.location.href = "/Admin/";
+    }
+
+    function submitFormWithoutFiles() {
+        var postJson = {
+            name: SerieFormElements.newSerieName.val(),
+            publicationDate: SerieFormElements.publicationDate.val(),
+            filenameOrder: SerieController.getOrderOfFilenames().join(),
+            favouriteFilenames: _favouriteItems,
+            newProjectName: SerieFormElements.newProjectName.val(),
+            projectId: SerieFormElements.projectDropdown.val(),
+            credits: SerieFormElements.credits.val(),
+            fileIdsToDelete: _serieItemIdsToDelete,
+            serieId: _serieId
+        };
+
+        console.log(postJson);
+
+        $.post("/Admin/Serie/SubmitEdit", postJson, saveComplete);
+        
     }
 }();

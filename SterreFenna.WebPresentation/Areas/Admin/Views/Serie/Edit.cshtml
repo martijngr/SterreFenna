@@ -81,7 +81,7 @@
         <ul id="sortable">
             @foreach (var item in Model.SerieDetails.SerieItems.OrderBy(s => s.Rank))
             {
-                <li class="ui-state-default height-90">
+                <li class="ui-state-default height-90" data-serieItemId="@item.Id">
                     <img src="@item.Location" alt="@item.Location" title="@item.Location" />
                     <i class="fa fa-trash" onclick="SerieController.removePhotoFromList(this)"></i>
                     <i class="fa fa-asterisk @(item.IsLandingPageItem ? "favourite-item" : "" )" onclick="SerieController.markAsFavourite(this)"></i>

@@ -128,6 +128,7 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
                 Credits = model.Credits
             };
             
+
             if(model.favouriteFilenames.HasValue())
                 command.FavouriteItems = model.favouriteFilenames.Split(',').ToList();
 
