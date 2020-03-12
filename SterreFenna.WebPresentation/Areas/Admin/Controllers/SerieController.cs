@@ -89,6 +89,7 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
             return View(model);
         }
 
+        [HttpPost]
         public ActionResult SubmitEdit(PostedSerieModel model)
         {
             var serie = _getSerieByIdQuery.Handle(model.SerieId);

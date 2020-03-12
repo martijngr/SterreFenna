@@ -273,6 +273,7 @@
     }
 
     function saveComplete() {
+        //console.log('save complete');
         document.location.href = "/Admin/";
     }
 
