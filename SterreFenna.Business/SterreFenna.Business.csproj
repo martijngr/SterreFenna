@@ -80,6 +80,7 @@
     <Compile Include="Series\Commands\CreateSerieCommand.cs" />
     <Compile Include="Series\Commands\DeleteSerieCommand.cs" />
     <Compile Include="Series\Commands\EditSerieCommand.cs" />
+    <Compile Include="Series\Commands\RenameSerieNameCommand.cs" />
     <Compile Include="Series\Queries\GetSerieByIdQuery.cs" />
     <Compile Include="Series\Commands\UploadedSerieItem.cs" />
     <Compile Include="Projects\Queries\GetFirstActiveProjectQuery.cs" />

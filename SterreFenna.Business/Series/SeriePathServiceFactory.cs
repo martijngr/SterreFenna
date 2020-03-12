@@ -11,7 +11,7 @@ namespace SterreFenna.Business.Series
             _settings = settings;
         }
 
-        public SeriePathService CreateSeriePathResolver(int serieId, string serieName)
+        public SeriePathService CreateSeriePathService(int serieId, string serieName)
         {
             return new SeriePathService(_settings, serieId, serieName);
         }

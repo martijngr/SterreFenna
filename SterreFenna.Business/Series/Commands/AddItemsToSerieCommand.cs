@@ -30,7 +30,7 @@ namespace SterreFenna.Business.Series.Commands
 
         public void Handle(Serie serie)
         {
-            _seriePathResolver = _seriePathResolverFactory.CreateSeriePathResolver(serie.Id, serie.Name);
+            _seriePathResolver = _seriePathResolverFactory.CreateSeriePathService(serie.Id, serie.Name);
 
             RemoveExistingSerieItems(serie);
 

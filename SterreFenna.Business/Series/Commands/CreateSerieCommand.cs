@@ -40,7 +40,7 @@ namespace SterreFenna.Business.Series.Commands
             var serie = CreateSerie(command);
             SaveSerie(serie);
 
-            var seriePathResolver = _seriePathResolverFactory.CreateSeriePathResolver(serie.Id, command.SerieName);
+            var seriePathResolver = _seriePathResolverFactory.CreateSeriePathService(serie.Id, command.SerieName);
             seriePathResolver.CreateSerieDirectory();
 
             _addItemsToSerieCommand.SerieItems = command.SerieItems;
