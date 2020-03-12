@@ -15,6 +15,8 @@ namespace SterreFenna.Domain.SerieItems
 
         IEnumerable<SerieItem> GetAll();
 
+        void Remove(SerieItem entity);
+
         void RemoveRange(IEnumerable<SerieItem> serieItems);
 
         void Add(IEnumerable<SerieItem> serieItems);

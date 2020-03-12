@@ -89,6 +89,7 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
             return View(model);
         }
 
+        [HttpPost]
         public ActionResult SubmitEdit(PostedSerieModel model)
         {
             var serie = _getSerieByIdQuery.Handle(model.SerieId);
@@ -128,6 +129,7 @@ namespace SterreFenna.WebPresentation.Areas.Admin.Controllers
                 Credits = model.Credits
             };
             
+
             if(model.favouriteFilenames.HasValue())
                 command.FavouriteItems = model.favouriteFilenames.Split(',').ToList();
 

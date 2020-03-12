@@ -58,15 +58,15 @@ namespace SterreFenna.WebPresentation
         {
             if (Context.Response.StatusCode == 404)
             {
-                Response.Clear();
-                Response.TrySkipIisCustomErrors = true;
+                //Response.Clear();
+                //Response.TrySkipIisCustomErrors = true;
 
-                var rd = new RouteData();
-                rd.Values["controller"] = "Errors";
-                rd.Values["action"] = "NotFound";
+                //var rd = new RouteData();
+                //rd.Values["controller"] = "Errors";
+                //rd.Values["action"] = "NotFound";
 
-                IController c = new ErrorsController();
-                c.Execute(new RequestContext(new HttpContextWrapper(Context), rd));
+                //IController c = new ErrorsController();
+                //c.Execute(new RequestContext(new HttpContextWrapper(Context), rd));
             }
         }
     }

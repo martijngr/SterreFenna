@@ -15,12 +15,14 @@
     var _favouriteItems;
     var _initialize;
     var _progressTemplate;
+    var _serieItemIdsToDelete;
 
     function init(serieId, favouriteItems) {
         _serieId = serieId || 0;
         _favouriteItems = favouriteItems || [];
         _initialize = true;
         _progressTemplate = "";
+        _serieItemIdsToDelete = [];
 
         Loader.hide();
 
@@ -48,7 +50,12 @@
     }
 
     function removePhotoFromList(element) {
-        $(element).parent().remove();
+        var parentElement = $(element).parent();
+        var serieItemId = parentElement.data("serieitemid");
+
+        _serieItemIdsToDelete.push(serieItemId);
+
+        parentElement.remove();
     }
 
     function getBase64String(file, callback) {
@@ -88,11 +95,24 @@
 
         if (validationErrors.isValid()) {
             Loader.show();
+
             SerieFormElements.createButton.hide();
+
             if (_serieId > 0)
                 SerieFormElements.deleteButton.hide();
+
+            //debugger;
+
             var dropzone = Dropzone.instances[0];
-            dropzone.processQueue();
+
+            if (dropzone.getQueuedFiles().length == 0) {
+                submitFormWithoutFiles();
+
+                saveComplete();
+            }
+            else {
+                dropzone.processQueue();
+            }
         }
         else {
             alert(validationErrors.getString());
@@ -163,6 +183,7 @@
                 });
 
                 this.on("sending", function (file, xhr, formData) {
+                    console.log("dropzone is sending..");
                     if (_serieId > 0)
                         formData.append('serieId', _serieId);
 
@@ -173,27 +194,32 @@
                     formData.append('newProjectName', SerieFormElements.newProjectName.val());
                     formData.append('projectId', SerieFormElements.projectDropdown.val());
                     formData.append('credits', SerieFormElements.credits.val());
+                    formData.append('fileIdsToDelete', _serieItemIdsToDelete);
                 });
 
                 this.on("queuecomplete", function (file) {
+                    console.log("dropzone queue complete");
+                    
                     document.location.href = "/Admin/";
                 });
 
                 var myDropzone = this;
-                var images = $("#sortable img").map(function () {
+
+                // read all images from html and add them to this dropzone instance.
+                var files = $("#sortable img").map(function () {
                     var location = $(this).attr('src');
 
                     var mockFile = {
                         name: "myimage.jpg",
                         size: 12345,
-                        type: 'image/jpeg',
-                        status: Dropzone.QUEUED,
-                        url: location
+                        type: 'image/jpg',
+                        //status: Dropzone.QUEUED,
+                        url: location,
+                        accepted: true,
+                        serverId: 12
                     };
 
-                    // Call the default addedfile event handler
                     myDropzone.emit("addedfile", mockFile);
-
                     myDropzone.files.push(mockFile);
                 });
 
@@ -244,5 +270,29 @@
         $.get("/Areas/Admin/Views/Serie/UploadProgressbar.html", function (response) {
             _progressTemplate = $(response);
         });
+    }
+
+    function saveComplete() {
+        //console.log('save complete');
+        document.location.href = "/Admin/";
+    }
+
+    function submitFormWithoutFiles() {
+        var postJson = {
+            name: SerieFormElements.newSerieName.val(),
+            publicationDate: SerieFormElements.publicationDate.val(),
+            filenameOrder: SerieController.getOrderOfFilenames().join(),
+            favouriteFilenames: _favouriteItems,
+            newProjectName: SerieFormElements.newProjectName.val(),
+            projectId: SerieFormElements.projectDropdown.val(),
+            credits: SerieFormElements.credits.val(),
+            fileIdsToDelete: _serieItemIdsToDelete,
+            serieId: _serieId
+        };
+
+        console.log(postJson);
+
+        $.post("/Admin/Serie/SubmitEdit", postJson, saveComplete);
+        
     }
 }();

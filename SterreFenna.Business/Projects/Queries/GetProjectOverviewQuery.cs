@@ -2,7 +2,6 @@
 using SterreFenna.Business.Series.Views;
 using SterreFenna.Domain;
 using SterreFenna.Domain.Projects;
-using SterreFenna.Domain.Series;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,7 +75,7 @@ namespace SterreFenna.Business.Projects.Queries
             {
                 var today = DateTime.Now;
                 projectsToReturn = _unitOfWork.ProjectRepository
-                                              .Find(p => p.Series.Any(s => s.Published.Value > today || !s.Published.HasValue))
+                                              .Find(p => p.Series.Any(s => s.Published.Value <= today || !s.Published.HasValue))
                                               .ToList();
             }
             else

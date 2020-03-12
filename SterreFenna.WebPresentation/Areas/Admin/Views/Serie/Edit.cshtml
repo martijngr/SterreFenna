@@ -81,7 +81,7 @@
         <ul id="sortable">
             @foreach (var item in Model.SerieDetails.SerieItems.OrderBy(s => s.Rank))
             {
-                <li class="ui-state-default height-90">
+                <li class="ui-state-default height-90" data-serieItemId="@item.Id">
                     <img src="@item.Location" alt="@item.Location" title="@item.Location" />
                     <i class="fa fa-trash" onclick="SerieController.removePhotoFromList(this)"></i>
                     <i class="fa fa-asterisk @(item.IsLandingPageItem ? "favourite-item" : "" )" onclick="SerieController.markAsFavourite(this)"></i>
@@ -97,8 +97,8 @@
 
 @section scripts{
     <script src="~/Areas/Admin/Scripts/Shared/HtmlFormBuilder.js"></script>
-    <script src="~/Areas/Admin/Scripts/Series/SerieController.js"></script>
-    <script src="~/Areas/Admin/Scripts/Series/SerieFormElements.js"></script>
+    <script src="~/Areas/Admin/Scripts/Series/SerieController.js?v=4"></script>
+    <script src="~/Areas/Admin/Scripts/Series/SerieFormElements.js?v=1"></script>
     <script src="~/Areas/Admin/Scripts/Series/SerieValidator.js"></script>
     <script src="~/Areas/Admin/Scripts/Shared/ValidationResult.js"></script>
     <script src="~/Areas/Admin/Scripts/Shared/PopupService.js"></script>

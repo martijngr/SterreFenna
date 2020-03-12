@@ -23,6 +23,7 @@
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -307,6 +308,7 @@
     <Content Include="Content\less\Site.less" />
     <Content Include="Content\less\landingpage.less" />
     <Content Include="Content\less\show.less" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\Production.pubxml" />
     <Content Include="main.min.js" />
     <Content Include="Scripts\bootstrap\bootstrap.js" />
