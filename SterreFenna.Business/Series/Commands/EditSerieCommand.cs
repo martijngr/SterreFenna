@@ -25,11 +25,16 @@ namespace SterreFenna.Business.Series.Commands
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly AddItemsToSerieCommand _addItemsToSerieCommand;
+        private readonly RenameSerieNameCommandHandler _renameSerieNameCommandHandler;
 
-        public EditSerieCommandHandler(AddItemsToSerieCommand addItemsToSerieCommand, IUnitOfWork unitOfWork)
+        public EditSerieCommandHandler(
+            AddItemsToSerieCommand addItemsToSerieCommand, 
+            RenameSerieNameCommandHandler renameSerieNameCommandHandler,
+            IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             _addItemsToSerieCommand = addItemsToSerieCommand;
+            _renameSerieNameCommandHandler = renameSerieNameCommandHandler;
         }
         
         public void Handle(EditSerieCommand command)
@@ -67,8 +72,13 @@ namespace SterreFenna.Business.Series.Commands
 
             if (!serie.Name.Equals(command.SerieName))
             {
-                serie.Name = command.SerieName;
-                serie.UniqueName = GetUniqueName(command.SerieName);
+                var renameSerieCommand = new RenameSerieNameCommand
+                {
+                    NewSerieName = command.SerieName,
+                    SerieId = serie.Id
+                };
+
+                _renameSerieNameCommandHandler.Handle(renameSerieCommand);
             }
         }
 
@@ -95,19 +105,6 @@ namespace SterreFenna.Business.Series.Commands
             itemsToMark.ForEach(s => s.IsHomePageItem = true);
             itemsToUnmark.ForEach(s => s.IsHomePageItem = false);
 
-        }
-
-        private string GetUniqueName(string name)
-        {
-            name = InvalidCharsRemover.RemoveInvalidChars(name);
-
-            var counter = 1;
-            while (_unitOfWork.SerieRepository.Any(s => s.UniqueName == name))
-            {
-                name += $"{name}-{counter}";
-            }
-
-            return name;
         }
     }
 }

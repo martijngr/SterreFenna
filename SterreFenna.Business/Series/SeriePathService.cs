@@ -49,6 +49,15 @@ namespace SterreFenna.Business.Series
             Directory.CreateDirectory(seriePath);
         }
 
+        public void RenameSerieDirectory(string newName)
+        {
+            var currentAbsolutePath = GetAbsoluteSerieBasePath();
+            var newDirName = $"{_serieId}_{newName}";
+            var newAbsolutePath = Path.Combine("/", _settings.SeriePath, newDirName);
+
+            Directory.Move(currentAbsolutePath, newAbsolutePath);
+        }
+
         public void DeleteSerieDirectory(Serie serie)
         {
             var serieDir = GetAbsoluteSerieBasePath();

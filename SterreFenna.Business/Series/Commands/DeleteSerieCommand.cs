@@ -21,7 +21,7 @@ namespace SterreFenna.Business.Series.Commands
         public void Handle(DeleteSerieCommand command)
         {
             var serie = _unitOfWork.SerieRepository.GetById(command.Id);
-            var pathResolver = _seriePathResolverFactory.CreateSeriePathResolver(command.Id, serie.Name);
+            var pathResolver = _seriePathResolverFactory.CreateSeriePathService(command.Id, serie.Name);
 
             pathResolver.DeleteSerieDirectory(serie);
 
